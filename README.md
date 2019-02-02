@@ -16,21 +16,11 @@ Sometime later on, above two will be branched and managed to separate projects, 
 
 
 ### Dataset 
-Basically, the WTO panel process is to determine __whether a country has breached__ __a specific article of WTO rulings__,
+Basically, the WTO panel process determines __whether a country's government measure__ is __legal or not__ to __a certain article of WTO rulings__,
 by explicitly saying as following : 
-
 
 > "that Korea’s domestic support for beef in 1997 and 1998 exceeded the de minimis level contrary to Article 6 of the Agreement on Agriculture"
 
-
-This quotes from WTO determines `Korea` has breached `Article 6 of the Agreement on Agriculture` with `domestic support for beef`. 
-
-Therefore, our dataset is aimed to provide useful accessibility to train the neural network, which will predict 
-
-`breach` or `not` with given `Who (Korea)`, `Government Measure (domestic support for beef)`, `Article 6 of the Agreement on Agriculture`  
-
-
-
-
-
- From the __[WTO official website]()__ we can publicly get access to the legal decision of panel report with facts of circumstances and its 
+Therefore, our dataset is comprised of mainly 3 components - `Government Measure`, `Legality`, `Article Code`. 
+However, the most tricky part is the `Government Measure`. Government measure is __descriptive__ and __specific__ on each case, 
+given in a forms of __text__. 
