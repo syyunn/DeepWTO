@@ -29,6 +29,7 @@ Measure__, __Legality__, __Article Code__.
 
 
 #### Government Measure 
+--
 Government measure is the most __tricky__ part to prepare the data to train.
   Government measure is usually __descriptive__ and __specific__ to each 
 case, which is hard to be generalized across the cases. Government measure
