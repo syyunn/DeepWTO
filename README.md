@@ -29,9 +29,9 @@ Measure__, __Legality__, __Article Code__.
 
 
 #### Government Measure 
-__Government Measure__ is the most tricky part to prepare the data to train.  
-__Government Measure__ is usually __descriptive__ and __specific__ to each 
-case, which is hard to be generalized across the cases. __Government Measure__
+Government measure is the most __tricky__ part to prepare the data to train.
+  Government measure is usually __descriptive__ and __specific__ to each 
+case, which is hard to be generalized across the cases. Government measure
  is given in a full of __text data__ without strictly enforced formatting 
  style but mainly depends on the preference of each panel body and its personnel. 
 Therefore, for the first version of the dataset, we just naively parse all 
