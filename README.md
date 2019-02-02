@@ -28,7 +28,14 @@ Therefore, our dataset is comprised of mainly 3 components - `Government Measure
 
 
 #### Government Measure 
-`Government Measure` is the most tricky part to prepare the data to train.  `Government measure` is usually __descriptive__ and __specific__ on each 
-case, which is hard to generalize across the cases. 
+`Government Measure` is the most tricky part to prepare the data to train.  `Government Measure` is usually __descriptive__ and __specific__ to each 
+case, which is hard to be generalized across the cases. `Government Measure`
+ is given in a full of __text data__ without strictly enforced formatting 
+ style but mainly depends on the preference of each panel body and its personnel. 
+Therefore, for the first version of the dataset, we just naively parse all 
+the strings included in `Panel(or Appellate Body) Report` to check 
+whether this naive dataset - which lacks a hierarchical structure of 
+document, could be also analyzed with deep learning approach. 
+
 
 
