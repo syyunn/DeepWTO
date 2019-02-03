@@ -17,8 +17,16 @@ dependencies:
   - setuptools=40.6.3=py37_0
   - sqlite=3.26.0=ha441bb4_0
   - tk=8.6.8=ha441bb4_0
+  - wget=1.19.5=h051b688_0
   - wheel=0.32.3=py37_0
   - xz=5.2.4=h1de35cc_4
   - zlib=1.2.11=h1de35cc_3
+  - pip:
+    - beautifulsoup4==4.7.1
+    - bs4==0.0.1
+    - selenium==3.141.0
+    - soupsieve==1.7.3
+    - tqdm==4.30.0
+    - urllib3==1.24.1
 prefix: /Users/zachary/anaconda3/envs/deepwto
 
