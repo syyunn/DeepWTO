@@ -30,7 +30,10 @@ def get_pdf_urls(chrome_driver, dispute_idx):
     onclick_list = []
     while page:
         if page_idx != 1:
-            page.click()
+            try:
+                page.click()
+            except: # to prevent error from unclickable element
+                pass
             
         found_elements = chrome_driver.find_elements_by_tag_name("a")
         print(len(found_elements))
@@ -59,12 +62,15 @@ class CrawlWTO:
     """
     def __init__(self,
                  chrome_driver_path,
-                 final_ds_numb,
+                 start_ds_numb,
+                 end_ds_numb,
                  outpath,
                  pool):
         self.chrome_driver_path = chrome_driver_path
-        self.final_ds_numb = final_ds_numb
-        self.total_ds_idxs = [i for i in range(1, final_ds_numb)]
+        self.final_ds_numb = end_ds_numb
+        self.start_ds_numb = start_ds_numb
+        self.total_ds_idxs = [i for i in range(self.start_ds_numb,
+                                               end_ds_numb)]
         self.outpath = outpath
         self.pool = pool
 
@@ -80,8 +86,12 @@ class CrawlWTO:
         return unit_result
 
     def crawl(self):
+        global result_dicts
         with Pool(self.pool) as p:
-            result_dicts = p.map(self.unit_crawl, self.total_ds_idxs)
+            try:
+                result_dicts = p.map(self.unit_crawl, self.total_ds_idxs)
+            except:  # to prevent chrome_driver connection error
+                pass
     
         print(result_dicts)
         print(type(result_dicts))
@@ -99,9 +109,10 @@ if __name__ == "__main__":
     downloader = CrawlWTO(chrome_driver_path=
                           "/Users/zachary/projects/DeepWTO/download"
                           "/chromedriver",
-                          final_ds_numb=577,
+                          start_ds_numb=1,
+                          end_ds_numb=577,
                           outpath= "/Users/zachary/projects/DeepWTO/download/"
                                    "wto_pdf_urls.pkl",
-                          pool=30)
+                          pool=25)
 
     downloader.crawl()
