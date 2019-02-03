@@ -4,5 +4,11 @@
 # MacOSX
 .DS_Store
 
-# chromedriver
+# Chrome-webdriver for selenium
 chromedriver
+
+# stash
+database/stash
+
+# pyCache
+*/__pycache__
