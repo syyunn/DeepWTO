@@ -1,4 +1,6 @@
 import pickle
+import re
+import unittest
 
 
 def verify_nonzero(pdf_urls_pkl_path):
@@ -33,15 +35,18 @@ def get_tail(raw_url_str):
         return split[-1]
 
 
-def find_eng(raw_url_str):
-    if 'Q' in raw_url_str:
-        return True
-    else:
-        return False
-    
+def filter_english(raw_url_str):
+    regex_eng = re.compile(r'^(.*)(\/q\/|\/Q\/)(.*)$')
+    return regex_eng.match(raw_url_str)
 
-def find_panel_appellate_body_report(tail_str):
-    if tail_str.split('.')[0][-1] == 'R':
-        return True
-    else:
-        return False
+
+def filter_panel(tail_str):
+    regex = r'^([0-9]{1,3}(R|RW)\.(pdf|PDF))|(84R-01.pdf)$'
+    regex_panel = re.compile(regex)
+    return regex_panel.match(tail_str)
+
+
+def filter_appellate(tail_str):
+    regex = r'^[0-9]{1,3}ABR\.(pdf|PDF)$'
+    regex_appellate = re.compile(regex)
+    return regex_appellate.match(tail_str)
