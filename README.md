@@ -9,7 +9,7 @@ which country wins the legal battle in __[WTO](https://en.wikipedia.org/wiki/Wor
 from the task of panel report generation. This project is assumed to achieve following two main goals:
 1. Build a __dataset__ that everyone can participate in this legal prediction 
 agenda in __objective manner__
-2. Performs a classification with simple __neural network__ to set the baseline 
+2. Performs a classification with simple neural networks to set the baseline 
 of the classification task.
 
 Sometime later on, above two will be branched and managed to separate projects, 
@@ -24,8 +24,9 @@ by explicitly saying as following :
 > "Korea’s domestic support for beef in 1997 and 1998 exceeded the de 
 minimis level contrary to Article 6 of the Agreement on Agriculture." 
 
-Therefore, our dataset is comprised of mainly 3 components - __Government 
-Measure__, __Legality__, __Article Code__. 
+Therefore, our dataset is comprised of mainly 3 components - [__Government 
+Measure__](https://www.wto.org/english/tratop_e/dispu_e/disp_settlement_cbt_e/c5s3p1_e.htm), 
+__Legality__, [__Article Code__](https://www.wto.org/english/docs_e/legal_e/legal_e.htm#gatt47). 
 
 
 #### Government Measure 
