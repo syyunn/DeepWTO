@@ -1,13 +1,14 @@
-import os
-import re
+import pickle
 
-import wget
 from selenium import webdriver
+from tqdm import tqdm
+
+import collections
 
 
-def get_pdf_url(chrome_driver, dispute_idx):
+def get_pdf_urls(chrome_driver, dispute_idx):
     """
-    Retrieve pdf url of given dispute number
+    Retrieve all possible pdf urls for the given dispute number
     :param chrome_driver: chrome driver path
     :param dispute_idx: ds number to retrieve
     :return: string of integer
@@ -16,97 +17,64 @@ def get_pdf_url(chrome_driver, dispute_idx):
                  "?Query=(@Symbol=%20wt/ds{}/*)&Language=ENGLISH&Context=" \
                  "FomerScriptedSearch&languageUIChanged=true#".\
         format(dispute_idx)
-    
+        
     chrome_driver.get(url_prefix)
     
-    possible_tr_idx = 2
-    pdf_urls = []
-    for index in range(possible_tr_idx):
-        common_xpath = '//*[@id="ctl00_MainPlaceHolder_dtlDocs"]/tbody/tr[{}' \
-                       ']/td/div/div[3]/div[5]/a'.format(index+1)
-        
-        found_elements = driver.find_elements_by_xpath(common_xpath)
-        
-        common_url_prefix = 'https'
-        common_url_postfix = 'pdf'
-        
-        try:
-            to_be_parsed = found_elements[0].get_attribute("onclick")
-        
-            start_of_url_string_index = re.search(common_url_prefix,
-                                                  to_be_parsed).start()
-            end_of_url_string_index = re.search(common_url_postfix,
-                                                to_be_parsed).end()
-
-            pdf_url = to_be_parsed[
-                      start_of_url_string_index:end_of_url_string_index]
-    
-            pdf_urls.append(pdf_url)
-    
-        except (AttributeError, IndexError):
-            pass
-    return pdf_urls
-    
-    
-def check_panel_report(url):
-    """
-    Check the validity of url whether the url directs the panel report or else.
-    :return: Bool
-    """
-    try:
-        int(url.split('/')[-1].split('.')[0][:-1])
-        if url.split('/')[-1].split('.')[0][-1] == 'R':
-            return True
-        else:
-            return False
-    except (ValueError, AttributeError):
-        return False
-    
-    
-def download_panel_report(resume_idx,
-                          total_disputes,
-                          root_dir,
-                          chrome_driver):
-    panel_report_exists = []
-    panel_report_not_exists = []
-    for dispute_idx in range(resume_idx, total_disputes):
-        urls = get_pdf_url(chrome_driver, dispute_idx)
-        for url in urls:
-            is_panel_report = check_panel_report(url)
-            print(is_panel_report)
-            print(dispute_idx, url)
-            if is_panel_report:
-                outpath = os.path.join(root_dir, str(dispute_idx) + "R.pdf")
-                print(outpath)
-                wget.download(url, outpath)
-                panel_report_exists.append(dispute_idx)
-            else:
-                panel_report_not_exists.append(dispute_idx)
-
+    page = chrome_driver.\
+        find_element_by_css_selector('#ctl00_MainPlaceHolder_dlPaging > tbody '
+                                     '> tr > td:nth-child(1)')
+    page_idx = 1
+    onclick_list = []
+    while page:
+        if page_idx != 1:
+            page.click()
             
+        found_elements = chrome_driver.find_elements_by_tag_name("a")
+        print(len(found_elements))
+        for idx in range(len(found_elements)):
+            onclick = found_elements[idx].get_attribute("onclick")
+            if onclick is not None and "https" in onclick:
+                print(onclick)
+                onclick_list.append(onclick)
+       
+        page_idx += 1
+        try:
+            page = chrome_driver.find_element_by_css_selector(
+                '#ctl00_MainPlaceHolder_dlPaging > tbody > tr > td:nth-child({'
+                '})'.format(page_idx))
+        except:
+            break
+    print(len(onclick_list))
+    result = dict()
+    result[dispute_idx] = onclick_list
+    return result
+
+    
 if __name__ == "__main__":
     chrome_driver_path = "/Users/zachary/projects/" \
                          "DeepWTO/download/chromedriver"
-    driver = webdriver.Chrome(chrome_driver_path)
+    final_ds_numb = 577
+    total_ds_idxs = [i for i in range(1, final_ds_numb)]
+    n_threads = 128
+
+    merge_dict_outpath = "/Users/zachary/projects/" \
+                         "DeepWTO/download/wto_pdf_urls.pkl"
+
+    def unit_crawl(ds_index):
+        driver_one_time_use = webdriver.Chrome(chrome_driver_path)
+        unit_result = get_pdf_urls(driver_one_time_use, ds_index)
+        driver_one_time_use.close()
+        return unit_result
     
-    total_numb_ds = 577
-    download_root = "/Users/zachary/projects/DeepWTO/download/panel_reports"
-    resume_number = 1
-    download_panel_report(resume_number,
-                          total_numb_ds+1,
-                          download_root,
-                          driver)
+    result_dicts = []
+    for ds_idx in tqdm(total_ds_idxs):
+        result_dict = unit_crawl(ds_idx)
+        result_dicts.append(result_dict)
     
-    # with tr[1]"
-    # 7
-    # R.pdf
-    # 12
-    # R.pdf
-    # 14
-    # R.pdf
-    # 72
-    # R.pdf
-    # 323
-    # R.pdf
-    # 391
-    # R.pdf
+    merge_dict = collections.defaultdict(list)
+    for d in result_dicts:
+        for k, v in d.items():  # d.items() in Python 3+
+            merge_dict[k].append(v)
+
+    with open(merge_dict_outpath, 'wb') as f:
+        pickle.dump(merge_dict, f)
