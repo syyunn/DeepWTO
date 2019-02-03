@@ -7,7 +7,7 @@ Compare to the this previous project, this time the project has narrow downed
 to the classification task to predict 
 which country wins the legal battle in __[WTO](https://en.wikipedia.org/wiki/World_Trade_Organization)__ 
 from the task of panel report generation. This project is assumed to achieve following two main goals:
-1. Build a __dataset__ that everyone can participate in this legal prediction 
+1. Build a __dataset__ so that everyone can participate in this legal prediction 
 agenda in __objective manner__
 2. Performs a classification with simple neural networks to set the baseline 
 of the classification task.
