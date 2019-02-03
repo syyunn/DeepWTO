@@ -23,7 +23,7 @@ def get_pdf_urls(chrome_driver, dispute_idx):
         page = chrome_driver.\
             find_element_by_css_selector('#ctl00_MainPlaceHolder_dlPaging '
                                          '> tbody > tr > td:nth-child(1)')
-    except:
+    except:  # to prevent the case where wrong final ds_number is given
         page = None
 
     page_idx = 1
@@ -45,7 +45,7 @@ def get_pdf_urls(chrome_driver, dispute_idx):
             page = chrome_driver.find_element_by_css_selector(
                 '#ctl00_MainPlaceHolder_dlPaging > tbody '
                 '> tr > td:nth-child({})'.format(page_idx))
-        except:
+        except:  # to escape after every pages has been visited
             break
     print(len(onclick_list))
     result = dict()
@@ -54,6 +54,9 @@ def get_pdf_urls(chrome_driver, dispute_idx):
 
 
 class CrawlWTO:
+    """
+    Visit every ds_number of pages database then crawl all the pdf urls
+    """
     def __init__(self,
                  chrome_driver_path,
                  final_ds_numb,
@@ -66,13 +69,18 @@ class CrawlWTO:
         self.pool = pool
 
     def unit_crawl(self, ds_index):
+        """
+        Unit crawler to be used in multiprocessing
+        :param ds_index
+        :return: dictionary that contains every pdf urls with ds_idx as key
+        """
         driver_one_time_use = webdriver.Chrome(self.chrome_driver_path)
         unit_result = get_pdf_urls(driver_one_time_use, ds_index)
         driver_one_time_use.close()
         return unit_result
 
     def crawl(self):
-        with Pool(2) as p:
+        with Pool(self.pool) as p:
             result_dicts = p.map(self.unit_crawl, self.total_ds_idxs)
     
         print(result_dicts)
