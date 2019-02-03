@@ -1,9 +1,10 @@
 import pickle
+import collections
+from multiprocessing import Pool
+
 
 from selenium import webdriver
 from tqdm import tqdm
-
-import collections
 
 
 def get_pdf_urls(chrome_driver, dispute_idx):
@@ -19,10 +20,14 @@ def get_pdf_urls(chrome_driver, dispute_idx):
         format(dispute_idx)
         
     chrome_driver.get(url_prefix)
-    
-    page = chrome_driver.\
-        find_element_by_css_selector('#ctl00_MainPlaceHolder_dlPaging > tbody '
-                                     '> tr > td:nth-child(1)')
+
+    try:
+        page = chrome_driver.\
+            find_element_by_css_selector('#ctl00_MainPlaceHolder_dlPaging > tbody '
+                                         '> tr > td:nth-child(1)')
+    except:
+        page = None
+
     page_idx = 1
     onclick_list = []
     while page:
@@ -51,30 +56,43 @@ def get_pdf_urls(chrome_driver, dispute_idx):
 
     
 if __name__ == "__main__":
-    chrome_driver_path = "/Users/zachary/projects/" \
-                         "DeepWTO/download/chromedriver"
-    final_ds_numb = 577
+    chrome_driver_path = "/Users/jjong/Project/DeepWTO/download/chromedriver"
+    # final_ds_numb = 577
+    final_ds_numb = 3
     total_ds_idxs = [i for i in range(1, final_ds_numb)]
     n_threads = 128
 
-    merge_dict_outpath = "/Users/zachary/projects/" \
+    merge_dict_outpath = "/Users/jjong/Project/" \
                          "DeepWTO/download/wto_pdf_urls.pkl"
+
 
     def unit_crawl(ds_index):
         driver_one_time_use = webdriver.Chrome(chrome_driver_path)
         unit_result = get_pdf_urls(driver_one_time_use, ds_index)
         driver_one_time_use.close()
         return unit_result
-    
-    result_dicts = []
-    for ds_idx in tqdm(total_ds_idxs):
-        result_dict = unit_crawl(ds_idx)
-        result_dicts.append(result_dict)
-    
-    merge_dict = collections.defaultdict(list)
+
+
+    # result_dicts = []
+    # for ds_idx in tqdm(total_ds_idxs):
+    #     result_dict = unit_crawl(ds_idx)
+    #     result_dicts.append(result_dict)
+
+    with Pool(2) as p:
+        result_dicts = p.map(unit_crawl, total_ds_idxs)
+
+    print(result_dicts)
+    print(type(result_dicts))
+
+    merge_dict = {}
     for d in result_dicts:
         for k, v in d.items():  # d.items() in Python 3+
-            merge_dict[k].append(v)
+            merge_dict[k] = v
+
+    # merge_dict = collections.defaultdict()
+    # for d in result_dicts:
+    #     for k, v in d.items():  # d.items() in Python 3+
+    #         merge_dict[k].append(v)
 
     with open(merge_dict_outpath, 'wb') as f:
         pickle.dump(merge_dict, f)
