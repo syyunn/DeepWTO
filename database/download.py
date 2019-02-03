@@ -97,10 +97,10 @@ class CrawlWTO:
     
 if __name__ == "__main__":
     downloader = CrawlWTO(chrome_driver_path=
-                          "/Users/zachary/projects/DeepWTO/download"
+                          "/Users/zachary/projects/DeepWTO/database"
                           "/chromedriver",
                           final_ds_numb=577,
-                          outpath= "/Users/zachary/projects/DeepWTO/download/"
+                          outpath= "/Users/zachary/projects/DeepWTO/database/"
                                    "wto_pdf_urls.pkl",
                           pool=30)
 
