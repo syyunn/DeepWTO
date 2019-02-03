@@ -1,2 +1,8 @@
 # IntelliJ
 .idea/
+
+# MacOSX
+.DS_Store
+
+# chromedriver
+chromedriver
