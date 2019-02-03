@@ -7,7 +7,7 @@ from selenium import webdriver
 
 def get_pdf_urls(chrome_driver, dispute_idx):
     """
-    Retrieve all possible pdf urls for the given dispute number
+    Retrieve all the possible pdf urls for the given dispute number
     :param chrome_driver: chrome driver path
     :param dispute_idx: ds number to retrieve
     :return: string of integer
@@ -30,7 +30,10 @@ def get_pdf_urls(chrome_driver, dispute_idx):
     onclick_list = []
     while page:
         if page_idx != 1:
-            page.click()
+            try:
+                page.click()
+            except: # to prevent error from unclickable element
+                pass
             
         found_elements = chrome_driver.find_elements_by_tag_name("a")
         print(len(found_elements))
@@ -59,14 +62,20 @@ class CrawlWTO:
     """
     def __init__(self,
                  chrome_driver_path,
-                 final_ds_numb,
+                 start_ds_numb,
+                 end_ds_numb,
                  outpath,
                  pool):
         self.chrome_driver_path = chrome_driver_path
-        self.final_ds_numb = final_ds_numb
-        self.total_ds_idxs = [i for i in range(1, final_ds_numb)]
+        self.final_ds_numb = end_ds_numb
+        self.start_ds_numb = start_ds_numb
+        self.ds_idxs_to_crawl = [i for i in range(self.start_ds_numb,
+                                                  end_ds_numb)]
         self.outpath = outpath
         self.pool = pool
+
+        self.zeros_list = [] # for those got nothing from unstable
+        # multiprocessing
 
     def unit_crawl(self, ds_index):
         """
@@ -79,29 +88,57 @@ class CrawlWTO:
         driver_one_time_use.close()
         return unit_result
 
-    def crawl(self):
-        with Pool(self.pool) as p:
-            result_dicts = p.map(self.unit_crawl, self.total_ds_idxs)
-    
-        print(result_dicts)
-        print(type(result_dicts))
-    
-        merge_dict = {}
-        for d in result_dicts:
-            for k, v in d.items():  # d.items() in Python 3+
-                merge_dict[k] = v
-    
-        with open(self.outpath, 'wb') as f:
-            pickle.dump(merge_dict, f)
+    def update_zeros(self, output_dict):
+        """
+        Update self.zeros_list after verify which keys in dictionary has nothing
+        :param output_dict
+        :return: None (just update self.zeros_list)
+        """
+        keys = output_dict.keys()
+        zeros_list = []
+        for key in keys:
+            pdf_numb = len(output_dict[key])
+            if pdf_numb == 0:
+                zeros_list.append(key)
+        self.zeros_list = zeros_list #replace with new one!
+        print("zeros_list updated: ", self.zeros_list)
+        self.ds_idxs_to_crawl = zeros_list
 
-    
+    def crawl_idxs(self, previous_result):
+        """
+        Crawl all pdf links iteratively for the ds idxs in self.total_ds_idxs
+        :type previous_result: dict
+        """
+        with Pool(self.pool) as p:
+            try:
+                crawled_result = p.map(self.unit_crawl, self.ds_idxs_to_crawl)
+            except:  # to prevent chrome_driver connection error
+                pass
+
+        for d in crawled_result:
+            for k, v in d.items():  # d.items() in Python 3+
+                previous_result[k] = v
+
+        return previous_result
+
+    def crawl(self):
+        crawled_dict = self.crawl_idxs(dict())
+        self.update_zeros(crawled_dict)
+        while len(self.zeros_list) != 0:
+            crawled_dict = self.crawl_idxs(crawled_dict)
+            self.update_zeros(crawled_dict)
+
+        with open(self.outpath, 'wb') as f:
+            pickle.dump(crawled_dict, f)
+
+
 if __name__ == "__main__":
     downloader = CrawlWTO(chrome_driver_path=
-                          "/Users/zachary/projects/DeepWTO/database"
-                          "/chromedriver",
-                          final_ds_numb=577,
-                          outpath= "/Users/zachary/projects/DeepWTO/database/"
+                          "/Users/jjong/Project/DeepWTO/database/chromedriver",
+                          start_ds_numb=1,
+                          end_ds_numb=577,
+                          outpath= "/Users/jjong/Project/DeepWTO/database/"
                                    "wto_pdf_urls.pkl",
-                          pool=30)
+                          pool=10)
 
     downloader.crawl()

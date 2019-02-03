@@ -1,3 +1,6 @@
+import pickle
+
+
 def split_and_filter(intermediate_str, splitter):
     """
     Split string with given splitter - either one of "," or "/'", then
@@ -32,14 +35,18 @@ class ParseUrl:
 
 
 if __name__ == '__main__':
-    # pkl_file_path = "./wto_pdf_urls.pkl"
-    #
-    # with open(pkl_file_path, 'rb') as f:
-    #     pkl_f = pickle.load(f)
+    pkl_file_path = "./wto_pdf_urls.pkl"
 
-    example = ["var w=window.open('https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/4255/Q/WT/DS/2-10A7.pdf','downloadFile', 'directories=1, height= 100, location=0, menubar=0, resizable=0, scrollbars=1, status=1, toolbar=0, width= 200', true, 720, 600);w.focus(); return false;"]
+    with open(pkl_file_path, 'rb') as f:
+        result = pickle.load(f)
 
-    
+    print(result.keys())
+    counter = 0
+    for key in result.keys():
+        counter += len(result[key])
+        print(len(result[key]))
+        if len(result[key]) == 0:
+            print(key)
+    print(counter)
 
-    result = standard_parse(example[0])
-    print(result)
+
