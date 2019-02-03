@@ -22,7 +22,7 @@ measure__ is __contrary or not contrary__ to __a certain article(s) of rules of 
 by explicitly saying as following : 
 
 > "Korea’s domestic support for beef in 1997 and 1998 exceeded the de 
-minimis level __contrary to__ Article 6 of the Agreement on Agriculture." 
+minimis level contrary to Article 6 of the Agreement on Agriculture." 
 
 Therefore, our dataset is comprised of mainly 3 components - [__Government 
 Measure__](https://www.wto.org/english/tratop_e/dispu_e/disp_settlement_cbt_e/c5s3p1_e.htm), 
