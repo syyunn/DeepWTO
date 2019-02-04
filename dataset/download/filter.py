@@ -77,8 +77,8 @@ if __name__ == "__main__":
 
     AB_list = []
     Panel_list = []
-    linked_tuples_panel = []
-    linked_tuples_appellate = []
+    linked_cases_panel = []
+    linked_cases_appellate = []
     for key in urls.keys():
         print(key)
 
@@ -93,13 +93,13 @@ if __name__ == "__main__":
                     Panel_list.append(key)
                     given = extract_number(tail.split('.')[0])
                     if given != key:
-                        linked_tuples_panel.append({key, given})
+                        linked_cases_panel.append({key, given})
                 if filter_appellate(tail):
                     print(tail)
                     AB_list.append(key)
                     given = extract_number(tail.split('.')[0])
                     if given != key:
-                        linked_tuples_appellate.append({key, given})
+                        linked_cases_appellate.append({key, given})
 
         if key == 379:
             pass
@@ -110,20 +110,20 @@ if __name__ == "__main__":
     multidoc_list = []
     for elem in AB_list:
         if elem not in Panel_list:
-            print(elem)
-            print("error!")
+            # print(elem)
+            # print("error!")
             multidoc_list.append(elem)
 
-    print(AB_list)
-    print(Panel_list)
-
-    print(len(AB_list))
-    print(len(Panel_list))
-
-    print(linked_tuples_panel)
-    # print(linked_tuples_appellate)
-
+    # print(AB_list)
+    # print(Panel_list)
+    #
+    # print(len(AB_list))
+    # print(len(Panel_list))
+    #
+    # print(linked_cases_panel)
+    # print(linked_cases_appellate)
+    #
     # print(multidoc_list)
-    
-    print(parse_linked_cases(linked_tuples_panel))
-    print(parse_linked_cases(linked_tuples_appellate))
+    #
+    # print(parse_linked_cases(linked_cases_panel))
+    # print(parse_linked_cases(linked_cases_appellate))
