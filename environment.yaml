@@ -30,6 +30,7 @@ dependencies:
     - pluggy==0.8.1
     - py==1.7.0
     - pytest==4.2.0
+    - pyyaml==3.13
     - selenium==3.141.0
     - six==1.12.0
     - soupsieve==1.7.3
