@@ -30,7 +30,7 @@ __Legality__, [__Article Code__](https://www.wto.org/english/docs_e/legal_e/lega
 
 
 #### Government Measure 
---
+
 Government measure is the most __tricky__ part to prepare the data to train.
   Government measure is usually __descriptive__ and __specific__ to each 
 case, which is hard to be generalized across the cases. Government measure
@@ -40,6 +40,12 @@ Therefore, for the first version of the dataset, we just naively parse all
 the strings included in __Panel(or Appellate Body if exists) Report__ to 
 check whether this naive dataset - which lacks a hierarchical structure of 
 document, could be also analyzed with deep learning approach. 
+
+
+#### ToDo  
+0. Parse semi-colon linked urls to make/re-save pdf_urls_parsed.pkl
+1. Merger parser to crawler 
+2. Convert image-based pdf to text-based pdf 
 
 
 

@@ -100,13 +100,14 @@ class CrawlWTO:
             pdf_numb = len(output_dict[key])
             if pdf_numb == 0:
                 zeros_list.append(key)
-        self.zeros_list = zeros_list #replace with new one!
+        self.zeros_list = zeros_list  # update(replace) zero_list with new one!
         print("zeros_list updated: ", self.zeros_list)
         self.ds_idxs_to_crawl = zeros_list
 
     def crawl_idxs(self, previous_result):
         """
-        Crawl all pdf links iteratively for the ds idxs in self.total_ds_idxs
+        Crawl all pdf links iteratively according to the list stored in the
+        self.total_ds_idxs
         :type previous_result: dict
         """
         with Pool(self.pool) as p:
@@ -122,6 +123,9 @@ class CrawlWTO:
         return previous_result
 
     def crawl(self):
+        """crawls all the pdf links in the WTO Database for given list of
+        DS(dispute settlement) number (currently available from 1 to 577 as
+        of 03 FEB 2019 """
         crawled_dict = self.crawl_idxs(dict())
         self.update_zeros(crawled_dict)
         while len(self.zeros_list) != 0:
