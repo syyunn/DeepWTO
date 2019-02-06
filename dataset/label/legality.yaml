@@ -1,0 +1,63 @@
+# Label on Legal Consistency
+
+#  1 : consistent
+# -1 : violation
+#  0 : unable to determine because of (insufficient information[18], unable to
+#      apply[22])
+
+2:
+  Panel:
+    GATT III:4: -1
+  AppellateBody:
+    GATT III:4: -1
+
+7:
+  Panel:
+    MutalAgreement: 1
+
+8:
+  Panel:
+    GATT III:2: -1
+  AppellateBody:
+    GATT III:2: -1
+  Linked: {8, 10, 11}
+
+12:
+  Panel:
+    MutualAgreement: 1
+  Linked: {12, 14}
+
+18:
+  Panel:
+    SPS 2.2: -1
+    SPS 2.3: -1
+    SPS 5.1: -1
+    SPS 5.5: -1
+    SPS 5.6: -1
+  AppellateBody:
+    SPS 2.2: 1
+    SPS 2.3: -1
+    SPS 5.1: 1
+    SPS 5.5: -1
+    SPS 5.6: 0
+
+22:
+  Panel:
+    GATT I: 0
+    GATT II: 0
+    GATT IV: 0
+    AA Art. 13: 0
+  AppellateBody:
+    GATT I: 0
+    GATT II: 0
+    GATT IV: 0
+    AA 13: 0
+
+
+
+HardToTell:
+  ds_numb: [24]
+Acronmys:
+  AA: Agreement on Agriculture
+  SPS: Agreement on the Application of Sanitary and Phytosanitary Measures
+  ATC: Agreement on Textiles and Clothing
