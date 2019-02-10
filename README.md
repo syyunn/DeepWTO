@@ -13,7 +13,7 @@ agenda in __objective manner__
 of the classification task.
 
 Above two will be branched and managed into a separate project later, 
-however, handled in the same repository at now. 
+however, handled in the same repository at present. 
 
 
 ### Dataset 
