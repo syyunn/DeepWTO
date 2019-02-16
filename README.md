@@ -42,7 +42,7 @@ check whether this naive dataset - which lacks a hierarchical structure of
 document, could be also analyzed with deep learning approach. 
 
 # Author
-[Zachary Yoon](syyun@snu.ac.kr)
+[Zachary Yoon](https://github.com/syyunn)
 
 #### ToDo  
 0. Parse semi-colon linked urls to make/re-save pdf_urls_parsed.pkl
