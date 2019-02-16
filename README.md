@@ -44,7 +44,6 @@ document, could be also analyzed with deep learning approach.
 # Author
 Zachar Yoon
 
-Senior Research Scientist @ Deep Studio Co. Ltd. 
 syyun@snu.ac.kr 
 
 #### ToDo  
