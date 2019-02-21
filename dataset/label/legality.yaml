@@ -2,8 +2,7 @@
 
 #  1 : consistent
 # -1 : violation
-#  0 : unable to determine because of (insufficient information[18], unable to
-#      apply[22])
+#  0 : unable to determine : reasons {insufficient information[DS 18], unable to apply[DS22]}
 
 2:
   Panel:
@@ -52,6 +51,10 @@
     GATT II: 0
     GATT IV: 0
     AA 13: 0
+
+31:
+  Panel:
+    GATT Art. XI: -1
 
 
 
