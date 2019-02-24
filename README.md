@@ -55,6 +55,10 @@ document, could be also analyzed with deep learning approach.
 - [ ] Add parser to count the articles other than GATT, especially ATC 
 - [ ] Make Article Dictionary, e.g. {'GATT:III.1' : "Each contracting party 
 shall .."
+- [ ] Review the current labelling before DS67 which is conducted without 
+reading raw document 
+- [ ] Construct a new query system and embed it on github so that people can
+ search more fast on target document.
 
 #### Labelling On Progress
 - [x] 2

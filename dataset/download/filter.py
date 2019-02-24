@@ -71,7 +71,7 @@ def parse_linked_cases(sample):
 
 
 if __name__ == "__main__":
-    pkl_path = "./result/pdf_urls_new_parsed.pkl"
+    pkl_path = "./pickles/pdf_urls_parsed.pkl"
     with open(pkl_path, "rb") as f:
         urls = pickle.load(f)
 

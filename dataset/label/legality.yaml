@@ -1,8 +1,10 @@
 # Label on Legal Consistency
 
 # General Principle
-# AppellateBody must entail all articles cited in Panel
-# AppellateBody only tracks reversion(or retain) of Panel's Decision
+# AppellateBody must entail all articles cited in Panel => False
+# AppellateBody only tracks reversion(or retain) of Panel's Decision => False
+# AB sometimes finds more inconsistency with some article not cited in Panel
+# .e.g. [DS108]
 
 # Judicial Economy
 # Some articles cited in consultation not being dealt in Panel/AB, since
@@ -14,7 +16,7 @@
 #  1 : consistent
 # -1 : violation
 #  0 : unable to determine
-#      {Insufficient information[DS 18],
+#      {Insufficient information[DS18, DS98ABR],
 #       Unable to apply[DS22],
 #       Failed to identify "specific measure at issue" [DS60]}
 
@@ -24,6 +26,10 @@
 # Thus, in case the one-page-summary vague, refer to the final conclusion of
 # original paper
 
+# RW is the footnote marker to denote the case where the fixed measure was
+#  not agreed by the members of disputes. Refer to DSU21.5 for the ground
+#  article.
+# The consistency of restoration measure also fought in panel/AB
 
 2:
   Panel:
@@ -243,13 +249,45 @@
         XVIII:B: -1
     AOA 4.2: -1
 
+98:
+  Panel:
+    GATT XIX:1: 1
+    AOS 5.1: -1
+    AOS 2.1: 1
+    AOS 4.2(a): -1
+    AOS 12.1: -1
+    AOS 12.2: -1
+  AB:
+    GATT XIX:1: 0
+    AOS 5.1: 0
+    AOS 4.2(a): -1
+    AOS 12.2: 1
 
+99:
+  MutualAgreement: 1
 
+103:
+  Panel:
+    GATT II:1(b): -1
+    AOA 3.3: -1
+    AOA 8: -1
+  AB:
+    GATT II:1(b): -1
+    AOA 3.3: -1
+    AOA 8: -1
+  Linked: {103, 113}
 
-
-
-
-
+108:
+  GM: FSC scheme
+  Panel:
+    ASCM 3.1(a): -1
+    AOA 3.3: -1
+    AOA 8: -1
+  AB:
+    ASCM 3.1(a): -1
+    AOA 3.3: 1
+    AOA 10.1: -1
+    AOA 8: -1
 
 
 
@@ -258,6 +296,7 @@ Acronmys:
   GATT: General Agreement on Tariffs and Trade 1994
   AA: Agreement on Agriculture
   ADA: Agreement on Anti-Dumping
+  AOS: Agreement on Safeguards
   ASCM: Agreement on Subsidies and Countervailing Measures
   ATC: Agreement on Textiles and Clothing
   SPS: Agreement on the Application of Sanitary and Phytosanitary Measures

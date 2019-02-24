@@ -4,7 +4,7 @@ import pickle
 def split_and_filter(intermediate_str, splitter):
     """
     Split string with given splitter - practically either one of "," or "/'".
-    Then filter ones that includes "https" in the split result
+    Then filter ones that includes "https" in the split pickles
     :param intermediate_str : string that in the middle of parsing
     :param splitter
     :return: chunk of string(s) as a list
@@ -102,8 +102,8 @@ class ParseUrl:
     
     
 if __name__ == '__main__':
-    pkl_file_path = "./result/pdf_urls_raw.pkl"
-    parsed_pkl_outpath = "./result/pdf_urls_new_parsed.pkl"
+    pkl_file_path = "./pickles/pdf_urls_raw.pkl"
+    parsed_pkl_outpath = "./pickles/pdf_urls_parsed.pkl"
 
     parser = ParseUrl(pkl_file_path)
     parsed_dict = parser.parse_all()
