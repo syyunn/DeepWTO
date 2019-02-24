@@ -51,9 +51,6 @@ document, could be also analyzed with deep learning approach.
 [Zachary Yoon](https://github.com/syyunn)
 
 #### ToDo  
-0. Parse semi-colon linked urls to make/re-save pdf_urls_parsed.pkl
-1. Merger parser to crawler 
-2. Convert image-based pdf to text-based pdf 
-3. Parse the Articles of WTO 
-
-
+- [x] Parse semi-colon linked urls to make/re-save pdf_urls_parsed.pkl
+- [ ] Convert image-based pdf to text-based pdf 
+- [ ] Add parser to count the articles other than GATT, especially ATC 
