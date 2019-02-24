@@ -4,6 +4,10 @@
 # AppellateBody must entail all articles cited in Panel
 # AppellateBody only tracks reversion(or retain) of Panel's Decision
 
+# Judicial Economy
+# Some articles cited in consultation not being dealt in Panel/AB, since
+# the Panel/AB exerts judicial economy
+
 # Level of Scope
 # GATT III: must be entail to the second level
 
@@ -14,11 +18,12 @@
 #       unable to apply[DS22]}
 
 
+
 2:
   Panel:
     GATT III:4: -1
   AB:
-    GATT III:4: -1
+    Consistent With PAnel: -1
 
 7:
   Panel:
@@ -64,10 +69,8 @@
 
 24:
   Panel:
-    ATC 6: -1
     ATC 6.2: -1
   AB:
-    ATC 6: -1
     ATC 6.2: -1
 
 31:
@@ -85,10 +88,53 @@
         GATT III:8(b): 1
 
 33:
-  
+  Panel:
+    ATC 6.2: -1
+    ATC 6.3: -1
+    ATC 2.4: -1
+  AB:
+    ATC 6.2: -1
+    ATC 6.3: -1
+    ATC 2.4: -1
+
+34:
+  Panel:
+    GATT XI: -1
+    GATT XIII: -1
+    ATC 2.4: -1
+  AB:
+    ATC 6.2: -1
+    ATC 6.3: -1
+    ATC 2.4: -1
+
+46:
+  Panel:
+    ASCM 3.1(a): -1
+      Exempt:
+        ASCM 27: -1
+    ASCM 27.4: -1
+
+  AB:
+    ASCM 3.1(a): -1
+      Exempt:
+        ASCM 27: -1
+    ASCM 27.4: -1
+
+
+50:
+  Panel:
+    TRIPS 70.8: -1
+  AB:
+    TRIPS 70.9: -1
+
+
+
 
 Acronmys:
   GATT: General Agreement on Tariffs and Trade 1994
   AA: Agreement on Agriculture
-  SPS: Agreement on the Application of Sanitary and Phytosanitary Measures
+  ASCM: Agreement on Subsidies and Countervailing Measures
   ATC: Agreement on Textiles and Clothing
+  SPS: Agreement on the Application of Sanitary and Phytosanitary Measures
+  TRIPS: The Agreement on Trade-Related Aspects of Intellectual Property Rights
+  
