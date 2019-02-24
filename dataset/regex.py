@@ -10,6 +10,7 @@ regex_arg = re.compile(regex)
 regex_eng = re.compile(r'^(.*)(\/q\/|\/Q\/)(.*)$')
 
 class TestRE(unittest.TestCase):
+
     def test_int(self):
         self.assertTrue(regex_panel.match('110R.pdf'))
         self.assertTrue(regex_appellate.match('123ABR.pdf'))

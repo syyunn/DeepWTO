@@ -41,7 +41,13 @@ the strings included in __Panel(or Appellate Body if exists) Report__ to
 check whether this naive dataset - which lacks a hierarchical structure of 
 document, could be also analyzed with deep learning approach. 
 
-# Author
+### Reproduce   
+    git clone https://github.com/syyunn/GATT_WTO
+    cd GATT_WTO
+    conda env create -f environment.yaml
+
+
+### Author
 [Zachary Yoon](https://github.com/syyunn)
 
 #### ToDo  
