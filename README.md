@@ -54,3 +54,5 @@ document, could be also analyzed with deep learning approach.
 - [x] Parse semi-colon linked urls to make/re-save pdf_urls_parsed.pkl
 - [ ] Convert image-based pdf to text-based pdf 
 - [ ] Add parser to count the articles other than GATT, especially ATC 
+- [ ] Make Article Dictionary, e.g. {'GATT:III.1' : "Each contracting party 
+shall .."
