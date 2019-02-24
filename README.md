@@ -12,14 +12,13 @@ agenda in __objective manner__
 2. Performs a classification with simple neural networks to set the baseline 
 of the classification task.
 
-Above two will be branched and managed into a separate project later, 
-however, handled in the same repository at present. 
+Above two will be branched and managed as a separate project later. 
 
 
 ### Dataset 
 Basically, the WTO panel process determines __whether a country's government 
-measure__ is __contrary or not contrary__ to __a certain article(s) of rules of WTO__,
-by explicitly saying as following : 
+measure at issue__ is __contrary or not contrary__ to __a certain article(s)
+ of rules of WTO__, by explicitly saying as following : 
 
 > "Korea’s domestic support for beef in 1997 and 1998 exceeded the de 
 minimis level contrary to Article 6 of the Agreement on Agriculture." 
