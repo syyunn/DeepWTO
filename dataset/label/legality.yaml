@@ -1,13 +1,23 @@
 # Label on Legal Consistency
 
+# General Principle
+# AppellateBody must entail all articles cited in Panel
+# AppellateBody only tracks reversion(or retain) of Panel's Decision
+
+# Level of Scope
+# GATT III: must be entail to the second level
+
 #  1 : consistent
 # -1 : violation
-#  0 : unable to determine : reasons {insufficient information[DS 18], unable to apply[DS22]}
+#  0 : unable to determine
+#      {insufficient information[DS 18],
+#       unable to apply[DS22]}
+
 
 2:
   Panel:
     GATT III:4: -1
-  AppellateBody:
+  AB:
     GATT III:4: -1
 
 7:
@@ -17,7 +27,7 @@
 8:
   Panel:
     GATT III:2: -1
-  AppellateBody:
+  AB:
     GATT III:2: -1
   Linked: {8, 10, 11}
 
@@ -33,7 +43,7 @@
     SPS 5.1: -1
     SPS 5.5: -1
     SPS 5.6: -1
-  AppellateBody:
+  AB:
     SPS 2.2: 1
     SPS 2.3: -1
     SPS 5.1: 1
@@ -46,21 +56,38 @@
     GATT II: 0
     GATT IV: 0
     AA Art. 13: 0
-  AppellateBody:
+  AB:
     GATT I: 0
     GATT II: 0
     GATT IV: 0
-    AA 13: 0
+    AA Art. 13: 0
+
+24:
+  Panel:
+    ATC 6: -1
+    ATC 6.2: -1
+  AB:
+    ATC 6: -1
+    ATC 6.2: -1
 
 31:
   Panel:
-    GATT Art. XI: -1
+    GATT XI: -1
+      Exempt:
+        GATT XX(d): -1
+    GATT III:2 : -1
+    GATT III:4: -1
+  AB:
+    GATT XI: -1
+    GATT III:2 : -1
+    GATT III:4: 1
+      Exempt:
+        GATT III:8(b): 1
 
+33:
 
-
-HardToTell:
-  ds_numb: [24]
 Acronmys:
+  GATT: General Agreement on Tariffs and Trade 1994
   AA: Agreement on Agriculture
   SPS: Agreement on the Application of Sanitary and Phytosanitary Measures
   ATC: Agreement on Textiles and Clothing
