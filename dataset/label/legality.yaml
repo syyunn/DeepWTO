@@ -14,9 +14,15 @@
 #  1 : consistent
 # -1 : violation
 #  0 : unable to determine
-#      {insufficient information[DS 18],
-#       unable to apply[DS22]}
+#      {Insufficient information[DS 18],
+#       Unable to apply[DS22],
+#       Failed to identify "specific measure at issue" [DS60]}
 
+# On Tips upon Labelling:
+# After the case of DS67, the Panel/AB starts its customary act to
+# explicitly denotes the legality with accordance to the specific article.
+# Thus, in case the one-page-summary vague, refer to the final conclusion of
+# original paper
 
 
 2:
@@ -127,14 +133,132 @@
   AB:
     TRIPS 70.9: -1
 
+56:
+  Panel:
+    GATT II:1(b): -1
+    GATT VIII:1(a): -1
+  AB:
+    GATT II:1(b): -1
+    GATT VIII:1(a): -1
+
+58:
+  Panel:
+    GATT XI: -1
+      Exept:
+        GATT XX(g): -1
+  AB:
+    GATT XI: -1
+      Exept:
+        GATT XX(g): -1
+
+60:
+  Panel:
+    GATT 5.3: -1
+  AB:
+    GATT 5.3: 0
+
+62:
+  Panel:
+    GATT II:1(a): -1
+  AB:
+    GATT II:1(a): 1
+  Linked: {62, 67, 68}
+
+69:
+  Panel:
+    GATT XIII:2: 1
+    GATT X: 1
+    AOA 5.1(b): -1
+  AB:
+    GATT XIII:2: 1
+    GATT X: 1
+    AOA 5.1(b): 1
+    AOA 5.5: -1
+
+70:
+  Panel:
+    ASCM 3.1(a): -1
+    ASCM 3.2: -1
+      EDC Assistance:
+        ASCM 3.1(a): 1
+        ASCM 3.2: 1
+      Account debt financing:
+        ASCM 3.1(a): -1
+        ASCM 3.2: -1
+      Sale by the Ontario Aerospace Corporation of its 49 percent interest in de Havilland Inc. to Bombardier :
+        ASCM 3.1(a): 1
+        ASCM 3.2: 1
+      Subsidiary Agreement assistance to the Canadian regional aircraft  industry constitutes export subsidies:
+        ASCM 3.1(a): 1
+        ASCM 3.2: 1
+      SDI and IQ assistance to the Canadian regional aircraft industry:
+        ASCM 3.1(a): 1
+        ASCM 3.2: 1
+      TPC assistance to the Canadian regional aircraft industry:
+        ASCM 3.1(a): -1
+        ASCM 3.2: -1
+      DIPP assistance to the Canadian regional aircraft industry:
+        ASCM 3.1(a): 1
+        ASCM 3.2: 1
+  AB:
+    ASCM 3.1(a): -1
+    ASCM 3.2: -1
+
+72:
+  Panel:
+    MutualAgreement: 1
+
+76:
+  GM: varietal testing requirement
+  Panel:
+    SPS 2.2: -1
+    SPS 5.6: -1
+    SPS 7: -1
+  AB:
+    SPS 2.2: -1
+    SPS 5.1: -1
+    SPS 5.6: 1
+    SPS 7: -1
+79:
+  TRIPS 70.9: -1
+
+87:
+  Panel:
+    GATT III:2: -1
+  AB:
+    GATT III:2: -1
+  Linked: {87, 110}
+
+90:
+  Panel:
+    Articles XI:1: -1
+    XVIII:11: -1
+      Exempt:
+        XVIII:B: -1
+    AOA 4.2: -1
+  AB:
+    Articles XI:1: -1
+    XVIII:11: -1
+      Exempt:
+        XVIII:B: -1
+    AOA 4.2: -1
+
+
+
+
+
+
+
+
 
 
 
 Acronmys:
+  GM: Government Measure At Issue
   GATT: General Agreement on Tariffs and Trade 1994
   AA: Agreement on Agriculture
+  ADA: Agreement on Anti-Dumping
   ASCM: Agreement on Subsidies and Countervailing Measures
   ATC: Agreement on Textiles and Clothing
   SPS: Agreement on the Application of Sanitary and Phytosanitary Measures
   TRIPS: The Agreement on Trade-Related Aspects of Intellectual Property Rights
-  
