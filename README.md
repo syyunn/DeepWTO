@@ -47,7 +47,7 @@ document, could be also analyzed with deep learning approach.
 
 ### Sponsor
 
-<img src="/assets/deepstudio.png" width="150" height="50">
+<img src="/assets/deepstudio.png" width="420" height="140">
 
 This project is officially sponsored by __Deepstudio Co.Ltd__ 
 
