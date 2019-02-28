@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/assets/wto.png" width="497" height="370">
+  <img src="/assets/images/wto.png" width="497" height="370">
 </p>
 
 
@@ -34,12 +34,19 @@ Measure__](https://www.wto.org/english/tratop_e/dispu_e/disp_settlement_cbt_e/c5
 
 Government measure is the most __tricky__ part to prepare the data to train.
   Government measure is usually __descriptive__ and __case-specific__, therefore it is hard to be generalized across the cases. Moreover, Government measure
- is given in a form of __text data__ without strictly enforced formatting 
- style but mainly depends on the preference of each panel body and its included personnel. 
+ __has no strictly enforced formatting 
+ style__ but mainly depends on the preference of each panel body and its 
+ included personnel. 
 Therefore, for the first version of the dataset, we just naively parse all 
 the strings included in __Panel(or Appellate Body if exists) Report__ to 
 check whether this naive dataset - which lacks a hierarchical structure of 
 document, could be also analyzed with deep learning approach. 
+
+Most information about Government Measure is included in following:
+
+- consultation before DSB [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/25382/Q/G/L/292.pdf)]
+- 
+
 
 ### Reproduce   
     git clone https://github.com/syyunn/GATT_WTO
@@ -52,7 +59,7 @@ document, could be also analyzed with deep learning approach.
 
 ### Sponsor
 <p align="center">
-  <img src="/assets/deepstudio.png" width="420" height="140">
+  <img src="/assets/images/deepstudio.png" width="420" height="140">
 </p>
 
 This project is sponsored by __deepstudio Co.Ltd__ 
