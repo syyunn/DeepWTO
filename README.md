@@ -1,5 +1,6 @@
-# DeepWTO <img src="/assets/wto.png" width="497" height="370">
+<img src="/assets/wto.png" width="497" height="370">
 
+# DeepWTO 
 
 ## About the project 
 __[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previous project, 
