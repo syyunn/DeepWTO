@@ -1,6 +1,6 @@
 # Exemplary WorkFlow
 This __[document]()__ provides ***bird's-eye view*** about how legal reasoning
- of WTO classification tasks flows using __[Korea-Beef (DS161)](https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds161_e.htm)__
+ of WTO classification tasks flows using __[Korea-Beef case (DS161)](https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds161_e.htm)__
 
 
 ##### Table of Workflows  

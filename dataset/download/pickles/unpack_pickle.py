@@ -10,6 +10,7 @@ def get_urls(ds_num):
 
     with open('pdf_urls_parsed.pkl', 'rb') as f:
         x = pickle.load(f)
+        print("every pdfs: ", x[ds_num])
         return x[ds_num]
 
 
@@ -26,5 +27,5 @@ def filter_url(list_of_urls):
 
 
 if __name__ == "__main__":
-    urls = get_urls(108)
+    urls = get_urls(161)
     filter_url(urls)
