@@ -1,4 +1,6 @@
-<img src="/assets/wto.png" width="497" height="370">
+<p align="center">
+  <img src="/assets/wto.png" width="497" height="370">
+</p>
 
 # DeepWTO 
 
@@ -48,8 +50,9 @@ document, could be also analyzed with deep learning approach.
 [Zachary Yoon](https://www.linkedin.com/in/zachary-yoon-3a7608152/)
 
 ### Sponsor
-
-<img src="/assets/deepstudio.png" width="420" height="140">
+<p align="center">
+  <img src="/assets/deepstudio.png" width="420" height="140">
+</p>
 
 This project is officially sponsored by __deepstudio Co.Ltd__ 
 
