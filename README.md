@@ -46,7 +46,8 @@ document, could be also analyzed with deep learning approach.
 [Zachary Yoon](https://www.linkedin.com/in/zachary-yoon-3a7608152/)
 
 ### Sponsor
-This project is officially sponsored by ![deepstudio](/assets/deepstudio.png)
+This project is officially sponsored by ![deepstudio](/assets/deepstudio
+.png=700x300)
 
 #### ToDo  
 - [x] Parse semi-colon linked urls to make/re-save pdf_urls_parsed.pkl
