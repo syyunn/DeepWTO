@@ -9,7 +9,7 @@ which country wins the legal battle in __[WTO](https://en.wikipedia.org/wiki/Wor
 
 1. Build a __dataset__ so that everyone can participate in this legal prediction 
 agenda in __objective manner__
-2. Performs a __classification__ with simple neural networks to achieve the naive-baseline, __50%__ of accuracy 
+2. Performs a __classification__ with simple neural networks to achieve the naive-baseline, __50% >__ accuracy 
 of the classification task.
 
 ### Dataset 
@@ -22,10 +22,10 @@ minimis level contrary to Article 6 of the Agreement on Agriculture."
 
 Therefore, our dataset is comprised of mainly 3 components - [__Government 
 Measure__](https://www.wto.org/english/tratop_e/dispu_e/disp_settlement_cbt_e/c5s3p1_e.htm), 
-__Legality__, [__Article Code__](https://www.wto.org/english/docs_e/legal_e/legal_e.htm#gatt47). 
+[__Legality__](https://github.com/syyunn/DeepWTO/blob/master/dataset/label/legality.yaml), [__WTO Legal Provisions__](https://github.com/syyunn/DeepWTO/tree/master/articles). 
 
 
-#### Government Measure (or Measure at Issue)
+### Government Measure
 
 Government measure is the most __tricky__ part to prepare the data to train.
   Government measure is usually __descriptive__ and __case-specific__, therefore it is hard to be generalized across the cases. Moreover, Government measure
