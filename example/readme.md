@@ -1,6 +1,6 @@
 # Exemplary WorkFlow
-This [document]() provides ***bird's-eye view*** of how legal reasoning of 
-WTO classification tasks runs using deep learning 
+This __[document]()__ provides ***bird's-eye view*** about how legal reasoning
+ of WTO classification tasks flows using __[Korea-Beef (DS161)](https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds161_e.htm)__
 
 
 ##### Table of Workflows  
@@ -17,31 +17,33 @@ WTO classification tasks runs using deep learning
 
 <a name="1"/>
 
-## Read the Government Measures
+#### Read the Government Measures
+
+
 
 
 <a name="2"/>
 
-## Read the Provisions
+#### Read the Provisions
 
 
 <a name="3"/>
 
-## Converts Texts to Vectors 
+#### Converts Texts to Vectors 
 
 
 <a name="4"/>
 
-## Feed the Neural Network 
+#### Feed the Neural Network 
 
 
 <a name="5"/>
 
-## Legal Reasoning 
+#### Legal Reasoning 
 
 
 <a name="6"/>
 
-## Update Legal Reasoning
+#### Update Legal Reasoning
 
 
