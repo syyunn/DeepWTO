@@ -288,6 +288,6 @@ reading raw document
 
 ### Keywords
 
-document classification/text classification
+document classification/text classification/ word embedding
    
    
