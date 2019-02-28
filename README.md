@@ -1,7 +1,7 @@
 # DeepWTO
 
 ## About the project 
-[DeepWTO](https://github.com/syyunn/DeepWTO) is a continuation work of previous project, 
+__[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previous project, 
 __[Auto-generation of GATT/WTO panel report](https://githubcom/syyunn/GATT_WTO)__. 
 Compare to the this previous project, this time the project has narrow downed 
 to the classification task to predict 
