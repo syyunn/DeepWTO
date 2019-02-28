@@ -1,24 +1,31 @@
 # Exemplary WorkFlow
-This [document]() provides __bird's-eye view__ about how legal reasoning of 
-WTO classification works using deep learning 
+This [document]() provides __bird's-eye view__ of how legal reasoning of 
+WTO classification tasks runs using deep learning 
 
 
 ##### Table of Workflows  
 ###### Data Preparation
-[1. Read the Government Measure](#Read_GOV_Measure)  
-[2. Read the Provision](#Read_Provisions)  
+[1. Read the Government Measure](#1)  
+[2. Read the Provision](#2)  
+[3. Converts Texts to Vectors](#3)
 
+###### Runs on Neural Model  
+[4. Feed the Neural Network](#4)
 
-<a name="Read_Gov_measures"/>
-
+<a name="1"/>
 
 ## Read the Government Measures
 
 
-<a name="Read_Provisions"/>
-
+<a name="2"/>
 
 ## Read the Provisions
+
+
+<a name="3"/>
+
+## Converts Texts to Vectors 
+
 
 
 ## ToDo
