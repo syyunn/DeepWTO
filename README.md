@@ -22,7 +22,7 @@ minimis level contrary to Article 6 of the Agreement on Agriculture."
 
 Therefore, our dataset is comprised of mainly 3 components - [__Government 
 Measure__](https://www.wto.org/english/tratop_e/dispu_e/disp_settlement_cbt_e/c5s3p1_e.htm), 
-[__Legality__](https://github.com/syyunn/DeepWTO/blob/master/dataset/label/legality.yaml), [__Article Code__](https://www.wto.org/english/docs_e/legal_e/legal_e.htm#gatt47). 
+[__Legality__](https://github.com/syyunn/DeepWTO/blob/master/dataset/label/legality.yaml), [__Articles of WTO Rulings__](https://github.com/syyunn/DeepWTO/tree/master/articles). 
 
 
 #### Government Measure (or Measure at Issue)
