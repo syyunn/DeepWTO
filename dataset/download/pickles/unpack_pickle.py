@@ -19,7 +19,14 @@ def get_urls(ds_num):
         return x[ds_num]
 
 
-def filter_url(list_of_urls):
+def filter_eng(list_of_urls):
+    print("English version of pdfs: ")
+    for url in list_of_urls:
+        if "Q" in url.split("/")[-4]:
+            print(url)
+
+
+def filter_panel_ab_eng(list_of_urls):
     """
     Filter panel/AB urls on given list of urls
     :param list_of_urls
@@ -34,4 +41,5 @@ def filter_url(list_of_urls):
 
 if __name__ == "__main__":
     urls = get_urls(161)
-    filter_url(urls)
+    filter_eng(urls)
+    filter_panel_ab_eng(urls)
