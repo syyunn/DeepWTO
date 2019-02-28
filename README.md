@@ -55,7 +55,7 @@ document, could be also analyzed with deep learning approach.
   <img src="/assets/deepstudio.png" width="420" height="140">
 </p>
 
-This project is officially sponsored by __deepstudio Co.Ltd__ 
+This project is sponsored by __deepstudio Co.Ltd__ 
 
 #### ToDo  
 - [x] Parse semi-colon linked urls to make/re-save pdf_urls_parsed.pkl

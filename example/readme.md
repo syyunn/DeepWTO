@@ -10,7 +10,10 @@ WTO classification tasks runs using deep learning
 [3. Converts Texts to Vectors](#3)
 
 ###### Runs on Neural Model  
-[4. Feed the Neural Network](#4)
+[4. Feed the Neural Network](#4)  
+[5. Legal Reasoning](#5)  
+[6. Update Legal Reasoning](#6)
+
 
 <a name="1"/>
 
@@ -27,22 +30,18 @@ WTO classification tasks runs using deep learning
 ## Converts Texts to Vectors 
 
 
+<a name="4"/>
 
-## ToDo
+## Feed the Neural Network 
 
-    Table of Contetns 
-    
-    1. Read the Government Measure 
-    
-    2. Read the Provisions 
-    
-    3. Converts Texts to Vectors   
-    
-    4. Feed the Network 
-    
-    5. Legal Reasoning 
-    
-    6. Update Legal Reasoning 
 
+<a name="5"/>
+
+## Legal Reasoning 
+
+
+<a name="6"/>
+
+## Update Legal Reasoning
 
 
