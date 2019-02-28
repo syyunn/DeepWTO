@@ -9,11 +9,8 @@ which country wins the legal battle in __[WTO](https://en.wikipedia.org/wiki/Wor
 
 1. Build a __dataset__ so that everyone can participate in this legal prediction 
 agenda in __objective manner__
-2. Performs a classification with simple neural networks to set the baseline 
+2. Performs a __classification__ with simple neural networks to achieve the naive-baseline, __50%__ of accuracy 
 of the classification task.
-
-Above two will be branched and managed as a separate project later. 
-
 
 ### Dataset 
 Basically, the WTO panel process determines __whether a country's government 
@@ -31,8 +28,7 @@ __Legality__, [__Article Code__](https://www.wto.org/english/docs_e/legal_e/lega
 #### Government Measure (or Measure at Issue)
 
 Government measure is the most __tricky__ part to prepare the data to train.
-  Government measure is usually __descriptive__ and __specific__ to each 
-case therefore it is hard to be generalized across the cases. Moreover Government measure
+  Government measure is usually __descriptive__ and __case-specific__, therefore it is hard to be generalized across the cases. Moreover, Government measure
  is given in a form of __text data__ without strictly enforced formatting 
  style but mainly depends on the preference of each panel body and its included personnel. 
 Therefore, for the first version of the dataset, we just naively parse all 
