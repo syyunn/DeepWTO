@@ -9,7 +9,7 @@ which country wins the legal battle in __[WTO](https://en.wikipedia.org/wiki/Wor
 
 1. Build a __dataset__ so that everyone can participate in this legal prediction 
 agenda in __objective manner__
-2. Performs a __classification__ with simple neural networks to achieve the naive-baseline, __50% > __ of accuracy 
+2. Performs a __classification__ with simple neural networks to achieve the naive-baseline, __50% >__ of accuracy 
 of the classification task.
 
 ### Dataset 
