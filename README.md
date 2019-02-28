@@ -25,7 +25,7 @@ Measure__](https://www.wto.org/english/tratop_e/dispu_e/disp_settlement_cbt_e/c5
 [__Legality__](https://github.com/syyunn/DeepWTO/blob/master/dataset/label/legality.yaml), [__WTO Legal Provisions__](https://github.com/syyunn/DeepWTO/tree/master/articles). 
 
 
-#### Government Measure (or Measure at Issue)
+### Government Measure at Issue
 
 Government measure is the most __tricky__ part to prepare the data to train.
   Government measure is usually __descriptive__ and __case-specific__, therefore it is hard to be generalized across the cases. Moreover, Government measure
