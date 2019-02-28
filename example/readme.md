@@ -2,6 +2,8 @@
 This __[document]()__ provides ***bird's-eye view*** about how legal reasoning
  of WTO classification tasks flows using __[Korea-Beef case (DS161)](https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds161_e.htm)__
 
+[<img src="https://colab.research.google.com/assets/colab-badge.svg" align="center">](https://colab.research.google.com/github/syyunn/DeepWTO/blob/master/example/exemplary_workflow.ipynb) 
+
 
 ##### Table of Workflows  
 ###### Data Preparation

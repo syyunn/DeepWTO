@@ -48,7 +48,7 @@ document, could be also analyzed with deep learning approach.
 
 
 ### Author
-[Zachary Yoon](https://www.linkedin.com/in/zachary-yoon-3a7608152/)
+[__Zachary Yoon__](https://www.linkedin.com/in/zachary-yoon-3a7608152/)
 
 ### Sponsor
 <p align="center">
