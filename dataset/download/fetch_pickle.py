@@ -11,7 +11,7 @@ def get_urls(ds_num):
     dirname = os.path.dirname(__file__)
     print(dirname)
 
-    with open(os.path.join(dirname,'pdf_urls_parsed.pkl'), 'rb') as f:
+    with open(os.path.join(dirname, 'results/pdf_urls_parsed.pkl'), 'rb') as f:
         x = pickle.load(f)
         # print("every pdfs: ")
         # for url in x[ds_num]:
@@ -20,10 +20,13 @@ def get_urls(ds_num):
 
 
 def filter_eng(list_of_urls):
+    result = []
     print("English version of pdfs: ")
     for url in list_of_urls:
         if "Q" in url.split("/")[-4]:
             print(url)
+            result.append(url)
+    return result
 
 
 def filter_panel_ab_eng(list_of_urls):
