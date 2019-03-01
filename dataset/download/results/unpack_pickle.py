@@ -13,9 +13,9 @@ def get_urls(ds_num):
 
     with open(os.path.join(dirname,'pdf_urls_parsed.pkl'), 'rb') as f:
         x = pickle.load(f)
-        print("every pdfs: ")
-        for url in x[ds_num]:
-            print(url)
+        # print("every pdfs: ")
+        # for url in x[ds_num]:
+        #     print(url)
         return x[ds_num]
 
 
