@@ -20,8 +20,10 @@ def download(url):
 
 
 def filter_gov(txt):
-    tgt_phrases = ["Request for Consultations",
-                   "Request for the Establishment of a Panel"]
+    # tgt_phrases = ["Request for Consultations",
+    #                "Request for the Establishment of a Panel"]
+    tgt_phrases = ["dual retail"]
+
     bools = []
     for phrase in tgt_phrases:
         if phrase in txt:
@@ -61,6 +63,8 @@ def multiprocess_filter(pool_number, urls):
 def main():
     ds_num = 161
     urls = get_urls(ds_num)
+    urls = [url for url in urls if "R" not in url.split("/")[-1]]
+    print(urls)
     eng_urls = filter_eng(urls)
     pool_num = 20
     multiprocess_filter(pool_num, eng_urls)

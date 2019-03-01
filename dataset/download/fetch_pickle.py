@@ -43,6 +43,7 @@ def filter_panel_ab_eng(list_of_urls):
 
 
 if __name__ == "__main__":
-    urls = get_urls(161)
+    ds = 161
+    urls = get_urls(ds)
     filter_eng(urls)
     filter_panel_ab_eng(urls)

@@ -296,4 +296,15 @@ text classification/ word embedding/ character embedding/ 1D Convolution/
 - [ ] How to mingle the Provisions emb together with Factual Aspects emb : 
 might the resNet-like OP would be workable 
 
+### Further Issues:
+- [ ] In case gov_measure just given by consultation and establishment is 
+__insufficient__, one needs to track how panels get more information on each
+ specific cases.
+ 
+### Difference between Panel and this Prediction Task 
+- [ ] This task only mimic the __binary__ result of panel decision. Thus 
+this one do not consider the way of assessing the case directly, but just 
+trying to efficiently provides the correct answer for given gov_measure and 
+provisions 
 
+### Dual Retail System : Where does it come from in case 161?
