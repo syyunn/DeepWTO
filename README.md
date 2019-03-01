@@ -308,3 +308,5 @@ trying to efficiently provides the correct answer for given gov_measure and
 provisions 
 
 ### Dual Retail System : Where does it come from in case 161?
+
+# one must read the panel report to track the dual retail systems origin
