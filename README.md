@@ -49,8 +49,8 @@ Most information about Government Measure is included in following:
 
 
 ### Reproduce   
-    git clone https://github.com/syyunn/GATT_WTO
-    cd GATT_WTO
+    git clone https://github.com/syyunn/DeepWTO
+    cd DeepWTO
     conda env create -f environment.yaml
 
 
