@@ -42,10 +42,11 @@ the strings included in __Panel(or Appellate Body if exists) Report__ to
 check whether this naive dataset - which lacks a hierarchical structure of 
 document, could be also analyzed with deep learning approach. 
 
-Most information about Government Measure is included in following:
-
-- consultation before DSB [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/25382/Q/G/L/292.pdf)]
-- 
+Normally, description about Government Measure is included in the following:
+  retains GOV measure description 
+  
+- Request for Consultations  [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/25382/Q/G/L/292.pdf)]
+- Request for the Establishment of a Panel [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/46659/Q/WT/DS/161-5.pdf)]
 
 
 ### Reproduce   
@@ -296,4 +297,3 @@ text classification/ word embedding/ character embedding/ 1D Convolution/
 might the resNet-like OP would be workable 
 
 
-   
