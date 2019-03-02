@@ -15,3 +15,10 @@ __pycache__
 
 # pytest
 .pytest_cache
+
+# iPython
+.ipynb_checkpoints
+
+# downloaded pdf
+dataset/gov_measure/downloads
+

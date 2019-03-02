@@ -1,19 +1,21 @@
-# DeepWTO
+<p align="center">
+  <img src="/assets/images/wto.png" width="497" height="370">
+</p>
+
+
+# DeepWTO 
 
 ## About the project 
-This project is a continuation work of previous project, 
-__[Auto-generation of GATT/WTO panel report](https://githubcom/syyunn/GATT_WTO)__. 
+__[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previous project, 
+__[Auto-generation of GATT/WTO panel report](https://github.com/syyunn/GATT_WTO)__. 
 Compare to the this previous project, this time the project has narrow downed 
 to the classification task to predict 
-which country wins the legal battle in __[WTO](https://en.wikipedia.org/wiki/World_Trade_Organization)__. This project is assumed to achieve following two main goals:
+which country wins the legal battle in __[WTO](https://www.wto.org)__. This project is assumed to achieve following two main goals:
 
 1. Build a __dataset__ so that everyone can participate in this legal prediction 
 agenda in __objective manner__
-2. Performs a classification with simple neural networks to set the baseline 
+2. Performs a __classification__ with simple neural networks to achieve the naive-baseline, __50% >__ accuracy 
 of the classification task.
-
-Above two will be branched and managed as a separate project later. 
-
 
 ### Dataset 
 Basically, the WTO panel process determines __whether a country's government 
@@ -25,29 +27,43 @@ minimis level contrary to Article 6 of the Agreement on Agriculture."
 
 Therefore, our dataset is comprised of mainly 3 components - [__Government 
 Measure__](https://www.wto.org/english/tratop_e/dispu_e/disp_settlement_cbt_e/c5s3p1_e.htm), 
-__Legality__, [__Article Code__](https://www.wto.org/english/docs_e/legal_e/legal_e.htm#gatt47). 
+[__Legality__](https://github.com/syyunn/DeepWTO/blob/master/dataset/label/legality.yaml), [__WTO Legal Provisions__](https://github.com/syyunn/DeepWTO/tree/master/articles). 
 
 
-#### Government Measure (or Measure at Issue)
+### Government Measure
 
 Government measure is the most __tricky__ part to prepare the data to train.
-  Government measure is usually __descriptive__ and __specific__ to each 
-case therefore it is hard to be generalized across the cases. Moreover Government measure
- is given in a form of __text data__ without strictly enforced formatting 
- style but mainly depends on the preference of each panel body and its included personnel. 
+  Government measure is usually __descriptive__ and __case-specific__, therefore it is hard to be generalized across the cases. Moreover, Government measure
+ __has no strictly enforced formatting 
+ style__ but mainly depends on the preference of each panel body and its 
+ included personnel. 
 Therefore, for the first version of the dataset, we just naively parse all 
 the strings included in __Panel(or Appellate Body if exists) Report__ to 
 check whether this naive dataset - which lacks a hierarchical structure of 
 document, could be also analyzed with deep learning approach. 
 
+Normally, description about Government Measure is included in the following:
+  retains GOV measure description 
+  
+- Request for Consultations  [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/25382/Q/G/L/292.pdf)]
+- Request for the Establishment of a Panel [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/46659/Q/WT/DS/161-5.pdf)]
+
+
 ### Reproduce   
-    git clone https://github.com/syyunn/GATT_WTO
-    cd GATT_WTO
+    git clone https://github.com/syyunn/DeepWTO
+    cd DeepWTO
     conda env create -f environment.yaml
 
 
 ### Author
-[Zachary Yoon](https://www.linkedin.com/in/zachary-yoon-3a7608152/)
+[__Zachary Yoon__](https://github.com/syyunn)
+
+### Sponsor
+<p align="center">
+  <img src="/assets/images/deepstudio.png" width="420" height="140">
+</p>
+
+This project is sponsored by __deepstudio Co.Ltd__ 
 
 #### ToDo  
 - [x] Parse semi-colon linked urls to make/re-save pdf_urls_parsed.pkl
@@ -271,10 +287,26 @@ reading raw document
 - [ ] 518
 - [ ] 523
 
+### Keywords
 
-   
-   
-   
-   
-   
-   
+text classification/ word embedding/ character embedding/ 1D Convolution/
+
+### RoadMap: Critical Issues
+- [ ] Decide which embedding (char/word) to use 
+- [ ] How to mingle the Provisions emb together with Factual Aspects emb : 
+might the resNet-like OP would be workable 
+
+### Further Issues:
+- [ ] In case gov_measure just given by consultation and establishment is 
+__insufficient__, one needs to track how panels get more information on each
+ specific cases.
+ 
+### Difference between Panel and this Prediction Task 
+- [ ] This task only mimic the __binary__ result of panel decision. Thus 
+this one do not consider the way of assessing the case directly, but just 
+trying to efficiently provides the correct answer for given gov_measure and 
+provisions 
+
+### Dual Retail System : Where does it come from in case 161?
+
+# one must read the panel report to track the dual retail systems origin
