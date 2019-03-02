@@ -20,5 +20,5 @@ __pycache__
 .ipynb_checkpoints
 
 # downloaded pdf
-dataset/gov_measure/downloads
+dataset/gov_measure/download
 

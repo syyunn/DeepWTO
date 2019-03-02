@@ -14,9 +14,9 @@ from dataset.download.fetch import get_urls, filter_eng
 
 
 def download(url):
-    if not os.path.exists("downloads"):
-        os.mkdir("downloads")
-    download_path = os.path.join("downloads", url.split("/")[-1])
+    if not os.path.exists("download"):
+        os.mkdir("download")
+    download_path = os.path.join("download", url.split("/")[-1])
     urllib.request.urlretrieve(url, download_path)
     return download_path
 
