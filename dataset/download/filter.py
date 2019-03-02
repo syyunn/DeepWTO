@@ -1,4 +1,4 @@
-""" Post process to cleanse the urls to make one easy to download"""
+""" Filter specific category of urls from urls """
 
 import pickle
 import re
