@@ -33,5 +33,6 @@ def main():
     idx = text.findall('Article III')
     print(idx)
 
+
 if __name__ == "__main__":
     main()
