@@ -1,4 +1,4 @@
-""" Query the provisions to get the target string """
+""" Query the provision to get the target string """
 
 import os
 import sys
@@ -9,7 +9,7 @@ from utils.pdf import read_pdf
 
 def find_agreements(path_of_provisions):
     """
-    Read the path and find kinds of provisions, then make dictionary
+    Read the path and find kinds of provision, then make dictionary
     :param path_of_provisions:
     :return: dict["agreement_name"] = path
     """
