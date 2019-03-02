@@ -10,19 +10,20 @@ import urllib.request
 from multiprocessing import Pool
 
 from utils.pdf import read_pdf
-from dataset.download.fetch_pickle import get_urls, filter_eng
+from dataset.download.fetch import get_urls, filter_eng
 
 
 def download(url):
+    if not os.path.exists("downloads"):
+        os.mkdir("downloads")
     download_path = os.path.join("downloads", url.split("/")[-1])
     urllib.request.urlretrieve(url, download_path)
     return download_path
 
 
 def filter_gov(txt):
-    # tgt_phrases = ["Request for Consultations",
-    #                "Request for the Establishment of a Panel"]
-    tgt_phrases = ["dual retail"]
+    tgt_phrases = ["Request for Consultations",
+                   "Request for the Establishment of a Panel"]
 
     bools = []
     for phrase in tgt_phrases:

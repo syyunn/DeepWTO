@@ -1,8 +1,13 @@
 import pickle
 from multiprocessing import Pool
 
-
 from selenium import webdriver
+
+"""
+
+Crawls every pdf urls from WTO database and pickle the result.
+
+"""
 
 
 def get_pdf_urls(chrome_driver, dispute_idx):

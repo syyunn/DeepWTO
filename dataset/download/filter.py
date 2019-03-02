@@ -3,6 +3,9 @@ import re
 
 import yaml
 
+""" Post process to cleanse the urls to make one easy to download"""
+
+
 with open("../info.yaml", 'r') as stream:
     info_yaml = yaml.load(stream)
 
