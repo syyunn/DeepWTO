@@ -1,11 +1,8 @@
+""" Open pickle in results folder, unpickle, read and filter the urls """
+
+
 import pickle
 import os
-
-"""
-
-Open pickle in results folder, unpickle, read and filter the urls
-
-"""
 
 
 def get_urls(ds_num):
