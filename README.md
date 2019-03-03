@@ -6,6 +6,7 @@
 # DeepWTO 
 
 [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
+[![Inline docs](http://inch-ci.org/github/dwyl/hapi-auth-jwt2.svg?branch=master)](https://github.com/syyunn/DeepWTO)
 
 
 ## About the project 
@@ -309,3 +310,5 @@ __insufficient__, one needs to track how panels get more information on each
 this one do not consider the way of assessing the case directly, but just 
 trying to efficiently provides the correct answer for given gov_measure and 
 provisions 
+= [ ] As a development of the above question, how could one can train the 
+neural network with Panel Reasoning?
