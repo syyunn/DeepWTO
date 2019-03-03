@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/assets/images/wto.png" width="497" height="370">
+  <img src="/assets/wto.png" width="497" height="370">
 </p>
 
 
@@ -63,7 +63,7 @@ Normally, description about Government Measure is included in the following:
 
 ### Sponsor
 <p align="center">
-  <img src="/assets/images/deepstudio.png" width="420" height="140">
+  <img src="/assets/deepstudio.png" width="420" height="140">
 </p>
 
 This project is financially supported by __deepstudio Co.Ltd__ 
