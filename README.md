@@ -311,3 +311,6 @@ trying to efficiently provides the correct answer for given gov_measure and
 provisions 
 = [ ] As a development of the above question, how could one can train the 
 neural network with Panel Reasoning?
+
+### For more descriptive explanation about this project:
+Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGgMqyHnBjkTJEzpUaolKg5HCeTErOJnk/edit?usp=sharing)
