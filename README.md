@@ -29,7 +29,7 @@ measure at issue__ is __contrary or not contrary__ to __a certain article(s)
 minimis level contrary to Article 6 of the Agreement on Agriculture." 
 
 Therefore, our dataset is comprised of mainly 3 components - [__Government 
-Measure__](https://www.wto.org/english/tratop_e/dispu_e/disp_settlement_cbt_e/c5s3p1_e.htm), 
+Measure__](https://github.com/syyunn/DeepWTO/tree/master/dataset/measure), 
 [__Legality__](https://github.com/syyunn/DeepWTO/blob/master/dataset/label/legality.yaml),
 [__WTO Legal Provisions__](https://github.com/syyunn/DeepWTO/tree/master/dataset/provision). 
 
