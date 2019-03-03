@@ -6,7 +6,6 @@
 # DeepWTO 
 
 [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
-[![Inline docs](http://inch-ci.org/github/dwyl/hapi-auth-jwt2.svg?branch=master)](https://github.com/syyunn/DeepWTO)
 
 
 ## About the project 
