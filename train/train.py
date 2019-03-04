@@ -117,16 +117,11 @@ def train_batch_generator():
                                         max_word_len=max_word_len,
                                         word_dict=word_dict,
                                         char_dict=char_dict)
-        print(measure_input[0].shape)
-        print(measure_input[1].shape)
         provision_input = get_batch_input(provisions,
                                           max_word_len=max_word_len,
                                           word_dict=word_dict,
                                           char_dict=char_dict)
-        print(provision_input[0].shape)
-        print(provision_input[1].shape)
-        
-        yield np.array([[measure_input, provision_input]]), \
+        yield np.array([measure_input, provision_input]), \
               keras.utils.to_categorical([1])
 
 
@@ -134,7 +129,7 @@ def train_batch_generator():
 # Forward Path
 
 model.fit_generator(
-    generator=train_batch_generator(batch=1),
+    generator=train_batch_generator(),
     steps_per_epoch=1,
     epochs=1,
     verbose=True)

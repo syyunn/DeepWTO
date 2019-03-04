@@ -52,8 +52,6 @@ Normally, description about Government Measure is included in the following:
 - Request for Consultations  [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/25382/Q/G/L/292.pdf)]
 - Request for the Establishment of a Panel [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/46659/Q/WT/DS/161-5.pdf)]
 
-### [Legal Texts](https://www.wto.org/english/docs_e/legal_e/legal_e.htm)
-
 ### Reproduce   
     git clone https://github.com/syyunn/DeepWTO
     cd DeepWTO
@@ -320,3 +318,5 @@ Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGg
 ### AB test w/wo part of Panel Report 
 
 ### In case Panel/AB has different view points, how to train the network?  
+
+### [Legal Texts](https://www.wto.org/english/docs_e/legal_e/legal_e.htm)
