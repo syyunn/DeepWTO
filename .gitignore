@@ -22,3 +22,5 @@ __pycache__
 # downloaded pdf
 dataset/measure/download
 
+# pre-trained
+embed/pretrained
