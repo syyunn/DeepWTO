@@ -311,8 +311,12 @@ __insufficient__, one needs to track how panels get more information on each
 this one do not consider the way of assessing the case directly, but just 
 trying to efficiently provides the correct answer for given gov_measure and 
 provisions 
-= [ ] As a development of the above question, how could one can train the 
+- [ ] As a development of the above question, how could one can train the 
 neural network with Panel Reasoning?
 
 ### For more descriptive explanation about this project:
 Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGgMqyHnBjkTJEzpUaolKg5HCeTErOJnk/edit?usp=sharing)
+
+### AB test w/wo part of Panel Report 
+
+### In case Panel/AB has different view points, how to train the network?  
