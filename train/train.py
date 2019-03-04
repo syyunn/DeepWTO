@@ -4,10 +4,11 @@ import random
 import numpy as np
 
 import keras
-from keras_wc_embd import get_dicts_generator, get_embedding_layer, \
+from keras_wc_embd import get_embedding_layer, \
     get_batch_input, get_embedding_weights_from_file
 
 from utils.yaml import read_yaml
+from utils.embed import get_dicts_generator
 
 ###############################################################################
 # READ-IN DATA
@@ -62,79 +63,66 @@ print(len(char_dict))
 print(max_word_len)
 ###############################################################################
 # Create Embedding Layer (var inputs is a tensor holder)
-
-word_embd_weights = get_embedding_weights_from_file(
-    word_dict,
-    'GloVec/glove.6B.300d.txt',
-    ignore_case=False)  # load GloVec pre-weights
-
-inputs, embd_layer = get_embedding_layer(
-    word_dict_len=len(word_dict),
-    char_dict_len=len(char_dict),
-    max_word_len=max_word_len,
-    word_embd_dim=300,
-    char_embd_dim=50,
-    char_hidden_dim=150,
-    word_embd_weights=word_embd_weights,
-    char_hidden_layer_type='lstm'
-)
-print("inputs: ", inputs)
-###############################################################################
-# Prediction Model
-print('Create model...')
-
-# Concatenate [MeasureEmbd, ProvisionEmbd]
-concat_embedding = keras.layers.Concatenate(
-    name='EmbeddingMeasureProvision')([embd_layer, embd_layer])
-
-lstm_layer = keras.layers.Bidirectional(
-    keras.layers.LSTM(units=50),
-    name='Bi-LSTM',
-)(concat_embedding)
-
-dense_layer = keras.layers.Dense(
-    units=2,
-    activation='softmax',
-    name='Dense',
-)(lstm_layer)
-
-model = keras.models.Model(inputs=inputs, outputs=dense_layer)
-
-model.compile(
-    optimizer='adam',
-    loss='categorical_crossentropy',
-    metrics=['accuracy'])
-
-model.summary()  # print model spec
-
-
-###############################################################################
-
-
-def train_batch_generator():
-    while True:
-        measure_input = get_batch_input(measures,
-                                        max_word_len=max_word_len,
-                                        word_dict=word_dict,
-                                        char_dict=char_dict)
-        provision_input = get_batch_input(provisions,
-                                          max_word_len=max_word_len,
-                                          word_dict=word_dict,
-                                          char_dict=char_dict)
-        yield np.array([measure_input, provision_input]), \
-              keras.utils.to_categorical([1])
-
-
-###############################################################################
-# Forward Path
-
-model.fit_generator(
-    generator=train_batch_generator(),
-    steps_per_epoch=1,
-    epochs=1,
-    verbose=True)
-
-###############################################################################
-
-if __name__ == "__main__":
-    pass
+#
+# word_embd_weights = get_embedding_weights_from_file(
+#     word_dict,
+#     'GloVec/glove.6B.100d.txt',
+#     ignore_case=False)  # load GloVec pre-weights
+#
+# inputs, embd_layer = get_embedding_layer(
+#     word_dict_len=len(word_dict),
+#     char_dict_len=len(char_dict),
+#     max_word_len=max_word_len,
+#     word_embd_dim=100,
+#     char_embd_dim=50,
+#     char_hidden_dim=150,
+#     word_embd_weights=word_embd_weights,
+#     char_hidden_layer_type='lstm')
+# print("inputs: ", inputs)
+# print("embd_layer: ", embd_layer)
+# ###############################################################################
+# # Prediction Model
+# print('Create model...')
+#
+# ###############################################################################
+# # Concatenate [MeasureEmbd, ProvisionEmbd]
+# concat_input = keras.layers.concatenate([inputs, inputs])
+# concat_embd = keras.layers.concatenate([embd_layer, embd_layer])
+#
+# lstm_layer = keras.layers.Bidirectional(
+#     keras.layers.LSTM(units=50),
+#     name='Bi-LSTM')(concat_embd)
+#
+# dense_layer = keras.layers.Dense(
+#     units=2,
+#     activation='softmax',
+#     name='Dense')(lstm_layer)
+#
+# model = keras.models.Model(inputs=concat_input, outputs=dense_layer)
+#
+# model.compile(
+#     optimizer='adam',
+#     loss='categorical_crossentropy',
+#     metrics=['accuracy'])
+#
+# model.summary()  # print model spec
+#
+# ###############################################################################
+# # Forward Path
+#
+# measure_input = get_batch_input(measures,
+#                                 max_word_len=max_word_len,
+#                                 word_dict=word_dict,
+#                                 char_dict=char_dict)
+# provision_input = get_batch_input(provisions,
+#                                   max_word_len=max_word_len,
+#                                   word_dict=word_dict,
+#                                   char_dict=char_dict)
+#
+# y = keras.utils.to_categorical([1], num_classes=2)
+# model.fit([measure_input, provision_input], y)
+# ###############################################################################
+#
+# # print(keras.utils.to_categorical(1))  # if 1, it's consistent
+# if __name__ == "__main__":
+#     pass
