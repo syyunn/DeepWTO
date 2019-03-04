@@ -24,3 +24,8 @@ dataset/measure/download
 
 # pre-trained
 train/GloVec
+
+# model_code
+train/dataset
+train/get_data.sh
+train/model_code.py

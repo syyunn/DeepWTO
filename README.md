@@ -78,6 +78,7 @@ shall .."
 reading raw document 
 - [ ] Construct a new query system and embed it on github so that people can
  search more fast on target document.
+- [ ] Write fine-tune code of every texts in 2,8000 pdfs to GloVec
 
 #### Labelling On Progress
 - [x] 2
@@ -312,5 +313,6 @@ provisions
 - [ ] As a development of the above question, how could one can train the 
 neural network with Panel Reasoning?
 
-### For more descriptive explanation about this project:
+### For more descriptive explanation about this project
 Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGgMqyHnBjkTJEzpUaolKg5HCeTErOJnk/edit?usp=sharing)
+
