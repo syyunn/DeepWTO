@@ -30,284 +30,277 @@
 #  not agreed by the members of disputes. Refer to DSU21.5 for the ground
 #  article.
 # The consistency of restoration measure also fought in panel/AB
-
-2:
-  Panel:
-    GATT III:4: -1
-  AB:
-    Consistent With PAnel: -1
-
-7:
-  Panel:
-    MutalAgreement: 1
-
-8:
-  Panel:
-    GATT III:2: -1
-  AB:
-    GATT III:2: -1
-  Linked: {8, 10, 11}
-
-12:
-  Panel:
-    MutualAgreement: 1
-  Linked: {12, 14}
-
-18:
-  Panel:
-    SPS 2.2: -1
-    SPS 2.3: -1
-    SPS 5.1: -1
-    SPS 5.5: -1
-    SPS 5.6: -1
-  AB:
-    SPS 2.2: 1
-    SPS 2.3: -1
-    SPS 5.1: 1
-    SPS 5.5: -1
-    SPS 5.6: 0
-
-22:
-  Panel:
-    GATT I: 0
-    GATT II: 0
-    GATT IV: 0
-    AA Art. 13: 0
-  AB:
-    GATT I: 0
-    GATT II: 0
-    GATT IV: 0
-    AA Art. 13: 0
-
-24:
-  Panel:
-    ATC 6.2: -1
-  AB:
-    ATC 6.2: -1
-
-31:
-  Panel:
-    GATT XI: -1
-      Exempt:
-        GATT XX(d): -1
-    GATT III:2 : -1
-    GATT III:4: -1
-  AB:
-    GATT XI: -1
-    GATT III:2 : -1
-    GATT III:4: 1
-      Exempt:
-        GATT III:8(b): 1
-
-33:
-  Panel:
-    ATC 6.2: -1
-    ATC 6.3: -1
-    ATC 2.4: -1
-  AB:
-    ATC 6.2: -1
-    ATC 6.3: -1
-    ATC 2.4: -1
-
-34:
-  Panel:
-    GATT XI: -1
-    GATT XIII: -1
-    ATC 2.4: -1
-  AB:
-    ATC 6.2: -1
-    ATC 6.3: -1
-    ATC 2.4: -1
-
-46:
-  Panel:
-    ASCM 3.1(a): -1
-      Exempt:
-        ASCM 27: -1
-    ASCM 27.4: -1
-
-  AB:
-    ASCM 3.1(a): -1
-      Exempt:
-        ASCM 27: -1
-    ASCM 27.4: -1
-
-
-50:
-  Panel:
-    TRIPS 70.8: -1
-  AB:
-    TRIPS 70.9: -1
-
-56:
-  Panel:
-    GATT II:1(b): -1
-    GATT VIII:1(a): -1
-  AB:
-    GATT II:1(b): -1
-    GATT VIII:1(a): -1
-
-58:
-  Panel:
-    GATT XI: -1
-      Exept:
-        GATT XX(g): -1
-  AB:
-    GATT XI: -1
-      Exept:
-        GATT XX(g): -1
-
-60:
-  Panel:
-    GATT 5.3: -1
-  AB:
-    GATT 5.3: 0
-
-62:
-  Panel:
-    GATT II:1(a): -1
-  AB:
-    GATT II:1(a): 1
-  Linked: {62, 67, 68}
-
-69:
-  Panel:
-    GATT XIII:2: 1
-    GATT X: 1
-    AOA 5.1(b): -1
-  AB:
-    GATT XIII:2: 1
-    GATT X: 1
-    AOA 5.1(b): 1
-    AOA 5.5: -1
-
-70:
-  Panel:
-    ASCM 3.1(a): -1
-    ASCM 3.2: -1
-      EDC Assistance:
-        ASCM 3.1(a): 1
-        ASCM 3.2: 1
-      Account debt financing:
-        ASCM 3.1(a): -1
-        ASCM 3.2: -1
-      Sale by the Ontario Aerospace Corporation of its 49 percent interest in de Havilland Inc. to Bombardier :
-        ASCM 3.1(a): 1
-        ASCM 3.2: 1
-      Subsidiary Agreement assistance to the Canadian regional aircraft  industry constitutes export subsidies:
-        ASCM 3.1(a): 1
-        ASCM 3.2: 1
-      SDI and IQ assistance to the Canadian regional aircraft industry:
-        ASCM 3.1(a): 1
-        ASCM 3.2: 1
-      TPC assistance to the Canadian regional aircraft industry:
-        ASCM 3.1(a): -1
-        ASCM 3.2: -1
-      DIPP assistance to the Canadian regional aircraft industry:
-        ASCM 3.1(a): 1
-        ASCM 3.2: 1
-  AB:
-    ASCM 3.1(a): -1
-    ASCM 3.2: -1
-
-72:
-  Panel:
-    MutualAgreement: 1
-
-76:
-  GM: varietal testing requirement
-  Panel:
-    SPS 2.2: -1
-    SPS 5.6: -1
-    SPS 7: -1
-  AB:
-    SPS 2.2: -1
-    SPS 5.1: -1
-    SPS 5.6: 1
-    SPS 7: -1
-79:
-  TRIPS 70.9: -1
-
-87:
-  Panel:
-    GATT III:2: -1
-  AB:
-    GATT III:2: -1
-  Linked: {87, 110}
-
-90:
-  Panel:
-    Articles XI:1: -1
-    XVIII:11: -1
-      Exempt:
-        XVIII:B: -1
-    AOA 4.2: -1
-  AB:
-    Articles XI:1: -1
-    XVIII:11: -1
-      Exempt:
-        XVIII:B: -1
-    AOA 4.2: -1
-
-98:
-  Panel:
-    GATT XIX:1: 1
-    AOS 5.1: -1
-    AOS 2.1: 1
-    AOS 4.2(a): -1
-    AOS 12.1: -1
-    AOS 12.2: -1
-  AB:
-    GATT XIX:1: 0
-    AOS 5.1: 0
-    AOS 4.2(a): -1
-    AOS 12.2: 1
-
-99:
-  MutualAgreement: 1
-
-103:
-  Panel:
-    GATT II:1(b): -1
-    AOA 3.3: -1
-    AOA 8: -1
-  AB:
-    GATT II:1(b): -1
-    AOA 3.3: -1
-    AOA 8: -1
-  Linked: {103, 113}
-
-108:
-  GM: FSC scheme
-  Panel:
-    ASCM 3.1(a): -1
-    AOA 3.3: -1
-    AOA 8: -1
-  AB:
-    ASCM 3.1(a): -1
-    AOA 3.3: 1
-    AOA 10.1: -1
-    AOA 8: -1
-
 161:
-  dual retail:
+  Dual Retail:
     GATT III:4: -1
-      Exempt:
-        GATT XX(d): -1
+    Exception:
+      GATT XX(d): -1
 
-
-
-
-163:
-
-
-Acronmys:
-  GM: Government Measure At Issue
-  GATT: General Agreement on Tariffs and Trade 1994
-  AA: Agreement on Agriculture
-  ADA: Agreement on Anti-Dumping
-  AOS: Agreement on Safeguards
-  ASCM: Agreement on Subsidies and Countervailing Measures
-  ATC: Agreement on Textiles and Clothing
-  SPS: Agreement on the Application of Sanitary and Phytosanitary Measures
-  TRIPS: The Agreement on Trade-Related Aspects of Intellectual Property Rights
+#2:
+#  Panel:
+#    GATT III:4: -1
+#  AB:
+#    GATT III:4: 1
+#
+#7:
+#  Panel:
+#    MutalAgreement: 1
+#
+#8:
+#  Panel:
+#    GATT III:2: -1
+#  AB:
+#    GATT III:2: -1
+#  Linked: {8, 10, 11}
+#
+#12:
+#  Panel:
+#    MutualAgreement: 1
+#  Linked: {12, 14}
+#
+#18:
+#  Panel:
+#    SPS 2.2: -1
+#    SPS 2.3: -1
+#    SPS 5.1: -1
+#    SPS 5.5: -1
+#    SPS 5.6: -1
+#  AB:
+#    SPS 2.2: 1
+#    SPS 2.3: -1
+#    SPS 5.1: 1
+#    SPS 5.5: -1
+#    SPS 5.6: 0
+#
+#22:
+#  Panel:
+#    GATT I: 0
+#    GATT II: 0
+#    GATT IV: 0
+#    AA Art. 13: 0
+#  AB:
+#    GATT I: 0
+#    GATT II: 0
+#    GATT IV: 0
+#    AA Art. 13: 0
+#
+#24:
+#  Panel:
+#    ATC 6.2: -1
+#  AB:
+#    ATC 6.2: -1
+#
+#31:
+#  Panel:
+#    GATT XI: -1
+#      Exempt:
+#        GATT XX(d): -1
+#    GATT III:2 : -1
+#    GATT III:4: -1
+#  AB:
+#    GATT XI: -1
+#    GATT III:2 : -1
+#    GATT III:4: 1
+#      Exempt:
+#        GATT III:8(b): 1
+#
+#33:
+#  Panel:
+#    ATC 6.2: -1
+#    ATC 6.3: -1
+#    ATC 2.4: -1
+#  AB:
+#    ATC 6.2: -1
+#    ATC 6.3: -1
+#    ATC 2.4: -1
+#
+#34:
+#  Panel:
+#    GATT XI: -1
+#    GATT XIII: -1
+#    ATC 2.4: -1
+#  AB:
+#    ATC 6.2: -1
+#    ATC 6.3: -1
+#    ATC 2.4: -1
+#
+#46:
+#  Panel:
+#    ASCM 3.1(a): -1
+#      Exempt:
+#        ASCM 27: -1
+#    ASCM 27.4: -1
+#
+#  AB:
+#    ASCM 3.1(a): -1
+#      Exempt:
+#        ASCM 27: -1
+#    ASCM 27.4: -1
+#
+#
+#50:
+#  Panel:
+#    TRIPS 70.8: -1
+#  AB:
+#    TRIPS 70.9: -1
+#
+#56:
+#  Panel:
+#    GATT II:1(b): -1
+#    GATT VIII:1(a): -1
+#  AB:
+#    GATT II:1(b): -1
+#    GATT VIII:1(a): -1
+#
+#58:
+#  Panel:
+#    GATT XI: -1
+#      Exempt:
+#        GATT XX(g): -1
+#  AB:
+#    GATT XI: -1
+#      Exept:
+#        GATT XX(g): -1
+#
+#60:
+#  Panel:
+#    GATT 5.3: -1
+#  AB:
+#    GATT 5.3: 0
+#
+#62:
+#  Panel:
+#    GATT II:1(a): -1
+#  AB:
+#    GATT II:1(a): 1
+#  Linked: {62, 67, 68}
+#
+#69:
+#  Panel:
+#    GATT XIII:2: 1
+#    GATT X: 1
+#    AOA 5.1(b): -1
+#  AB:
+#    GATT XIII:2: 1
+#    GATT X: 1
+#    AOA 5.1(b): 1
+#    AOA 5.5: -1
+#
+#70:
+#  Panel:
+#    ASCM 3.1(a): -1
+#    ASCM 3.2: -1
+#      EDC Assistance:
+#        ASCM 3.1(a): 1
+#        ASCM 3.2: 1
+#      Account debt financing:
+#        ASCM 3.1(a): -1
+#        ASCM 3.2: -1
+#      Sale by the Ontario Aerospace Corporation of its 49 percent interest in de Havilland Inc. to Bombardier :
+#        ASCM 3.1(a): 1
+#        ASCM 3.2: 1
+#      Subsidiary Agreement assistance to the Canadian regional aircraft  industry constitutes export subsidies:
+#        ASCM 3.1(a): 1
+#        ASCM 3.2: 1
+#      SDI and IQ assistance to the Canadian regional aircraft industry:
+#        ASCM 3.1(a): 1
+#        ASCM 3.2: 1
+#      TPC assistance to the Canadian regional aircraft industry:
+#        ASCM 3.1(a): -1
+#        ASCM 3.2: -1
+#      DIPP assistance to the Canadian regional aircraft industry:
+#        ASCM 3.1(a): 1
+#        ASCM 3.2: 1
+#  AB:
+#    ASCM 3.1(a): -1
+#    ASCM 3.2: -1
+#
+#72:
+#  Panel:
+#    MutualAgreement: 1
+#
+#76:
+#  GM: varietal testing requirement
+#  Panel:
+#    SPS 2.2: -1
+#    SPS 5.6: -1
+#    SPS 7: -1
+#  AB:
+#    SPS 2.2: -1
+#    SPS 5.1: -1
+#    SPS 5.6: 1
+#    SPS 7: -1
+#79:
+#  TRIPS 70.9: -1
+#
+#87:
+#  Panel:
+#    GATT III:2: -1
+#  AB:
+#    GATT III:2: -1
+#  Linked: {87, 110}
+#
+#90:
+#  Panel:
+#    Articles XI:1: -1
+#    XVIII:11: -1
+#      Exempt:
+#        XVIII:B: -1
+#    AOA 4.2: -1
+#  AB:
+#    Articles XI:1: -1
+#    XVIII:11: -1
+#      Exempt:
+#        XVIII:B: -1
+#    AOA 4.2: -1
+#
+#98:
+#  Panel:
+#    GATT XIX:1: 1
+#    AOS 5.1: -1
+#    AOS 2.1: 1
+#    AOS 4.2(a): -1
+#    AOS 12.1: -1
+#    AOS 12.2: -1
+#  AB:
+#    GATT XIX:1: 0
+#    AOS 5.1: 0
+#    AOS 4.2(a): -1
+#    AOS 12.2: 1
+#
+#99:
+#  MutualAgreement: 1
+#
+#103:
+#  Panel:
+#    GATT II:1(b): -1
+#    AOA 3.3: -1
+#    AOA 8: -1
+#  AB:
+#    GATT II:1(b): -1
+#    AOA 3.3: -1
+#    AOA 8: -1
+#  Linked: {103, 113}
+#
+#108:
+#  GM: FSC scheme
+#  Panel:
+#    ASCM 3.1(a): -1
+#    AOA 3.3: -1
+#    AOA 8: -1
+#  AB:
+#    ASCM 3.1(a): -1
+#    AOA 3.3: 1
+#    AOA 10.1: -1
+#    AOA 8: -1
+#
+#Acronmys:
+#  GM: Government Measure At Issue
+#  GATT: General Agreement on Tariffs and Trade 1994
+#  AA: Agreement on Agriculture
+#  ADA: Agreement on Anti-Dumping
+#  AOS: Agreement on Safeguards
+#  ASCM: Agreement on Subsidies and Countervailing Measures
+#  ATC: Agreement on Textiles and Clothing
+#  SPS: Agreement on the Application of Sanitary and Phytosanitary Measures
+#  TRIPS: The Agreement on Trade-Related Aspects of Intellectual Property Rights

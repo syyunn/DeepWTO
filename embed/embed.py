@@ -4,24 +4,34 @@ from keras_wc_embd import get_dicts_generator, get_embedding_layer, \
 
 from utils.yaml import read_yaml
 
-# Example Sentences in Gov Measure
-measures = read_yaml("../dataset/measure/measure.yaml")
-sentence1 = measures[161]['dual retail']['RC'].split(' ')
-sentence2 = measures[161]['dual retail']['REP'].split(' ')
+# Measure
+read_in_measures = read_yaml("../dataset/measure/measure.yaml")
+measure = read_in_measures[161]['dual retail']['RC'].split(' ')
+print(measure)
+
+
+# Provision
+read_in_provisions = read_yaml("../dataset/provision/gatt.yaml")
+provision = read_in_provisions['III'][4].split(' ')
+print(provision)
+
+# Legality
+read_in_legality = read_yaml("../dataset/label/legality.yaml")
+print(read_in_legality[161]['Dual Retail']['GATT III:4'])
 
 sentences = [
-    sentence1,
-    sentence2,
+    measure,
+    provision
 ]
 
-
-# Generate Lookup Table
+# # Generate Lookup Table
 dict_generator = get_dicts_generator(
     word_min_freq=1,
     char_min_freq=1,
     word_ignore_case=False,
     char_ignore_case=False,
 )
+
 for sentence in sentences:
     dict_generator(sentence)
 
@@ -46,7 +56,7 @@ inputs, embd_layer = get_embedding_layer(
 model = keras.models.Model(inputs=inputs, outputs=embd_layer)
 model.summary()
 
-# One hot Encoding
+# One-hot encode
 word_embd_input, char_embd_input = get_batch_input(
     sentences,
     max_word_len=max_word_len,
@@ -54,8 +64,9 @@ word_embd_input, char_embd_input = get_batch_input(
     char_dict=char_dict,
 )
 print(sentences)
-print("word_embed_input:", word_embd_input, word_embd_input.shape)
-print("char_embed_input:", char_embd_input, char_embd_input.shape)
+print("input: ", inputs)
+print("word_embed_input: ", word_embd_input, word_embd_input.shape)
+print("char_embed_input: ", char_embd_input, char_embd_input.shape)
 
 #  Load pre-trained embeddings for initializing the weights
 
