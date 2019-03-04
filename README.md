@@ -314,9 +314,3 @@ neural network with Panel Reasoning?
 
 ### For more descriptive explanation about this project:
 Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGgMqyHnBjkTJEzpUaolKg5HCeTErOJnk/edit?usp=sharing)
-
-### AB test w/wo part of Panel Report 
-
-### In case Panel/AB has different view points, how to train the network?  
-
-### [Legal Texts](https://www.wto.org/english/docs_e/legal_e/legal_e.htm)
