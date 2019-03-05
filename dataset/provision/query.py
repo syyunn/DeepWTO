@@ -26,8 +26,8 @@ def find_agreements(path_of_provisions):
 
 def main():
     provision_paths = find_agreements("./")
-    target_provision = "gatt"
-    text = read_pdf(provision_paths["gatt"])
+    tgt_agreement = "gatt"
+    text = read_pdf(provision_paths[tgt_agreement])
     print(text)
     print('Article III' in text)
     idx = text.findall('Article III')

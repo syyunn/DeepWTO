@@ -1,8 +1,3 @@
-import os
-import random
-
-import numpy as np
-
 import keras
 from keras_wc_embd import get_batch_input, get_embedding_weights_from_file
 
@@ -92,7 +87,9 @@ word_embd_layer = keras.layers.Embedding(
     name='Embedding_Word')
 
 word_embd_measure = word_embd_layer(word_input_measure)
+print("word_embd_measure:", word_embd_measure.shape)
 word_embd_provision = word_embd_layer(word_input_provision)
+print("word_embd_provision:", word_embd_provision.shape)
 
 # Define Char Embedding Layer
 
@@ -126,7 +123,10 @@ for i, layer in enumerate(char_hidden_layer):
     char_embd_layer = keras.layers.TimeDistributed(layer=layer, name=name)
 
 char_embd_measure = char_embd_layer(char_embd_pre_layer(char_input_measure))
+print("char_embd_measure:", char_embd_measure.shape)
 char_embd_provision = char_embd_layer(char_embd_pre_layer(char_input_provision))
+print("char_embd_provision:", char_embd_provision.shape)
+
 
 ###############################################################################
 
@@ -134,10 +134,13 @@ char_embd_provision = char_embd_layer(char_embd_pre_layer(char_input_provision))
 word_char_embd_measure = keras.layers.Concatenate(
     name='WordCharEmbeddingMeasure')(
     [word_embd_measure, char_embd_measure])
+print("WordCharEmbeddingMeasure: ", word_char_embd_measure.shape)
 
 word_char_embd_provision = keras.layers.Concatenate(
     name='WordCharEmbeddingProvision')(
     [word_embd_provision, char_embd_provision])
+print("WordCharEmbeddingProvision: ", word_char_embd_provision.shape)
+
 
 # ###############################################################################
 # Prediction Model
@@ -145,7 +148,8 @@ print('Create model...')
 
 # Concatenate [MeasureEmbd, ProvisionEmbd]
 concat_embd = keras.layers.concatenate([word_char_embd_measure,
-                                        word_char_embd_provision], axis=0)
+                                        word_char_embd_provision], axis=1)
+print("concat_embd", concat_embd.shape)
 
 lstm_layer = keras.layers.Bidirectional(
     keras.layers.LSTM(units=50),
@@ -189,11 +193,18 @@ print(provision_input[1].shape)
 
 y = keras.utils.to_categorical([1], num_classes=2)
 
+print(measure_input[0].shape)
+print(measure_input[1].shape)
+print(provision_input[0].shape)
+print(provision_input[1].shape)
+
+
 model.fit([measure_input[0],
            measure_input[1],
            provision_input[0],
            provision_input[1]],
           y)
+
 ###############################################################################
 
 # print(keras.utils.to_categorical(1))  # if 1, it's consistent

@@ -21,7 +21,4 @@ class TestRE(unittest.TestCase):
         self.assertTrue(regex_eng.match("https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/250742/q/WT/DS/574-1.pdf"))
         self.assertTrue(regex_eng.match("https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/250742/Q/WT/DS/574-1.pdf"))
         self.assertFalse(regex_eng.match("https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/250742/r/WT/DS/574-1.pdf"))
-        
-
-
 
