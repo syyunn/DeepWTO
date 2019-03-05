@@ -29,3 +29,6 @@ train/GloVec
 train/dataset
 train/get_data.sh
 train/model_code.py
+
+# dataset/label
+dataset/label/~$*.xlsx
