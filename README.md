@@ -294,7 +294,8 @@ reading raw document
 
 ### Keywords
 
-text classification/ word embedding/ character embedding/ 1D Convolution/
+text classification/ word embedding/ character embedding/ 1D Convolution/ 
+document understanding
 
 ### RoadMap: Critical Issues
 - [ ] Decide which embedding (char/word) to use 
@@ -318,3 +319,5 @@ neural network with Panel Reasoning?
 Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGgMqyHnBjkTJEzpUaolKg5HCeTErOJnk/edit?usp=sharing)
 
 ### How to Parse the Numeric Tables 
+
+
