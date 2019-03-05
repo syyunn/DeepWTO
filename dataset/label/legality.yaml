@@ -31,8 +31,10 @@
 #  article.
 # The consistency of restoration measure also fought in panel/AB
 161:
-  Dual Retail:
-    GATT III:4: -1
+  dual retail:
+    GATT III:4:
+      Exception XX(d): -1
+  LPMO
 
 
 #2:

@@ -316,3 +316,4 @@ neural network with Panel Reasoning?
 ### For more descriptive explanation about this project
 Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGgMqyHnBjkTJEzpUaolKg5HCeTErOJnk/edit?usp=sharing)
 
+### How to Parse the Numeric Tables 
