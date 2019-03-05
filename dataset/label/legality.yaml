@@ -34,7 +34,8 @@
   dual retail:
     GATT III:4:
       Exception XX(d): -1
-  LPMO
+  LPMO:
+    pass
 
 
 #2:

@@ -28,7 +28,8 @@ measure at issue__ is __contrary or not contrary__ to __a certain article(s)
 > "Korea’s domestic support for beef in 1997 and 1998 exceeded the de 
 minimis level contrary to Article 6 of the Agreement on Agriculture." 
 
-Therefore, our dataset is comprised of mainly 3 components - [__Government 
+Therefore, our dataset is comprised of mainly 4 components - 
+[__Factual Aspects__], [__Government 
 Measure__](https://github.com/syyunn/DeepWTO/tree/master/dataset/measure), 
 [__Legality__](https://github.com/syyunn/DeepWTO/blob/master/dataset/label/legality.yaml),
 [__WTO Legal Provisions__](https://github.com/syyunn/DeepWTO/tree/master/dataset/provision). 

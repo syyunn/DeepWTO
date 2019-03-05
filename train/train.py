@@ -20,8 +20,9 @@ print(provision)
 print(len(provision))
 
 # Legality
-read_in_legality = read_yaml("../dataset/label/legality.yaml")
-print(read_in_legality[161]['Dual Retail']['GATT III:4'])
+#read_in_legality = read_yaml("../dataset/label/legality.yaml")
+read_in_legality = -1
+# print(read_in_legality[161]['Dual Retail']['GATT III:4']["Exception"])
 
 # Aggregate all texts data from measure and provision
 sentences = [
@@ -204,6 +205,10 @@ model.fit([measure_input[0],
            provision_input[0],
            provision_input[1]],
           y)
+
+print(model.layers[-1].output)
+
+
 
 ###############################################################################
 
