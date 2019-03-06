@@ -60,7 +60,7 @@ Normally, description about Government Measure is included in the following:
 ### Reproduce   
     git clone https://github.com/syyunn/DeepWTO
     cd DeepWTO
-    conda env create -f environment.yaml
+    conda env create -f env.yaml
 
 
 ### Author
