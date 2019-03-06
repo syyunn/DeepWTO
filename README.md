@@ -12,8 +12,8 @@
 __[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previous project, 
 __[Auto-generation of GATT/WTO panel report](https://github.com/syyunn/GATT_WTO)__. 
 Compare to the this previous project, this time the project has narrow down 
-its task to classification, to predict each legal provision of __[WTO]
-(https://www.wto.org)__ falls into which following 3 classes:
+its task to classification, to predict each legal provision of __[WTO](https://www.wto.org)__ 
+falls into which following 3 classes:
 
     1) not cited 
     2) cited but consistent 
