@@ -20,11 +20,9 @@ agenda in __objective manner__
 2. Performs a __classification__ with simple neural networks to achieve the naive-baseline, __50% >__ accuracy 
 of the classification task.
 
-=============================================================================
-This project expanded its direction to predict the density of probability of 
-inconsistency upon all the provisions provided in WTO upon given textual 
-data of factual aspect
-=============================================================================
+    This project expanded its direction to predict the density of probability of 
+    inconsistency upon all the provisions provided in WTO upon given textual 
+    data of factual aspect
 
 
 ### Dataset 
