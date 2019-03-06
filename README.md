@@ -8,17 +8,20 @@
 [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
 
-## About the project 
+## About the Project 
 __[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previous project, 
 __[Auto-generation of GATT/WTO panel report](https://github.com/syyunn/GATT_WTO)__. 
-Compare to the this previous project, this time the project has narrow down 
-its task to classification, to predict each legal provision of __[WTO](https://www.wto.org)__ 
-falls into which following 3 classes upon given problematic acts of a government.
+Compare to the previous project, this time the project has narrow down its 
+task to classification. The task is about to predict each legal provision of
+ __[WTO](https://www.wto.org)__ will fall into the which one of following 3 
+ classes, upon the given assumed-to-be-problematic acts government.
 
-    class 1: not applicable 
-    class 2: applicable but consistent (with the given provision)   
-    class 3: appliaable but inconsistent (with the given provision)
+    class 1: the provision is not applicable to those acts  
+    class 2: the provision is applicable but those acts are consistent with the provision   
+    class 3: the provision is applicable and those acts are inconsistent with the provision
          
+
+## Goal of the Project
 This project is assumed to achieve following two main goals:
 
 1. Build a __dataset__ so that everyone can participate in this legal 
