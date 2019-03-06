@@ -7,8 +7,8 @@ from data.factual.parser import PanelParser
 
 
 def main():
-    ds_numb = 189
-    pdf_name = "189R.pdf"
+    ds_numb = 192
+    pdf_name = "{}R.pdf".format(ds_numb)
     pdf_path = "/Users/zachary/Downloads/{}".format(pdf_name)
     
     factual_dict_path = "factual.pkl"

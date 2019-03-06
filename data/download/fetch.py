@@ -1,4 +1,5 @@
-""" Open pickle in results folder, unpickle, read and filter the urls """
+""" Open pickle that holds all urls of WTO pdfs, then read and filter as to
+one's necessity. """
 
 
 import pickle
@@ -46,7 +47,7 @@ def filter_panel_ab_eng(list_of_urls):
 
 
 if __name__ == "__main__":
-    ds = 189
+    ds = 192
     urls = get_urls(ds)
     filter_eng(urls)
     filter_panel_ab_eng(urls)
