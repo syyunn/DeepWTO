@@ -1,4 +1,4 @@
-""" Dump the Factual Aspect of Each DS Panel Report"""
+""" Extract & Dump the Factual Aspect of Each DS Panel Report into Pickle"""
 
 import pickle
 
@@ -6,8 +6,8 @@ from dataset.factual.parser import PanelParser
 
 
 def main():
-    ds_numb = 170
-    pdf_name = "170R-00.pdf"
+    ds_numb = 175
+    pdf_name = "175R.pdf"
     pdf_path = "/Users/zachary/Downloads/{}".format(pdf_name)
     
     factual_dict_path = "factual.pkl"
@@ -22,10 +22,10 @@ def main():
     
     parser = PanelParser(pdf_path)
     pdf, start, end = parser.factual_locator()
-    
+
     print("start page idx: ", start)
     print("end page idx: ", end)
-    
+
     factual = ''
     for page_idx in range(start, end + 1):
         print(page_idx)

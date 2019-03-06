@@ -141,9 +141,9 @@ reading raw document
 - [x] 165
 - [x] 166
 - [x] 169
-- [ ] 170
-- [ ] 174
-- [ ] 175
+- [x] 170
+- [x] 174
+- [x] 175
 - [ ] 177
 - [ ] 178
 - [ ] 184
@@ -344,3 +344,21 @@ sometimes the scope is get magnified into "sentence-level", such as
     3 March Measure also violated Article I of GATT;
 but this project decided to limit its scope to the next depth of "clause", e
 .g., GATT III:__4__ 
+
+
+### Fine Tuning of GloVec
+Write or Find the code of fine-tune the pre-trained embedding to whole 
+documents of WTO.
+
+### Miscellaneous
+In DS-175, there exist AppellateBody Report, but it's about giving-up of 
+appeal of the India in the middle of Appellate Body process.
+
+### Linked Case Issue:
+We always represent the aggregated cases with the first one, such as for the
+ case of "United States — Safeguard Measure on Imports of Fresh, Chilled or 
+ Frozen Lamb" case, ds-177(complaint by New Zealand) and ds-178
+ (complaint by Austrailia), we use ds-177 as the marker in train/test data.
+ 
+ 
+ 
