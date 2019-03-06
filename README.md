@@ -61,6 +61,7 @@ Normally, description about Government Measure is included in the following:
   
 - Request for Consultations  [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/25382/Q/G/L/292.pdf)]
 - Request for the Establishment of a Panel [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/46659/Q/WT/DS/161-5.pdf)]
+- Factual Aspects in Panel Report 
 
 ### Reproduce   
     git clone https://github.com/syyunn/DeepWTO
@@ -91,6 +92,8 @@ reading raw document
 - [ ] Write fine-tune code of every texts in 2,8000 pdfs to GloVec
 - [ ] Cleanse the Factual Aspect to deprive after factual (usually after III
 . Preliminary ...)
+- [ ] Change README of Government Measure to Factual Aspect centered way
+- [ ] Change README in a way those who don't know WTO Rulings can understand.
 
 #### Labelling On Progress
 - [ ] 2
