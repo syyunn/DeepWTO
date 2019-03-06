@@ -20,7 +20,7 @@ __pycache__
 .ipynb_checkpoints
 
 # downloaded pdf
-dataset/measure/download
+data/measure/download
 
 # pre-trained
 train/GloVec
@@ -31,4 +31,4 @@ train/get_data.sh
 train/model_code.py
 
 # dataset/label
-dataset/label/~$*.xlsx
+data/label/~$*.xlsx
