@@ -11,18 +11,23 @@
 ## About the project 
 __[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previous project, 
 __[Auto-generation of GATT/WTO panel report](https://github.com/syyunn/GATT_WTO)__. 
-Compare to the this previous project, this time the project has narrow downed 
-to the classification task to predict 
-which country wins the legal battle in __[WTO](https://www.wto.org)__. This project is assumed to achieve following two main goals:
+Compare to the this previous project, this time the project has narrow down 
+its task to classification, to predict each legal provision of __[WTO]
+(https://www.wto.org)__ falls into which following 3 classes:
 
-1. Build a __dataset__ so that everyone can participate in this legal prediction 
-agenda in __objective manner__
-2. Performs a __classification__ with simple neural networks to achieve the naive-baseline, __50% >__ accuracy 
-of the classification task.
+    1) not cited 
+    2) cited but consistent 
+    3) cited and inconsistent 
+     
+upon given problematic acts of a government.
 
-    This project expanded its direction to predict the density of probability of 
-    inconsistency upon all the provisions provided in WTO upon given textual 
-    data of factual aspect
+
+This project is assumed to achieve following two main goals:
+
+1. Build a __dataset__ so that everyone can participate in this legal 
+prediction/classification agenda in __objective manner__
+2. Performs a __prediction__ with simple neural networks to achieve the 
+naive-baseline, __33% >__ accuracy of the classification task.
 
 
 ### Dataset 
@@ -35,7 +40,7 @@ minimis level contrary to Article 6 of the Agreement on Agriculture."
 
 Therefore, our dataset is comprised of mainly 4 components - 
 [__Government Measure__](https://github.com/syyunn/DeepWTO/tree/master/dataset/factual), 
-[__Legality__](https://github.com/syyunn/DeepWTO/blob/master/dataset/label/legality.yaml),
+[__Legality with Cited Provision__](https://github.com/syyunn/DeepWTO/blob/master/dataset/label/legality.yaml),
 [__WTO Legal Provisions__](https://github.com/syyunn/DeepWTO/tree/master/dataset/provision). 
 
 
