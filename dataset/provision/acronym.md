@@ -8,4 +8,4 @@
       ATC: Agreement on Textiles and Clothing
       SPS: Agreement on the Application of Sanitary and Phytosanitary Measures
       TRIPS: The Agreement on Trade-Related Aspects of Intellectual Property Rights
-      WTO: Agreement Establishing the WTO
+      WTO:  (Marrakesh) Agreement Establishing the WTO

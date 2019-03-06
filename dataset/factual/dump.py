@@ -21,22 +21,22 @@ def main():
     except:
         print("not yet stored")
     
-    parser = PanelParser(pdf_path)
-    pdf, start, end = parser.factual_locator()
-
-    print("start page idx: ", start)
-    print("end page idx: ", end)
-
-    factual = ''
-    for page_idx in range(start, end + 1):
-        print(page_idx)
-        part = pdf[page_idx]
-        factual += part
-    # print(factual)
-    factual_dict[ds_numb] = factual
-
-    with open("factual.pkl", 'wb') as f:
-        pickle.dump(factual_dict, f)
+    # parser = PanelParser(pdf_path)
+    # pdf, start, end = parser.factual_locator()
+    #
+    # print("start page idx: ", start)
+    # print("end page idx: ", end)
+    #
+    # factual = ''
+    # for page_idx in range(start, end + 1):
+    #     print(page_idx)
+    #     part = pdf[page_idx]
+    #     factual += part
+    # # print(factual)
+    # factual_dict[ds_numb] = factual
+    #
+    # with open("factual.pkl", 'wb') as f:
+    #     pickle.dump(factual_dict, f)
 
 
 # def add_annex():
