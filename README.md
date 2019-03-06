@@ -138,7 +138,7 @@ reading raw document
 - [x] 161
 - [x] 162
 - [x] 163
-- [ ] 165
+- [x] 165
 - [x] 166
 - [x] 169
 - [ ] 170
@@ -325,7 +325,9 @@ Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGg
 ### How to Parse the Numeric Tables 
 
 ### Issues in Downloads
-https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/22235/Q/WT/DS/162R-00.pdf omitted in pkl
+current urls dropped 
+https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/22235/Q/WT/DS/162R-01.pdf 
+https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/13458/Q/WT/DS/170R-01.pdf
 
 ### Issue in Network Structure
 Look up the general network architecture that can parse and understand chart
