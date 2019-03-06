@@ -5,7 +5,8 @@ import codecs
 
 ###############################################################################
 # This code block refers to the following link:
-# https://github.com/CyberZHG/keras-word-char-embd/blob/master/keras_wc_embd/word_char_embd.py
+# https://github.com/CyberZHG/keras-word-char-embd/blob/master/keras_wc_embd/
+# word_char_embd.py
 # written by CyberZHG
 
 
@@ -73,7 +74,8 @@ def get_embedding_weights_from_file(word_dict, file_path, ignore_case=False):
     The `feature_dim_i` should be a floating point number.
 
     :param word_dict: A dict that maps words to indice.
-    :param file_path: The location of the text file containing the pre-trained embeddings.
+    :param file_path: The location of the text file containing the pre-trained
+    embeddings.
     :param ignore_case: Whether ignoring the case of the words.
 
     :return weights: A numpy array.
@@ -107,10 +109,13 @@ def get_char_hidden_layer(char_dict_len,
                           char_hidden_dim=150,
                           char_hidden_layer_type='lstm'):
     """Get the merged embedding layer.
-    :param char_dict_len: The number of characters in the dictionary including the ones mapped to 0 or 1.
+    :param char_dict_len: The number of characters in the dictionary including
+    the ones mapped to 0 or 1.
     :param max_word_len: The maximum allowed length of word.
-    :param char_hidden_dim: The dimensions of the hidden states of RNN in one direction.
-    :param char_hidden_layer_type: The type of the recurrent layer, 'lstm' or 'gru'.
+    :param char_hidden_dim: The dimensions of the hidden states of RNN in one
+    direction.
+    :param char_hidden_layer_type: The type of the recurrent layer, 'lstm' or
+    'gru'.
 
     :return inputs, embd_layer: The keras layer.
     """
@@ -147,10 +152,12 @@ def get_char_hidden_layer(char_dict_len,
                 name='Dense_Char',
             ),
         ]
-    elif isinstance(char_hidden_layer_type, list) or isinstance(char_hidden_layer_type, keras.layers.Layer):
+    elif isinstance(char_hidden_layer_type, list) or \
+            isinstance(char_hidden_layer_type, keras.layers.Layer):
         char_hidden_layer = char_hidden_layer_type
     else:
-        raise NotImplementedError('Unknown character hidden layer type: %s' % char_hidden_layer_type)
+        raise NotImplementedError('Unknown character hidden layer type: %s'
+                                  % char_hidden_layer_type)
     if not isinstance(char_hidden_layer, list):
         char_hidden_layer = [char_hidden_layer]
     return char_hidden_layer

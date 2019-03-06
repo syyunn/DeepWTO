@@ -17,27 +17,47 @@ class PanelParser:
         pdf_all = "\n\n".join(self.pdf)
         contents = re.findall('(.*?)[\W]+(\d+)(?=\n|$)', pdf_all, flags=re.M)
         # print(contents)
+
+        page_of_factual_aspect = None
+        roman_idx_of_factual_aspect = None
+        
+        print(contents[3])
         for idx, content in enumerate(contents):
-            # print(content)
+            print(content)
             for elem in content:
                 if "FACTUAL" in elem:
                     # print(elem)
                     page_of_factual_aspect = int(content[1])
-                    # print("FACTUAL ASPECT IS AT PAGE {}".
-                    #       format(page_of_factual_aspect))
+                    print("FACTUAL ASPECT IS AT PAGE {}".
+                          format(page_of_factual_aspect))
                     roman_idx_of_factual_aspect = content[0].split(" ")[0]
-                    # print("ROMAN OF FACTUAL ASPECT IS {}".
-                    #       format(roman_idx_of_factual_aspect))
+                    print("ROMAN OF FACTUAL ASPECT IS {}".
+                          format(roman_idx_of_factual_aspect))
                     for roman_idx, roman in enumerate(romans):
                         if roman == roman_idx_of_factual_aspect:
                             next_roman = romans[roman_idx+1]
-        for idx, content in enumerate(contents):
+                            next_next_roman = romans[roman_idx+2]
+                            print("next_roman (to mark the finish): ",
+                                  next_roman)
+                if page_of_factual_aspect and roman_idx_of_factual_aspect:
+                    break
+                else:
+                    continue
+            else:
+                continue
+            break
+        previous_page = []
+        for content in contents:
+            previous_page.append(content[1])
             for elem in content:
+                print(elem)
                 if next_roman in elem:
                     page_of_factual_aspect_end = int(content[1])
-                    # print("page_of_factual_aspect_end",
-                    #       page_of_factual_aspect_end)
+                    print("page_of_factual_aspect_end",
+                          page_of_factual_aspect_end)
                     break
+                elif next_next_roman in elem:
+                    page_of_factual_aspect_end = int(previous_page[-2])
                 else:
                     continue
                 break
@@ -59,7 +79,12 @@ class PanelParser:
                       digital_pdf_idx_of_factual_aspect_end)
             if digital_pdf_idx_of_factual_aspect and \
                     digital_pdf_idx_of_factual_aspect_end:
+                print("all found")
                 break
+            else:
+                continue
+            break
+            
         # print(self.pdf[digital_pdf_idx_of_factual_aspect])
         # print(self.pdf[digital_pdf_idx_of_factual_aspect_end])
         
@@ -69,7 +94,7 @@ class PanelParser:
        
 
 def main():
-    path = "/Users/zachary/Downloads/162R-00.pdf"
+    path = "/Users/zachary/Downloads/166R.pdf"
     parser = PanelParser(path)
     parser.factual_locator()
 

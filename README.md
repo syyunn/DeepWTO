@@ -86,37 +86,37 @@ reading raw document
 - [ ] Write fine-tune code of every texts in 2,8000 pdfs to GloVec
 
 #### Labelling On Progress
-- [x] 2
-- [x] 7
-- [x] 8
-- [x] 10
-- [x] 11
-- [x] 12
-- [x] 14
-- [x] 18
-- [x] 22
-- [x] 24
-- [x] 31
-- [x] 33
-- [x] 34
-- [x] 46
-- [x] 50
-- [x] 56
-- [x] 58
-- [x] 60
-- [x] 62
-- [x] 67
-- [x] 68
-- [x] 69
-- [x] 70
-- [x] 72
-- [x] 76
-- [x] 79
-- [x] 87
-- [x] 90
-- [x] 98
-- [x] 99
-- [x] 103
+- [ ] 2
+- [ ] 7
+- [ ] 8
+- [ ] 10
+- [ ] 11
+- [ ] 12
+- [ ] 14
+- [ ] 18
+- [ ] 22
+- [ ] 24
+- [ ] 31
+- [ ] 33
+- [ ] 34
+- [ ] 46
+- [ ] 50
+- [ ] 56
+- [ ] 58
+- [ ] 60
+- [ ] 62
+- [ ] 67
+- [ ] 68
+- [ ] 69
+- [ ] 70
+- [ ] 72
+- [ ] 76
+- [ ] 79
+- [ ] 87
+- [ ] 90
+- [ ] 98
+- [ ] 99
+- [ ] 103
 - [ ] 108
 - [ ] 110
 - [ ] 113
@@ -135,12 +135,12 @@ reading raw document
 - [ ] 152
 - [ ] 155
 - [ ] 156
-- [ ] 161
-- [ ] 162
+- [x] 161
+- [x] 162
 - [ ] 163
 - [ ] 165
-- [ ] 166
-- [ ] 169
+- [x] 166
+- [x] 169
 - [ ] 170
 - [ ] 174
 - [ ] 175
@@ -324,4 +324,6 @@ Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGg
 
 ### How to Parse the Numeric Tables 
 
-
+### Issues in Downloads
+https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/22235/Q/WT/DS/162R
+-00.pdf omitted in pkl
