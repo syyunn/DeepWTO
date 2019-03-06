@@ -84,6 +84,8 @@ reading raw document
 - [ ] Construct a new query system and embed it on github so that people can
  search more fast on target document.
 - [ ] Write fine-tune code of every texts in 2,8000 pdfs to GloVec
+- [ ] Cleanse the Factual Aspect to deprive after factual (usually after III
+. Preliminary ...)
 
 #### Labelling On Progress
 - [ ] 2
@@ -146,7 +148,7 @@ reading raw document
 - [x] 175
 - [x] 177
 - [x] 178
-- [ ] 184
+- [x] 184
 - [ ] 189
 - [ ] 192
 - [ ] 202
@@ -365,5 +367,12 @@ We always represent the aggregated cases with the first one, such as for the
  Frozen Lamb" case, ds-177(complaint by New Zealand) and ds-178
  (complaint by Austrailia), we use ds-177 as the marker in train/test data.
  
- 
- 
+### About Cited, but Consistent Measures
+the project sets up the policy applied to the cases which are 
+"cited but consistent (evaluated by Panel/AB but things are turns out to be 
+consistent)" to label those with the 0.5 level of inconsistency.  Since the 
+network will be used to find the possible applicable provisions in given 
+situation, we naively-assumed that just setting those with 0- which are 
+treated with non-cited provisions in other provisions, would be wasteful of 
+information.
+
