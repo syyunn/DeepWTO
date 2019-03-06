@@ -74,7 +74,7 @@ Normally, description about Government Measure is included in the following:
 [__Zachary Yoon__](https://github.com/syyunn)
 
 ### Sponsor
-<p align="center">
+<p align="left">
   <img src="/assets/deepstudio.png" width="420" height="140">
 </p>
 
@@ -95,6 +95,8 @@ reading raw document
 . Preliminary ...)
 - [ ] Change README of Government Measure to Factual Aspect centered way
 - [ ] Change README in a way those who don't know WTO Rulings can understand.
+- [ ] Determine whether to use conditional classification with 
+Panel/AppellateBody
 
 #### Labelling On Progress
 - [ ] 2

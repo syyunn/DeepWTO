@@ -3,12 +3,12 @@
 import pickle
 import pdftotext
 
-from dataset.factual.parser import PanelParser
+from data.factual.parser import PanelParser
 
 
 def main():
-    ds_numb = 161
-    pdf_name = "184R-00.pdf"
+    ds_numb = 189
+    pdf_name = "189R.pdf"
     pdf_path = "/Users/zachary/Downloads/{}".format(pdf_name)
     
     factual_dict_path = "factual.pkl"
@@ -21,22 +21,22 @@ def main():
     except:
         print("not yet stored")
     
-    # parser = PanelParser(pdf_path)
-    # pdf, start, end = parser.factual_locator()
-    #
-    # print("start page idx: ", start)
-    # print("end page idx: ", end)
-    #
-    # factual = ''
-    # for page_idx in range(start, end + 1):
-    #     print(page_idx)
-    #     part = pdf[page_idx]
-    #     factual += part
-    # # print(factual)
-    # factual_dict[ds_numb] = factual
-    #
-    # with open("factual.pkl", 'wb') as f:
-    #     pickle.dump(factual_dict, f)
+    parser = PanelParser(pdf_path)
+    pdf, start, end = parser.factual_locator()
+
+    print("start page idx: ", start)
+    print("end page idx: ", end)
+
+    factual = ''
+    for page_idx in range(start, end + 1):
+        print(page_idx)
+        part = pdf[page_idx]
+        factual += part
+    # print(factual)
+    factual_dict[ds_numb] = factual
+
+    with open("factual.pkl", 'wb') as f:
+        pickle.dump(factual_dict, f)
 
 
 # def add_annex():
