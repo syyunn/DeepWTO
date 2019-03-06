@@ -333,3 +333,12 @@ Look up the general network architecture that can parse and understand chart
 <p align="center">
   <img src="/assets/ds165_bar_chart_in_factual.png">
 </p>
+
+### Scope of Provision:
+sometimes the scope is get magnified into "sentence-level", such as 
+    The increased bonding requirements of the 3 March Measure as such led to violations
+    of Articles II:1(a) and II:1(b), first sentence; the increased interest charges, costs and
+    fees resulting from the 3 March Measure violated Article II:1(b) last sentence. The
+    3 March Measure also violated Article I of GATT;
+but this project decided to limit its scope to the next depth of "clause", e
+.g., GATT III:__4__ 
