@@ -21,9 +21,8 @@ class PanelParser:
         page_of_factual_aspect = None
         roman_idx_of_factual_aspect = None
         
-        print(contents[3])
         for idx, content in enumerate(contents):
-            print(content)
+            # print(content)
             for elem in content:
                 if "FACTUAL" in elem:
                     # print(elem)
@@ -50,11 +49,11 @@ class PanelParser:
         for content in contents:
             previous_page.append(content[1])
             for elem in content:
-                print(elem)
+                # print(elem)
                 if next_roman in elem:
                     page_of_factual_aspect_end = int(content[1])
-                    print("page_of_factual_aspect_end",
-                          page_of_factual_aspect_end)
+                    print("FACTUAL ASPECT IS AT PAGE {}".
+                          format(page_of_factual_aspect_end))
                     break
                 elif next_next_roman in elem:
                     page_of_factual_aspect_end = int(previous_page[-2])
@@ -73,17 +72,18 @@ class PanelParser:
                 digital_pdf_idx_of_factual_aspect = idx
                 print("digital_pdf_idx_of_factual_aspect",
                       digital_pdf_idx_of_factual_aspect)
-            elif "Page {}".format(page_of_factual_aspect_end) in self.pdf[idx]:
+                break
+
+        for idx in range(0, len(self.pdf)):
+            if "Page {}".format(page_of_factual_aspect_end) in self.pdf[idx]:
                 digital_pdf_idx_of_factual_aspect_end = idx
                 print("digital_pdf_idx_of_factual_aspect_end",
                       digital_pdf_idx_of_factual_aspect_end)
-            if digital_pdf_idx_of_factual_aspect and \
+                break
+                
+        if digital_pdf_idx_of_factual_aspect and \
                     digital_pdf_idx_of_factual_aspect_end:
                 print("all found")
-                break
-            else:
-                continue
-            break
             
         # print(self.pdf[digital_pdf_idx_of_factual_aspect])
         # print(self.pdf[digital_pdf_idx_of_factual_aspect_end])

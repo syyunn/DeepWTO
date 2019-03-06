@@ -6,8 +6,8 @@ from dataset.factual.parser import PanelParser
 
 
 def main():
-    ds_numb = 166
-    pdf_name = "166R.pdf"
+    ds_numb = 163
+    pdf_name = "163R.pdf"
     pdf_path = "/Users/zachary/Downloads/{}".format(pdf_name)
     
     factual_dict_path = "factual.pkl"
@@ -15,7 +15,10 @@ def main():
         factual_dict = pickle.load(f)
     
     print("stored factuals: ", factual_dict.keys())
-    print("stored factual content: \n", factual_dict[ds_numb])
+    try:
+        print("stored factual content: \n", factual_dict[ds_numb])
+    except:
+        print("not yet stored")
     
     parser = PanelParser(pdf_path)
     pdf, start, end = parser.factual_locator()
