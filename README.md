@@ -327,3 +327,10 @@ Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGg
 ### Issues in Downloads
 https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/22235/Q/WT/DS/162R
 -00.pdf omitted in pkl
+
+### Issue in Network Structure
+Look up the general network architecture that can parse and understand chart
+ and number, table-like structure of doc, such as show in factual of DS165:
+<p align="center">
+  <img src="/assets/ds165_bar_chart_in_factual.png" width="420" height="140">
+</p>
