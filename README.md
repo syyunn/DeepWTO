@@ -325,25 +325,30 @@ Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGg
 ### How to Parse the Numeric Tables 
 
 ### Issues in Downloads
-current urls dropped 
+current urls dropped :
+
 https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/22235/Q/WT/DS/162R-01.pdf 
 https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/13458/Q/WT/DS/170R-01.pdf
 
 ### Issue in Network Structure
-Look up the general network architecture that can parse and understand chart
- and number, table-like structure of doc, such as show in factual of DS165:
+Look up the general network architecture that can parse and understand 
+chart, number and table-like structure of document, such as shown in factual
+ of 
+DS165:
 <p align="center">
   <img src="/assets/ds165_bar_chart_in_factual.png">
 </p>
 
 ### Scope of Provision:
-sometimes the scope is get magnified into "sentence-level", such as 
+sometimes the scope is get magnified into "sentence-level", such as, 
+
     The increased bonding requirements of the 3 March Measure as such led to violations
     of Articles II:1(a) and II:1(b), first sentence; the increased interest charges, costs and
     fees resulting from the 3 March Measure violated Article II:1(b) last sentence. The
     3 March Measure also violated Article I of GATT;
-but this project decided to limit its scope to the next depth of "clause", e
-.g., GATT III:__4__ 
+
+but this project decided to limit its scope to the next depth of 
+"clause-level", e.g., GATT III:__4__ 
 
 
 ### Fine Tuning of GloVec
