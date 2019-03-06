@@ -19,10 +19,13 @@ which country wins the legal battle in __[WTO](https://www.wto.org)__. This proj
 agenda in __objective manner__
 2. Performs a __classification__ with simple neural networks to achieve the naive-baseline, __50% >__ accuracy 
 of the classification task.
+
 =============================================================================
-This project changed its direction to predict the density of probability of 
+This project expanded its direction to predict the density of probability of 
 inconsistency upon all the provisions provided in WTO upon given textual 
 data of factual aspect
+=============================================================================
+
 
 ### Dataset 
 Basically, the WTO panel process determines __whether a country's government 
