@@ -52,17 +52,14 @@ Government measure is the most __tricky__ part to prepare the data to train.
  __has no strictly enforced formatting 
  style__ but mainly depends on the preference of each panel body and its 
  included personnel. 
-Therefore, for the first version of the dataset, we just naively parse all 
-the strings included in __Panel(or Appellate Body if exists) Report__ to 
-check whether this naive dataset - which lacks a hierarchical structure of 
-document, could be also analyzed with deep learning approach. 
+Therefore, for the first version of the dataset, we just naively includes all 
+the strings that can be found under the chapter-name of __Factual Aspect__ in every __Panel Report__. 
 
 Normally, description about Government Measure is included in the following:
-  retains GOV measure description 
-  
+
+- Factual Aspects in Panel Report [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/46659/Q/WT/DS/161R.pdf)]
 - Request for Consultations  [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/25382/Q/G/L/292.pdf)]
 - Request for the Establishment of a Panel [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/46659/Q/WT/DS/161-5.pdf)]
-- Factual Aspects in Panel Report 
 
 ### Reproduce   
     git clone https://github.com/syyunn/DeepWTO
