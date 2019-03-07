@@ -388,3 +388,6 @@ information.
 
 ### Issues on Rare Provisions
 - [ ] In DS204, can't find Mexico's Reference Paper regarding GATS
+
+### Regarding Provisions  
+- [ ] Can't locate the Mexico's SECTION 2 OF THE REFERENCE PAPER of GATS
