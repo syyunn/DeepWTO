@@ -14,8 +14,8 @@ __[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previ
 __[Auto-generation of GATT/WTO panel report](https://github.com/syyunn/GATT_WTO)__. 
 Compare to the previous project, this time the project has narrow down its 
 task to classification. The task is about to predict each legal provision of
- __[WTO](https://www.wto.org)__ will fall into the which one of following 3 
- classes, upon the given assumed-to-be-problematic acts government.
+ __[WTO](https://www.wto.org)__ falls into which one of the following 3 
+ classes upon the given assumed-to-be-problematic acts government.
 
     class 1: the provision is not applicable to those acts  
     class 2: the provision is applicable but those acts are consistent with the provision   
