@@ -40,9 +40,9 @@ measure at issue__ is __contrary or not contrary__ to __a certain article(s)
 minimis level contrary to Article 6 of the Agreement on Agriculture." 
 
 Therefore, our dataset is comprised of mainly 4 components - 
-[__Government Measure__](https://github.com/syyunn/DeepWTO/tree/master/dataset/factual), 
-[__Legality with Cited Provision__](https://github.com/syyunn/DeepWTO/blob/master/dataset/label/legality.yaml),
-[__WTO Legal Provisions__](https://github.com/syyunn/DeepWTO/tree/master/dataset/provision). 
+[__Government Measure__](https://github.com/syyunn/DeepWTO/tree/master/data/factual), 
+[__Legality with Cited Provision__](https://github.com/syyunn/DeepWTO/blob/master/data/label/legality.yaml),
+[__WTO Legal Provisions__](https://github.com/syyunn/DeepWTO/tree/master/data/provision). 
 
 
 ### Government Measure
@@ -389,3 +389,5 @@ information.
 
 ### There exist a unclear boundary between Measure Description and Reason of Breach  
 
+### Issues on Rare Provisions
+- [ ] In DS204, can't find Mexico's Reference Paper regarding GATS
