@@ -41,7 +41,7 @@ minimis level contrary to Article 6 of the Agreement on Agriculture."
 
 Therefore, our dataset is comprised of mainly 4 components - 
 [__Government Measure__](https://github.com/syyunn/DeepWTO/tree/master/data/factual), 
-[__Legality with Cited Provision__](https://github.com/syyunn/DeepWTO/blob/master/data/label/legality.yaml),
+[__Legality with Cited Provision__](https://github.com/syyunn/DeepWTO/blob/master/data/label/legality.xlsx),
 [__WTO Legal Provisions__](https://github.com/syyunn/DeepWTO/tree/master/data/provision). 
 
 
