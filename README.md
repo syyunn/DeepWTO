@@ -15,11 +15,11 @@ __[Auto-generation of GATT/WTO panel report](https://github.com/syyunn/GATT_WTO)
 Compare to the previous project, this time the project has narrow down its 
 task to classification. The task is about to predict each legal provision of
  __[WTO](https://www.wto.org)__ falls into which one of the following 3 
- classes upon the given assumed-to-be-problematic acts of government.
+ classes upon the given government measure.
 
-    class 1: the provision is not applicable to those acts  
-    class 2: the provision is applicable but those acts are consistent with the provision   
-    class 3: the provision is applicable and those acts are inconsistent with the provision
+    Class 1: the provision is not applicable to the given government measure.   
+    Class 2: the provision is applicable, but the given government measure is consistent with the provision.   
+    Class 3: the provision is applicable and those government measure is inconsistent with the provision.
          
 
 ## Goal of the Project
