@@ -391,3 +391,10 @@ information.
 
 ### Regarding Provisions  
 - [ ] Can't locate the Mexico's SECTION 2 OF THE REFERENCE PAPER of GATS
+
+### Case Number whose Panel/AB report requires OCR to parse
+
+- In case one found a case that is not available to copy, check there exists
+ corresponding .doc file first.
+- [ ] https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/62149/Q/WT/DS/207R.pdf
+
