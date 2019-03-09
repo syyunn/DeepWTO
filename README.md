@@ -74,7 +74,7 @@ Normally, description about Government Measure is included in the following:
   <img src="/assets/deepstudio.png" width="420" height="140">
 </p>
 
-This project is financially supported by __deepstudio Co.Ltd__ 
+This project is supported by __deepstudio Co.Ltd__ 
 
 #### ToDo  
 - [x] Parse semi-colon linked urls to make/re-save pdf_urls_parsed.pkl
