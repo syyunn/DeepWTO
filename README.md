@@ -322,11 +322,8 @@ __insufficient__, one needs to track how panels get more information on each
  
 ### Difference between Panel and this Prediction Task 
 - [ ] This task only mimic the __binary__ result of panel decision. Thus 
-this one do not consider the way of assessing the case directly, but just 
-trying to efficiently provides the correct answer for given gov_measure and 
-provisions 
-- [ ] As a development of the above question, how could one can train the 
-neural network with Panel Reasoning?
+this one do not consider the legal way of assessing the case directly, but utmostly aims to numerically provide the correct answer for the given gov_measure and provisions 
+- [ ] As a continued development of the above shortage, how could one can train the neural network the Panel Reasoning?
 
 ### For more descriptive explanation about this project
 Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGgMqyHnBjkTJEzpUaolKg5HCeTErOJnk/edit?usp=sharing)
@@ -340,10 +337,7 @@ https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/22235/Q/WT/DS/162R-01.p
 https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/13458/Q/WT/DS/170R-01.pdf
 
 ### Issue in Network Structure
-Look up the general network architecture that can parse and understand 
-chart, number and table-like structure of document, such as shown in factual
- of 
-DS165:
+Look up the general network architecture that can parse and understand chart, number and table-like structure of document, such as shown in the factual aspect of DS165 as following:
 <p align="center">
   <img src="/assets/ds165_bar_chart_in_factual.png">
 </p>
