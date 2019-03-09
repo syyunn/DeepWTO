@@ -392,8 +392,8 @@ information.
 - [ ] https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/62149/Q/WT/DS/207R.pdf
 
 ### Further Steps - "Narrow down the scope of reasoning"
-With DS231 EC-Sardines case as a example, this case not just directly get to 
-the simple conclusion, "inconsistent with TBT 2.4". It checked whether the 
+With ***DS231 EC-Sardines*** case as an example, this case not just directly
+ get to the simple conclusion, "inconsistent with TBT 2.4". It checked whether the 
 problematic measure actually falls into the scope of TBT and there exists 
 another steps that Panel/AB shares and follows. Therefore, for the 
 development of the process, one must consider how to train the network with 
