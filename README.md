@@ -390,7 +390,9 @@ information.
 - In case one found a case that is not available to copy, check there exists
  corresponding .doc file first.
 - [ ] https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/62149/Q/WT/DS/207R.pdf
+- [ ] https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/1581/Q/WT/DS/243R.pdf
 
+        https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/1581/T/WT/DS/243R.doc
 ### Further Steps - "Narrow down the scope of reasoning"
 With ***DS231 EC-Sardines*** case as an example, this case not just directly
  get to the simple conclusion, "inconsistent with TBT 2.4". It checked whether the 
