@@ -408,3 +408,9 @@ train.
 Currently the body number and footnote numbers are not corresponding. 
 Therefore, One needs to figure out how to parse the footnote or let the 
 network knows about the footnote. 
+
+### Too Insufficient Description of Government Measure Problem in Factual Aspect
+For example, in case of 234, there's no 
+
+### Change of Labelling plan
+From the DS244, changed 
