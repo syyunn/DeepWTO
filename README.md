@@ -391,8 +391,10 @@ information.
  corresponding .doc file first.
 - [ ] https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/62149/Q/WT/DS/207R.pdf
 - [ ] https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/1581/Q/WT/DS/243R.pdf
+- [ ] https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/1581/T/WT/DS/243R.doc
+- [ ] https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/19168/Q/WT/DS/244R-00.pdf
+(pdf readible and unreadible mixed. chapter III cannot be read into.)
 
-        https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/1581/T/WT/DS/243R.doc
 ### Further Steps - "Narrow down the scope of reasoning"
 With ***DS231 EC-Sardines*** case as an example, this case not just directly
  get to the simple conclusion, "inconsistent with TBT 2.4". It checked whether the 
@@ -401,3 +403,8 @@ another steps that Panel/AB shares and follows. Therefore, for the
 development of the process, one must consider how to train the network with 
 more high resolution of reasoning, including how to gather the dataset to 
 train. 
+
+### Regarding Footnotes
+Currently the body number and footnote numbers are not corresponding. 
+Therefore, One needs to figure out how to parse the footnote or let the 
+network knows about the footnote. 

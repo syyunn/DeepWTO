@@ -9,6 +9,7 @@ from data.factual.parser import PanelParser
 def main():
     ds_numb = 244
     multi_doc = True
+    manual = True
     if not multi_doc:
         pdf_name = "{}R.pdf".format(ds_numb)
     elif multi_doc:
@@ -25,7 +26,7 @@ def main():
         print("stored factual content: \n", factual_dict[ds_numb])
     except:
         print("not yet stored")
-    
+        
     parser = PanelParser(pdf_path)
     pdf, start, end = parser.factual_locator()
 
@@ -33,12 +34,22 @@ def main():
     print("end page idx: ", end)
 
     factual = ''
-    for page_idx in range(start, end + 1):
-        print(page_idx)
-        part = pdf[page_idx]
-        factual += part
-    # print(factual)
-    factual_dict[ds_numb] = factual
+    
+    if not manual:
+        for page_idx in range(start, end + 1):
+            print(page_idx)
+            part = pdf[page_idx]
+            factual += part
+        factual_dict[ds_numb] = factual
+        
+    elif manual:
+        start = 9
+        end = 9
+        for page_idx in range(start, end + 1):
+            print(page_idx)
+            part = pdf[page_idx]
+            factual += part
+        factual_dict[ds_numb] = factual
 
     with open("factual.pkl", 'wb') as f:
         pickle.dump(factual_dict, f)
