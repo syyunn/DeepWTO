@@ -94,7 +94,7 @@ reading raw document
 - [ ] Change README in a way those who don't know WTO Rulings can understand.
 - [ ] Determine whether to use conditional classification with 
 Panel/AppellateBody
-
+- [ ] Find BERT for classification model 
 #### Labelling On Progress
 - [ ] 2
 - [ ] 7

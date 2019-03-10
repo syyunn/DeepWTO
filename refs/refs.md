@@ -1,3 +1,6 @@
+### utils
+fastext facebook 
+
 ### repos
 
 https://github.com/zalandoresearch/flair
@@ -30,3 +33,12 @@ paper: https://arxiv.org/pdf/1509.01626.pdf
 - [ ] If performs fine tuning, determine the eval metric 
 - [ ] Research over joint training of Embedding Layer and Task
     
+
+##### TL;DR
+Attention is All you Need with iPynb  
+http://nlp.seas.harvard.edu/2018/04/03/attention.html
+
+#### Simple Facts
+Attention model is aliased to Transformer 
+Attention model is released in tensor2tensor model 
+Transformer has become ubiquitous nowadays 
