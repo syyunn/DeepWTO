@@ -13,9 +13,8 @@
 __[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previous project, 
 __[Auto-generation of GATT/WTO panel report](https://github.com/syyunn/GATT_WTO)__. 
 Compare to the previous project, this time the project has narrow down its 
-task to classification. The task is about to predict each legal provision of
- __[WTO](https://www.wto.org)__ falls into which one of the following 3 
- classes upon the given government measure.
+task to classification. The task is about to predict to which one of the following 3 classess the given provision of
+ __[WTO](https://www.wto.org)__ falls into upon the given potentially-problematic government measure.
 
     Class 1: the provision is not applicable to the given government measure.   
     Class 2: the provision is applicable, but the given government measure is consistent with the provision.   
@@ -75,7 +74,7 @@ Normally, description about Government Measure is included in the following:
   <img src="/assets/deepstudio.png" width="420" height="140">
 </p>
 
-This project is financially supported by __deepstudio Co.Ltd__ 
+This project is supported by __deepstudio Co.Ltd__ 
 
 #### ToDo  
 - [x] Parse semi-colon linked urls to make/re-save pdf_urls_parsed.pkl
@@ -165,9 +164,9 @@ Panel/AppellateBody
 - [x] 212
 - [x] 213
 - [x] 217
-- [ ] 219
-- [ ] 221
-- [ ] 231
+- [x] 219
+- [x] 221
+- [x] 231
 - [ ] 234
 - [ ] 238
 - [ ] 243
@@ -323,11 +322,8 @@ __insufficient__, one needs to track how panels get more information on each
  
 ### Difference between Panel and this Prediction Task 
 - [ ] This task only mimic the __binary__ result of panel decision. Thus 
-this one do not consider the way of assessing the case directly, but just 
-trying to efficiently provides the correct answer for given gov_measure and 
-provisions 
-- [ ] As a development of the above question, how could one can train the 
-neural network with Panel Reasoning?
+this one do not consider the legal way of assessing the case directly, but utmostly aims to numerically provide the correct answer for the given gov_measure and provisions 
+- [ ] As a continued development of the above shortage, how could one can train the neural network the Panel Reasoning?
 
 ### For more descriptive explanation about this project
 Check this [google slides](https://docs.google.com/presentation/d/13ksFl0xovBWGgMqyHnBjkTJEzpUaolKg5HCeTErOJnk/edit?usp=sharing)
@@ -341,10 +337,7 @@ https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/22235/Q/WT/DS/162R-01.p
 https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/13458/Q/WT/DS/170R-01.pdf
 
 ### Issue in Network Structure
-Look up the general network architecture that can parse and understand 
-chart, number and table-like structure of document, such as shown in factual
- of 
-DS165:
+Look up the general network architecture that can parse and understand chart, number and table-like structure of document, such as shown in the factual aspect of DS165 as following:
 <p align="center">
   <img src="/assets/ds165_bar_chart_in_factual.png">
 </p>
@@ -397,4 +390,14 @@ information.
 - In case one found a case that is not available to copy, check there exists
  corresponding .doc file first.
 - [ ] https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/62149/Q/WT/DS/207R.pdf
+- [ ] https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/1581/Q/WT/DS/243R.pdf
 
+        https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/1581/T/WT/DS/243R.doc
+### Further Steps - "Narrow down the scope of reasoning"
+With ***DS231 EC-Sardines*** case as an example, this case not just directly
+ get to the simple conclusion, "inconsistent with TBT 2.4". It checked whether the 
+problematic measure actually falls into the scope of TBT and there exists 
+another steps that Panel/AB shares and follows. Therefore, for the 
+development of the process, one must consider how to train the network with 
+more high resolution of reasoning, including how to gather the dataset to 
+train. 

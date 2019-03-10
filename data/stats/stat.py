@@ -1,7 +1,8 @@
-import operator
+import yaml
 
 import pandas as pd
-import yaml
+
+from utils.yaml import read_yaml
 
 
 def get_cited(csv_fp):
@@ -91,4 +92,9 @@ def sort_yaml(yaml_path):
 
 if __name__ == "__main__":
     # main()
-    sort_yaml("stat.yaml")
+    # sort_yaml("stat.yaml")
+    info = read_yaml("../info.yaml")
+    panel = info['Panel']['ds_numb']
+    appellate = info['AppellateBody']['ds_numb']
+    linked = info['LinkedPanel']
+    print(linked)
