@@ -1,8 +1,10 @@
-# About the Collaborator 
-[Jaewon Shin](crane1363@gmail.com) is a high commissioned officer of South 
-Korea Government who's working in the ministry of trade of South Korea Gov.
+### About the Collaborator 
+Jaewon Shin is a high commissioned officer of South 
+Korea Government who's working in the ministry of trade of South Korea 
+Government. 
+To contact with Shin, please email to __crane1363@gmail.com___
 
-# Following is the case ds numbs that GATT III had been cited by Panel
+### About the Labelling Process
 [Jaewon Shin] and [Zachary Yoon] has conducted labelling about the 
 inconsistency of GATT III with limiting its scope on GATT III itself, not 
 narrowing down to the paragraph level, such as III:2, III:4 or III:8.
