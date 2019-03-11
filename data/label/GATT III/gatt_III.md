@@ -1,8 +1,8 @@
 ### About the Collaborator 
 Jaewon Shin is a high commissioned officer of South 
-Korea Government who's working in the ministry of trade of South Korea 
-Government. 
-To contact with Shin, please email to __crane1363@gmail.com___
+Korea Government who's working in the Ministry of Trade, dealing with WTO 
+rulings. To contact with Shin, please email to the following 
+address: __crane1363@gmail.com__
 
 ### About the Labelling Process
 [Jaewon Shin] and [Zachary Yoon] has conducted labelling about the 
