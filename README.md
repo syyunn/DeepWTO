@@ -414,3 +414,9 @@ For example, in case of 234, there's no
 
 ### Change of Labelling plan
 From the DS244, changed 
+
+
+### Log of DataPrep
+
+As of DS248, I had gave up to track the inconsistency of Safeguard Measures(SA)
+
