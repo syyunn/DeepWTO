@@ -420,3 +420,6 @@ From the DS244, changed
 
 As of DS248, I had gave up to track the inconsistency of Safeguard Measures(SA)
 
+### Issues 
+
+{75, 84} being outscoped from the DS panel numbers

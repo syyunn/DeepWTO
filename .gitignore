@@ -30,6 +30,5 @@ train/dataset
 train/get_data.sh
 train/model_code.py
 
-# dataset/label
-data/label/~$*.xlsx
-data/label/GATT_III/~$legality_GATT_III.xlsx
+# cache.xlsx
+~$*.xlsx
