@@ -394,6 +394,7 @@ information.
 - [ ] https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/1581/T/WT/DS/243R.doc
 - [ ] https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/19168/Q/WT/DS/244R-00.pdf
 (pdf readible and unreadible mixed. chapter III cannot be read into.)
+- [ ] 34R.pdf has only "page 3" image-based (not its fore/back)
 
 ### Further Steps - "Narrow down the scope of reasoning"
 With ***DS231 EC-Sardines*** case as an example, this case not just directly
@@ -422,4 +423,14 @@ As of DS248, I had gave up to track the inconsistency of Safeguard Measures(SA)
 
 ### Issues 
 
-{75, 84} being outscoped from the DS panel numbers
+- [x] {75, 84} being out-scoped from the DS panel numbers -> Manually Added 
+- [ ] Track why {75, 84} being omitted from the automated process of 
+checking ds_numb that has panel report
+
+### WPF
+DS8 has WPF file format and pdf is image-based. Find the solution to open it.
+
+### Footnotes
+The network that understands that holds a footnote in beneath
+
+ 

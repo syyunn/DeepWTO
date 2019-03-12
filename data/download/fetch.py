@@ -45,7 +45,7 @@ def filter_panel_ab_eng(list_of_urls):
     return mark
 
 
-def filter_panel_eng(list_of_urls):
+def filter_panel_eng(list_of_urls, idx):
     """
     Filter panel report's urls on given list of urls
     :param list_of_urls
@@ -54,7 +54,19 @@ def filter_panel_eng(list_of_urls):
     mark = False
     panel_url = None
     print("Panel reports: ")
-    for url in list_of_urls:
+    for url in filter_eng(list_of_urls):
+        print(url.split("/")[-1])
+        if "{}R.pdf".format(idx) == url.split("/")[-1]:
+            panel_url = url
+            break
+            
+        if "{}R.PDF".format(idx) == url.split("/")[-1]:
+            panel_url = url
+            break
+
+        if "{}RW.pdf".format(idx) == url.split("/")[-1]:
+            panel_url = url
+            break
         if "R" in url.split("/")[-1] or 'r' in url.split("/")[-1]:
             if "AB" in url.split("/")[-1] or 'ab' in url.split("/")[-1]:
                 continue
@@ -78,4 +90,4 @@ if __name__ == "__main__":
     #    if filter_panel_ab_eng(urls):
     #        print(idx)
     #
-    print_urls(get_urls(511))
+    print_urls(filter_eng(get_urls(22)))

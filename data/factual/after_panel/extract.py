@@ -57,7 +57,7 @@ def locate_chapter_II(factual):
 def locate_chapter_III(factual):
     import re
     pos_of_after_factual = [match.start() for match in
-                            re.finditer('\nIII.  ', factual)]
+                            re.finditer('\nIII.', factual)]
     
     print(pos_of_after_factual)
     return pos_of_after_factual[0]

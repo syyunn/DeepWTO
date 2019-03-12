@@ -14,6 +14,8 @@ class PanelParser:
     def factual_locator(self):
         romans = ["I.", "II.", "III.", "IV.", "V.", "VI.", "VII.", "VIII.",
                   "IX.", "X."]
+        # romans = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII",
+        #           "IX", "X"]
         pdf_all = "\n\n".join(self.pdf)
         contents = re.findall('(.*?)[\W]+(\d+)(?=\n|$)', pdf_all, flags=re.M)
         # print(contents)
@@ -24,7 +26,8 @@ class PanelParser:
         for idx, content in enumerate(contents):
             # print(content)
             for elem in content:
-                if "FACTUAL" in elem:
+                if ("FACTUAL" in elem) or ("Factual" in elem) or \
+                        ("CHRONOLOGY OF EVENTS" in elem):
                     # print(elem)
                     page_of_factual_aspect = int(content[1])
                     print("FACTUAL ASPECT IS AT PAGE {}".

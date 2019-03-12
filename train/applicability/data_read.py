@@ -6,7 +6,7 @@ from data.download.fetch import get_urls, filter_panel_eng
 from utils.yaml import read_yaml
 # from utils.pdf import read_pdf
 from utils.url import download
-from utils.pickle import open_write_dump
+from utils.pkl import open_write_dump, check_already_exist
 
 from data.factual.after_panel.extract import extract_factual_auto, \
     locate_chapter_II, locate_chapter_III
@@ -27,13 +27,21 @@ if __name__ == "__main__":
     info = read_yaml("../../data/info.yaml")
     panel_exist = info['Panel']['ds_numb']
     mutual_agree = info['Panel']['mutual_agree']
+    WPF = info['Panel']['WPF']
+    print(WPF)
+    LinkedPanel = info['LinkedPanel']
     
     for idx in panel_exist:
+        if check_already_exist(pkl_path, idx):
+            continue
         if idx in mutual_agree:
+            continue
+        elif idx in WPF:
+            print(idx, "in WPF")
             continue
         else:
             print("processing: DS", idx)
-            url_to_download = filter_panel_eng(get_urls(idx))[1]
+            url_to_download = filter_panel_eng(get_urls(idx), idx)[1]
             print(url_to_download)
         
             download_path = '/Users/zachary/Downloads/{}R.pdf'.format(str(idx))

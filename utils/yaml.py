@@ -15,3 +15,6 @@ def read_yaml(yaml_path):
             result[k] = v
 
     return result
+
+def check_linked():
+    
