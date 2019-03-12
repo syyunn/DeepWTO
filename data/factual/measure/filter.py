@@ -10,7 +10,7 @@ import urllib.request
 from multiprocessing import Pool
 
 from utils.pdf import read_pdf
-from dataset.download.fetch import get_urls, filter_eng
+from data.download.fetch import get_urls, filter_eng
 
 
 def download(url):

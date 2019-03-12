@@ -36,13 +36,32 @@ def filter_panel_ab_eng(list_of_urls):
     :return: one url that of panel report
     """
     mark = False
-    #print("Panel/AB reports: ")
+    print("Panel/AB reports: ")
     for url in list_of_urls:
         if "R" in url.split("/")[-1] or 'r' in url.split("/")[-1]:
             if "Q" in url.split("/")[-4]:
-                #print(url)
+                print(url)
                 mark = True
     return mark
+
+
+def filter_panel_eng(list_of_urls):
+    """
+    Filter panel report's urls on given list of urls
+    :param list_of_urls
+    :return: one url that of panel report
+    """
+    mark = False
+    panel_url = None
+    print("Panel reports: ")
+    for url in list_of_urls:
+        if "R" in url.split("/")[-1] or 'r' in url.split("/")[-1]:
+            if "AB" in url.split("/")[-1] or 'ab' in url.split("/")[-1]:
+                continue
+            elif "Q" in url.split("/")[-4]:
+                panel_url = url
+                mark = True
+    return mark, panel_url
 
 
 def print_urls(urls):

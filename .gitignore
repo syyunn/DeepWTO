@@ -20,7 +20,7 @@ __pycache__
 .ipynb_checkpoints
 
 # downloaded pdf
-data/measure/download
+data/factual/measure/download
 
 # pre-trained
 train/GloVec

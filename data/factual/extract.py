@@ -6,6 +6,46 @@ import pdftotext
 from data.factual.parser import PanelParser
 
 
+def extract_factual_auto(pdf_path):
+    """
+    Extract "II. Factual Aspect" from the given path of PDF
+    :param pdf_path: local path of PanelReport.pdf
+    :return: strings of "II. Factual Aspect"
+    """
+
+    parser = PanelParser(pdf_path)
+    pdf, start, end = parser.factual_locator()
+
+    print("start page idx: ", start)
+    print("end page idx: ", end)
+
+    factual = ''
+    for page_idx in range(start, end + 1):
+        print(page_idx)
+        part = pdf[page_idx]
+        factual += part
+    return factual
+    
+    
+def extract_factual_manual(pdf_path):
+    """
+    Extract "II. Factual Aspect" from the given path of PDF
+    :param pdf_path: local path of PanelReport.pdf
+    :return: strings of "II. Factual Aspect"
+    """
+    parser = PanelParser(pdf_path)
+    pdf, start, end = parser.factual_locator()
+
+    start = 9
+    end = 9
+    factual = ''
+    for page_idx in range(start, end + 1):
+        print(page_idx)
+        part = pdf[page_idx]
+        factual += part
+    return factual
+
+
 def main():
     ds_numb = 244
     multi_doc = True
