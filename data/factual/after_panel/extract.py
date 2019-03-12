@@ -1,9 +1,8 @@
 """ Extract & Dump the Factual Aspect of Each DS Panel Report into Pickle"""
 
 import pickle
-import pdftotext
 
-from data.factual.parser import PanelParser
+from data.factual.after_panel.parser import PanelParser
 
 
 def extract_factual_auto(pdf_path):
