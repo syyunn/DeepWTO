@@ -45,6 +45,24 @@ def extract_factual_manual(pdf_path):
     return factual
 
 
+def locate_chapter_II(factual):
+    import re
+    pos_of_before_factual = [match.start() for match in
+                          re.finditer('\nII.  ', factual)]
+    
+    print(pos_of_before_factual)
+    return pos_of_before_factual[0]
+
+
+def locate_chapter_III(factual):
+    import re
+    pos_of_after_factual = [match.start() for match in
+                            re.finditer('\nIII.  ', factual)]
+    
+    print(pos_of_after_factual)
+    return pos_of_after_factual[0]
+
+
 def main():
     ds_numb = 244
     multi_doc = True
