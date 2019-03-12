@@ -45,6 +45,6 @@ if __name__ == "__main__":
     inv_gatt = invert_dict(gatt)
     
     print(inv_gatt)
-    print(inv_gatt[477])
+    print(inv_gatt.keys())
     
 
