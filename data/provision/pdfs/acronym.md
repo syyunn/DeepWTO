@@ -9,3 +9,6 @@
       SPS: Agreement on the Application of Sanitary and Phytosanitary Measures
       TRIPS: The Agreement on Trade-Related Aspects of Intellectual Property Rights
       WTO:  (Marrakesh) Agreement Establishing the WTO
+      CV: Agreement on Implementation of Article VII of the General 
+      Agreement on Tariffs and Trade 1994(so called "Customs Valuation")
+      GP: AGREEMENT ON GOVERNMENT PROCUREMENT
