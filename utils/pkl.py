@@ -40,6 +40,17 @@ def check_already_exist(pickle_path, idx):
     return boolean
 
 
+def open_pkl(pickle_path):
+    with open(pickle_path, 'rb') as f:
+        py_obj = pickle.load(f)
+    return py_obj
+
+
+def dump_pkl(py_obj, pickle_path):
+    with open(pickle_path, 'wb') as f:
+        pickle.dump(py_obj, f)
+
+
 if __name__ == "__main__":
     pkl_path = "../data/factual/after_panel/factual.pkl"
     with open(pkl_path, 'rb') as f:

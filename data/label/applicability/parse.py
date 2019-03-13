@@ -1,4 +1,5 @@
 from utils.yml import read_yaml
+from utils.pkl import dump_pkl
 
 
 def cleanse_dict(d):
@@ -47,4 +48,7 @@ if __name__ == "__main__":
     print(inv_gatt)
     print(inv_gatt_keys)
     print(len(inv_gatt_keys))
-
+    
+    # Dump
+    path_to_dump = "../../dataset/applicability/GATT_523/label.pkl"
+    dump_pkl(inv_gatt, path_to_dump)
