@@ -35,8 +35,9 @@ def extract_factual_manual(pdf_path):
     parser = PanelParser(pdf_path)
     pdf, start, end = parser.factual_locator()
 
-    start = 9
-    end = 9
+    start = 16
+    end = 16
+    
     factual = ''
     for page_idx in range(start, end + 1):
         print(page_idx)
@@ -48,7 +49,7 @@ def extract_factual_manual(pdf_path):
 def locate_chapter_II(factual):
     import re
     pos_of_before_factual = [match.start() for match in
-                          re.finditer('\nII.  ', factual)]
+                          re.finditer('\n2 ', factual)]
     
     print(pos_of_before_factual)
     return pos_of_before_factual[0]
@@ -56,8 +57,9 @@ def locate_chapter_II(factual):
 
 def locate_chapter_III(factual):
     import re
+    # print(factual)
     pos_of_after_factual = [match.start() for match in
-                            re.finditer('\nIII.', factual)]
+                            re.finditer('\n3 ', factual)]
     
     print(pos_of_after_factual)
     return pos_of_after_factual[0]
@@ -100,8 +102,8 @@ def main():
         factual_dict[ds_numb] = factual
         
     elif manual:
-        start = 9
-        end = 9
+        start = 11
+        end = 11
         for page_idx in range(start, end + 1):
             print(page_idx)
             part = pdf[page_idx]

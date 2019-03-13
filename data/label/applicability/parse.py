@@ -1,4 +1,4 @@
-from utils.yaml import read_yaml
+from utils.yml import read_yaml
 
 
 def cleanse_dict(d):
@@ -43,8 +43,8 @@ if __name__ == "__main__":
     gatt = read_yaml("labels/GATT.yaml")
     gatt = cleanse_dict(gatt)
     inv_gatt = invert_dict(gatt)
-    
+    inv_gatt_keys = sorted(list(inv_gatt.keys()))
     print(inv_gatt)
-    print(inv_gatt.keys())
-    
+    print(inv_gatt_keys)
+    print(len(inv_gatt_keys))
 

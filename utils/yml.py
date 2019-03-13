@@ -17,3 +17,17 @@ def read_yaml(yaml_path):
     return result
 #
 # def check_linked():
+
+
+if __name__ == "__main__":
+    info = read_yaml("../data/info.yaml")
+    LinkedPanel = info['LinkedPanel']
+    
+    print(LinkedPanel)
+    
+    to_omit = []
+    for elem in LinkedPanel:
+        links = sorted(list(elem.keys()))
+        print(links)
+        to_omit += links[1:]
+    print(to_omit)

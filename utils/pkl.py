@@ -28,6 +28,11 @@ def check_already_exist(pickle_path, idx):
         factual_dict = pickle.load(f)
     keys = factual_dict.keys()
     
+    if idx == 438:
+        return True # Since 438 has no factual
+    
+    # if idx == 476:
+    #     return False
     if idx in keys:
         boolean = True
     else:
@@ -39,6 +44,8 @@ if __name__ == "__main__":
     pkl_path = "../data/factual/after_panel/factual.pkl"
     with open(pkl_path, 'rb') as f:
         factual_dictionary = pickle.load(f)
-    print(factual_dictionary.keys())
-    print(factual_dictionary[70])
+    currently_stored = sorted(list(factual_dictionary.keys()))
+    print(currently_stored)
+    print(len(currently_stored))
+    print(factual_dictionary[136])
 

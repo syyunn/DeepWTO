@@ -2,7 +2,7 @@ import yaml
 
 import pandas as pd
 
-from utils.yaml import read_yaml
+from utils.yml import read_yaml
 
 
 def get_cited(csv_fp):

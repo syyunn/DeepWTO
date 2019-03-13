@@ -1,15 +1,12 @@
-import pickle
-
 from data.label.applicability.parse import cleanse_dict, invert_dict
 from data.download.fetch import get_urls, filter_panel_eng
 
-from utils.yaml import read_yaml
-# from utils.pdf import read_pdf
+from utils.yml import read_yaml
 from utils.url import download
 from utils.pkl import open_write_dump, check_already_exist
 
 from data.factual.after_panel.extract import extract_factual_auto, \
-    locate_chapter_II, locate_chapter_III
+    extract_factual_manual, locate_chapter_II, locate_chapter_III
 
 
 def read_label(idx):
@@ -30,26 +27,33 @@ if __name__ == "__main__":
     WPF = info['Panel']['WPF']
     print(WPF)
     LinkedPanel = info['LinkedPanel']
-    
+    LinkedOmit = info['LinkedOmit']
     for idx in panel_exist:
         if check_already_exist(pkl_path, idx):
             continue
-        if idx in mutual_agree:
+        elif idx in mutual_agree:
             continue
         elif idx in WPF:
             print(idx, "in WPF")
             continue
+        elif idx in LinkedOmit:
+            print(idx, "in LinkedOmit")
+            continue
         else:
             print("processing: DS", idx)
-            url_to_download = filter_panel_eng(get_urls(idx), idx)[1]
+            url_to_download = filter_panel_eng(get_urls(idx), idx)
             print(url_to_download)
-        
+
             download_path = '/Users/zachary/Downloads/{}R.pdf'.format(str(idx))
             complete = download(url_to_download, download_path)
+            
+            # complete = True
         
             if complete:
-                factual = extract_factual_auto(download_path)
-        
+                # factual = extract_factual_auto(download_path)
+                factual = extract_factual_manual(download_path)
+                # print(factual)
+                
                 before_pos = locate_chapter_II(factual)
                 after_pos = locate_chapter_III(factual)
                 
@@ -61,4 +65,4 @@ if __name__ == "__main__":
     
             elif not complete:
                 print("download_fail for: ", idx)
-
+        break

@@ -433,4 +433,5 @@ DS8 has WPF file format and pdf is image-based. Find the solution to open it.
 ### Footnotes
 The network that understands that holds a footnote in beneath
 
- 
+### WT/DS438/R • WT/DS444/R • WT/DS445/R 
+Above being omitted since the panel report doesn't have factual 

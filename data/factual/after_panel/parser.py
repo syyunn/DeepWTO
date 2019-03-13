@@ -16,6 +16,7 @@ class PanelParser:
                   "IX.", "X."]
         # romans = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII",
         #           "IX", "X"]
+        
         pdf_all = "\n\n".join(self.pdf)
         contents = re.findall('(.*?)[\W]+(\d+)(?=\n|$)', pdf_all, flags=re.M)
         # print(contents)
@@ -53,6 +54,13 @@ class PanelParser:
             previous_page.append(content[1])
             for elem in content:
                 # print(elem)
+                
+                manual = True
+                if manual:
+                    next_roman = str(1)
+                    next_next_roman = str(1)
+                    print("next_roman and next_next_roman not located")
+                
                 if next_roman in elem:
                     page_of_factual_aspect_end = int(content[1])
                     print("FACTUAL ASPECT IS AT PAGE {}".
