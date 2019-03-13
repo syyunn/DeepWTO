@@ -1,5 +1,6 @@
 from utils.yml import read_yaml
 from utils.pkl import dump_pkl
+from utils.dict import get_keys
 
 
 def cleanse_dict(d):
@@ -43,6 +44,8 @@ def invert_dict(dict):
 if __name__ == "__main__":
     gatt = read_yaml("labels/GATT.yaml")
     gatt = cleanse_dict(gatt)
+    gatt_keys = get_keys(gatt)
+    print(gatt_keys)
     inv_gatt = invert_dict(gatt)
     inv_gatt_keys = sorted(list(inv_gatt.keys()))
     print(inv_gatt)
@@ -50,5 +53,9 @@ if __name__ == "__main__":
     print(len(inv_gatt_keys))
     
     # Dump
-    path_to_dump = "../../dataset/applicability/GATT_523/label.pkl"
-    dump_pkl(inv_gatt, path_to_dump)
+    # path_to_dump = "../../dataset/citability/GATT_523/label.pkl"
+    # dump_pkl(inv_gatt, path_to_dump)
+    
+    # Dump label keys
+    path_to_dump = "../../dataset/citability/GATT_523/class.pkl"
+    dump_pkl(gatt_keys, path_to_dump)
