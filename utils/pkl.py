@@ -40,7 +40,7 @@ def check_already_exist(pickle_path, idx):
     return boolean
 
 
-def open_pkl(pickle_path):
+def load_pkl(pickle_path):
     with open(pickle_path, 'rb') as f:
         py_obj = pickle.load(f)
     return py_obj
