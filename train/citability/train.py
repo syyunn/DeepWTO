@@ -22,10 +22,14 @@ class_path = "../../data/dataset/citability/GATT/class.pkl"
 classes = load_pkl(class_path)
 
 
-
-
 if __name__ == "__main__":
-    print(classes)
-    print(factual_keys)
-    print(label_keys)
-    print(label)
+    # print(classes)
+    # print(factual_keys)
+    # print(label_keys)
+    # print(label)
+    
+    for key in factual_keys:
+        if key in label_keys:
+            print(factual[key])
+            print(label[key])
+        break
