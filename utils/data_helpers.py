@@ -11,11 +11,12 @@ import numpy as np
 
 from collections import OrderedDict
 from pylab import *
-from gensim.models import word2vec
+import gensim.models.keyedvectors as word2vec
+# from gensim.models import word2vec
 from tflearn.data_utils import pad_sequences
 
-TEXT_DIR = '../data/content.txt'
-METADATA_DIR = '../data/metadata.tsv'
+TEXT_DIR = '../data/test_Randolph/content.txt'
+METADATA_DIR = '../data/test_Randolph/metadata.tsv'
 
 
 def logger_fn(name, input_file, level=logging.INFO):
@@ -182,7 +183,8 @@ def create_metadata_file(embedding_size, output_file=METADATA_DIR):
 
     if not os.path.isfile(word2vec_file):
         raise IOError("✘ The word2vec file doesn't exist."
-                      "Please use function <create_vocab_size(embedding_size)> to create it!")
+                      "Please use function <create_vocab_"
+                      "size(embedding_size)> to create it!")
 
     model = gensim.models.Word2Vec.load(word2vec_file)
     word2idx = dict([(k, v.index) for k, v in model.wv.vocab.items()])
@@ -191,7 +193,8 @@ def create_metadata_file(embedding_size, output_file=METADATA_DIR):
     with open(output_file, 'w+') as fout:
         for word in word2idx_sorted:
             if word[0] is None:
-                print("Empty Line, should replaced by any thing else, or will cause a bug of tensorboard")
+                print("Empty Line, should replaced by any thing else, "
+                      "r will cause a bug of tensorboard")
                 fout.write('<Empty Line>' + '\n')
             else:
                 fout.write(word[0] + '\n')
@@ -229,16 +232,19 @@ def load_vocab_size(embedding_size):
 
     if not os.path.isfile(word2vec_file):
         raise IOError("✘ The word2vec file doesn't exist."
-                      "Please use function <create_vocab_size(embedding_size)> to create it!")
+                      "Please use function <create_vocab_"
+                      "size(embedding_size)> to create it!")
 
     model = word2vec.Word2Vec.load(word2vec_file)
     return len(model.wv.vocab.items())
 
 
-def data_word2vec(input_file, num_labels, word2vec_model):
+def data_word2vec(input_file,
+                  num_labels,
+                  word2vec_model):
     """
-    Create the research data tokenindex based on the word2vec model file.
-    Return the class Data(includes the data tokenindex and data labels).
+    Create the research data token index based on the word2vec model file.
+    Return the class Data(includes the data token index and data labels).
 
     Args:
         input_file: The research data
@@ -260,34 +266,38 @@ def data_word2vec(input_file, num_labels, word2vec_model):
             result.append(word2id)
         return result
 
-    def _create_onehot_labels(labels_index):
-        label = [0] * num_labels
-        for item in labels_index:
+    def _create_onehot_labels(_labels_index,
+                              _num_labels):
+        label = [0] * _num_labels
+        for item in _labels_index:
             label[int(item)] = 1
         return label
 
     if not input_file.endswith('.json'):
         raise IOError("✘ The research data is not a json file. "
-                      "Please preprocess the research data into the json file.")
+                      "Please preprocess the research data into the "
+                      "json file.")
+    
     with open(input_file) as fin:
-        testid_list = []
+        test_id_list = []
         content_index_list = []
         labels_list = []
         onehot_labels_list = []
         labels_num_list = []
         total_line = 0
 
-        for eachline in fin:
-            data = json.loads(eachline)
-            testid = data['testid']
+        for each_line in fin:
+            data = json.loads(each_line)
+            test_id = data['test_id']
             features_content = data['features_content']
             labels_index = data['labels_index']
             labels_num = data['labels_num']
 
-            testid_list.append(testid)
+            test_id_list.append(test_id)
             content_index_list.append(_token_to_index(features_content))
             labels_list.append(labels_index)
-            onehot_labels_list.append(_create_onehot_labels(labels_index))
+            onehot_labels_list.append(_create_onehot_labels(labels_index,
+                                                            num_labels))
             labels_num_list.append(labels_num)
             total_line += 1
 
@@ -301,7 +311,7 @@ def data_word2vec(input_file, num_labels, word2vec_model):
 
         @property
         def testid(self):
-            return testid_list
+            return test_id_list
 
         @property
         def tokenindex(self):
@@ -353,7 +363,8 @@ def data_augmented(data, drop_rate=1.0):
             aug_num += 1
         else:
             data_record = np.array(data_record)
-            for num in range(len(data_record) // 10):  # 打乱词的次数，次数即生成样本的个数；次数根据句子长度而定
+            for num in range(len(data_record) // 10):  #
+                # 打乱词的次数，次数即生成样本的个数；次数根据句子长度而定
                 # random shuffle & random drop
                 data_shuffled = np.random.permutation(np.arange(int(len(data_record) * drop_rate)))
                 new_data_record = data_record[data_shuffled]
@@ -422,10 +433,14 @@ def load_word2vec_matrix(vocab_size, embedding_size):
     return vector
 
 
-def load_data_and_labels(data_file, num_labels, embedding_size, data_aug_flag):
+def load_data_and_labels(data_file,
+                         num_labels,
+                         embedding_size,
+                         data_aug_flag):
     """
-    Load research data from files, splits the data into words and generates labels.
-    Return split sentences, labels and the max sentence length of the research data.
+    Load research data from files, splits the data into words and generates
+    labels. Return split sentences, labels and the max sentence length of
+    the research data.
 
     Args:
         data_file: The research data
@@ -435,16 +450,23 @@ def load_data_and_labels(data_file, num_labels, embedding_size, data_aug_flag):
     Returns:
         The class Data
     """
-    word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
-
-    # Load word2vec model file
-    if not os.path.isfile(word2vec_file):
-        create_word2vec_model(embedding_size, TEXT_DIR)
-
-    model = word2vec.Word2Vec.load(word2vec_file)
+    ###########################################################################
+    #
+    # word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
+    #
+    # # Load word2vec model file
+    # if not os.path.isfile(word2vec_file):
+    #     create_word2vec_model(embedding_size, TEXT_DIR)
+    ###########################################################################
+    
+    word2vec_path = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
+    model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
+                                                       binary=True)
 
     # Load data from files and split by words
-    data = data_word2vec(input_file=data_file, num_labels=num_labels, word2vec_model=model)
+    data = data_word2vec(input_file=data_file,
+                         num_labels=num_labels,
+                         word2vec_model=model)
     if data_aug_flag:
         data = data_augmented(data)
 

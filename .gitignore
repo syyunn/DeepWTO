@@ -24,6 +24,7 @@ data/factual/measure/download
 
 # pre-trained
 train/GloVec
+train/Word2Vec
 
 # model_code
 train/dataset
