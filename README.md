@@ -435,3 +435,8 @@ The network that understands that holds a footnote in beneath
 
 ### WT/DS438/R • WT/DS444/R • WT/DS445/R 
 Above being omitted since the panel report doesn't have factual 
+
+### Current Commercial Database Available:
+
+- [ ] https://www.tradelawguide.com/Cms?Id=2210
+- [ ] http://worldtradelaw.net/
