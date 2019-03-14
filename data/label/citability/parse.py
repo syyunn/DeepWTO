@@ -3,17 +3,17 @@ from utils.pkl import dump_pkl
 from utils.dict import get_keys
 
 
-def cleanse_dict(d):
+def cleanse_dict(dictionary):
     """
     Read the yaml then Omit the 'DS' and Returns the int valued dict
-    :param dict:
+    :param dictionary:
     :return:
     """
     new = dict()
-    keys = d.keys()
+    keys = dictionary.keys()
     for key in keys:
         value = []
-        dss = d[key].split(', ')
+        dss = dictionary[key].split(', ')
         for ds in dss:
             num_only = int(ds[2:])
             value.append(num_only)
@@ -33,9 +33,9 @@ def assort_values(d):
     return values
 
 
-def invert_dict(dict):
+def invert_dict(dictionary):
     inv = {}
-    for k, V in dict.items():
+    for k, V in dictionary.items():
         for v in V:
             inv.setdefault(v, []).append(k)
     return inv
