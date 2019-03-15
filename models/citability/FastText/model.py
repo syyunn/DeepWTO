@@ -22,8 +22,8 @@ class TextFAST(object):
         :param num_classes:
         :param vocab_size:
         :param embedding_size:
-        :param train_embedding_layer: If 0, fix the Embedding and not train, If 1,
-        train the Embedding Layer
+        :param train_embedding_layer: If 0, fix the Embedding and not train,
+        If 1, train the Embedding Layer
         :param l2_reg_lambda:
         :param pretrained_embedding:
         """

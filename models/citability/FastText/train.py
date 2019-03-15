@@ -14,9 +14,9 @@ import tensorflow as tf
 from tensorboard.plugins import projector
 from models.citability.FastText.model import TextFAST
 from utils import checkpoints as cm
-from utils import data_helpers as dh
+from utils import feed as dh
 from sklearn.metrics import precision_score, \
-    recall_score, f1_score, roc_auc_score, average_precision_score
+recall_score, f1_score, roc_auc_score, average_precision_score
 
 # Parameters
 # ==================================================
