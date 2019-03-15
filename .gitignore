@@ -33,3 +33,6 @@ train/model_code.py
 
 # cache.xlsx
 ~$*.xlsx
+
+# logs
+train/citability/FastText/logs/
