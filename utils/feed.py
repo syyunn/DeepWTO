@@ -188,7 +188,9 @@ def create_metadata_file(embedding_size, output_file=METADATA_STORE_PATH):
 
     model = gensim.models.Word2Vec.load(word2vec_file)
     word2idx = dict([(k, v.index) for k, v in model.wv.vocab.items()])
-    word2idx_sorted = [(k, word2idx[k]) for k in sorted(word2idx, key=word2idx.get, reverse=False)]
+    word2idx_sorted = [(k, word2idx[k]) for k in sorted(word2idx,
+                                                        key=word2idx.get,
+                                                        reverse=False)]
 
     with open(output_file, 'w+') as fout:
         for word in word2idx_sorted:
@@ -221,7 +223,7 @@ def create_word2vec_model(embedding_size,
                                    min_count=0,
                                    sg=0,
                                    workers=multiprocessing.cpu_count())
-    model.save(word2vec_file)
+    model.save(word2vec_path)
 
 
 def load_vocab_size(embedding_size,
@@ -248,7 +250,7 @@ def load_vocab_size(embedding_size,
 
     # model = word2vec.Word2Vec.load(word2vec_file)
     model = word2vec.KeyedVectors.load_word2vec_format(
-        word2vec_path, binary=True)
+        word2vec_path, binary=True, limit=500000)
 
     return len(model.wv.vocab.items())
 
@@ -442,10 +444,12 @@ def load_word2vec_matrix(vocab_size,
 
     if not os.path.isfile(word2vec_path):
         raise IOError("✘ The word2vec file doesn't exist. "
-                      "Please use function <create_vocab_size(embedding_size)> to create it!")
+                      "Please use function <create_vocab_size(embedding_size)"
+                      "> to create it!")
 
     model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
-                                                       binary=True)
+                                                       binary=True,
+                                                       limit=500000)
 
     vocab = dict([(k, v.index) for k, v in model.wv.vocab.items()])
     vector = np.zeros([vocab_size, embedding_size])
@@ -489,7 +493,8 @@ def load_data_and_labels(data_file,
     
     if use_pretrain:
         model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
-                                                           binary=True)
+                                                           binary=True,
+                                                           limit=500000)
     else:
         create_word2vec_model(embedding_size,
                               ALL_TEXTS_INPUT)
@@ -534,11 +539,14 @@ def plot_seq_len(data_file, data, percentage=0.98):
     """
     data_analysis_dir = '../data/data_analysis/'
     if 'train' in data_file.lower():
-        output_file = data_analysis_dir + 'Train Sequence Length Distribution Histogram.png'
+        output_file = data_analysis_dir + \
+                      'Train Sequence Length Distribution Histogram.png'
     if 'validation' in data_file.lower():
-        output_file = data_analysis_dir + 'Validation Sequence Length Distribution Histogram.png'
+        output_file = data_analysis_dir + \
+                      'Validation Sequence Length Distribution Histogram.png'
     if 'test' in data_file.lower():
-        output_file = data_analysis_dir + 'Test Sequence Length Distribution Histogram.png'
+        output_file = data_analysis_dir + \
+                      'Test Sequence Length Distribution Histogram.png'
     result = dict()
     for x in data.tokenindex:
         if len(x) not in result.keys():
@@ -560,7 +568,8 @@ def plot_seq_len(data_file, data, percentage=0.98):
             border_index.append(item[0])
     avg = avg / data.number
     print('The average of the data sequence length is {0}'.format(avg))
-    print('The recommend of padding sequence length should more than {0}'.format(border_index[0]))
+    print('The recommend of padding sequence length should more than {0}'.
+          format(border_index[0]))
     xlim(0, 400)
     plt.bar(x, y)
     plt.savefig(output_file)
@@ -570,8 +579,10 @@ def plot_seq_len(data_file, data, percentage=0.98):
 def batch_iter(data, batch_size, num_epochs, shuffle=True):
     """
     含有 yield 说明不是一个普通函数，是一个 Generator.
-    函数效果：对 data，一共分成 num_epochs 个阶段（epoch），在每个 epoch 内，如果 shuffle=True，就将 data 重新洗牌，
-    批量生成 (yield) 一批一批的重洗过的 data，每批大小是 batch_size，一共生成 int(len(data)/batch_size)+1 批。
+    函数效果：对 data，一共分成 num_epochs 个阶段（epoch），在每个 epoch 内，如果
+    shuffle=True，就将 data 重新洗牌，
+    批量生成 (yield) 一批一批的重洗过的 data，每批大小是 batch_size，
+    一共生成 int(len(data)/batch_size)+1 批。
 
     Args:
         data: The data

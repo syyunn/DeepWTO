@@ -12,9 +12,3 @@ def write_json_line_by_line(list_of_dicts, write_path):
             json.dump(data, outfile)
             outfile.write('\n')
         json.dump(list_of_dicts[-1], outfile)
-
-
-def read_json(json_path):
-    with open(json_path, 'r') as f:
-        lines = f.readlines()
-    return lines
