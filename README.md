@@ -440,3 +440,6 @@ Above being omitted since the panel report doesn't have factual
 
 - [ ] https://www.tradelawguide.com/Cms?Id=2210
 - [ ] http://worldtradelaw.net/
+
+### Pretrained links
+ - [ ] Google [Word2Vec](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit)

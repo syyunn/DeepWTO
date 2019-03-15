@@ -12,11 +12,11 @@ import numpy as np
 from collections import OrderedDict
 from pylab import *
 import gensim.models.keyedvectors as word2vec
-# from gensim.models import word2vec
+from gensim.models.word2vec import LineSentence
 from tflearn.data_utils import pad_sequences
 
-TEXT_DIR = '../data/test_Randolph/content.txt'
-METADATA_DIR = '../data/test_Randolph/metadata.tsv'
+ALL_TEXTS_INPUT = '../data/test_Randolph/content.txt'
+METADATA_STORE_PATH = '../data/test_Randolph/metadata.tsv'
 
 
 def logger_fn(name, input_file, level=logging.INFO):
@@ -169,7 +169,7 @@ def get_label_topk(scores, top_num=1):
     return predicted_labels, predicted_scores
 
 
-def create_metadata_file(embedding_size, output_file=METADATA_DIR):
+def create_metadata_file(embedding_size, output_file=METADATA_STORE_PATH):
     """
     Create the metadata file based on the corpus file(Use for the Embedding Visualization later).
 
@@ -200,29 +200,38 @@ def create_metadata_file(embedding_size, output_file=METADATA_DIR):
                 fout.write(word[0] + '\n')
 
 
-def create_word2vec_model(embedding_size, input_file=TEXT_DIR):
+def create_word2vec_model(embedding_size,
+                          word2vec_path,
+                          input_file=ALL_TEXTS_INPUT):
     """
-    Create the word2vec model based on the given embedding size and the corpus file.
+    Create the word2vec model based on the given embedding size and the
+    corpus file.
 
     Args:
         embedding_size: The embedding size
         input_file: The corpus file
     """
-    word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
+    word2vec_path = '../data/word2vec_' + str(embedding_size) + '.model'
 
-    sentences = word2vec.LineSentence(input_file)
-    # sg=0 means use CBOW model(default); sg=1 means use skip-gram model.
-    model = gensim.models.Word2Vec(sentences, size=embedding_size, min_count=0,
-                                   sg=0, workers=multiprocessing.cpu_count())
+    sentences = LineSentence(input_file)
+    
+    # sg=0 means to use CBOW (default); sg=1 means use skip-gram model
+    model = gensim.models.Word2Vec(sentences,
+                                   size=embedding_size,
+                                   min_count=0,
+                                   sg=0,
+                                   workers=multiprocessing.cpu_count())
     model.save(word2vec_file)
 
 
-def load_vocab_size(embedding_size):
+def load_vocab_size(embedding_size,
+                    word2vec_path):
     """
     Return the vocab size of the word2vec file.
 
     Args:
         embedding_size: The embedding size
+        word2vec_path: Path of word2vec
     Returns:
         The vocab size of the word2vec file
     Raises:
@@ -230,16 +239,16 @@ def load_vocab_size(embedding_size):
     """
     # word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
 
-    word2vec_file = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
-
-    if not os.path.isfile(word2vec_file):
+    # word2vec_file = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
+ 
+    if not os.path.isfile(word2vec_path):
         raise IOError("✘ The word2vec file doesn't exist."
                       "Please use function <create_vocab_"
                       "size(embedding_size)> to create it!")
 
     # model = word2vec.Word2Vec.load(word2vec_file)
     model = word2vec.KeyedVectors.load_word2vec_format(
-        word2vec_file, binary=True)
+        word2vec_path, binary=True)
 
     return len(model.wv.vocab.items())
 
@@ -412,20 +421,24 @@ def data_augmented(data, drop_rate=1.0):
     return _AugData()
 
 
-def load_word2vec_matrix(vocab_size, embedding_size):
+def load_word2vec_matrix(vocab_size,
+                         embedding_size,
+                         word2vec_path):
     """
     Return the word2vec model matrix.
 
     Args:
         vocab_size: The vocab size of the word2vec model file
         embedding_size: The embedding size
+        word2vec_path: path of pretrained word2vec
     Returns:
         The word2vec model matrix
     Raises:
         IOError: If word2vec model file doesn't exist
+        
     """
     # word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
-    word2vec_path = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
+    # word2vec_path = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
 
     if not os.path.isfile(word2vec_path):
         raise IOError("✘ The word2vec file doesn't exist. "
@@ -445,7 +458,9 @@ def load_word2vec_matrix(vocab_size, embedding_size):
 def load_data_and_labels(data_file,
                          num_labels,
                          embedding_size,
-                         data_aug_flag):
+                         data_aug_flag,
+                         word2vec_path,
+                         use_pretrain=True):
     """
     Load research data from files, splits the data into words and generates
     labels. Return split sentences, labels and the max sentence length of
@@ -456,6 +471,8 @@ def load_data_and_labels(data_file,
         num_labels: The number of classes
         embedding_size: The embedding size
         data_aug_flag: The flag of data augmented
+        word2vec_path: path of pretrained word2vec
+        use_pretrain: whether to use pretrained word2vec
     Returns:
         The class Data
     """
@@ -468,9 +485,14 @@ def load_data_and_labels(data_file,
     #     create_word2vec_model(embedding_size, TEXT_DIR)
     ###########################################################################
     
-    word2vec_path = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
-    model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
-                                                       binary=True)
+    # word2vec_path = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
+    
+    if use_pretrain:
+        model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
+                                                           binary=True)
+    else:
+        create_word2vec_model(embedding_size,
+                              ALL_TEXTS_INPUT)
 
     # Load data from files and split by words
     data = data_word2vec(input_file=data_file,

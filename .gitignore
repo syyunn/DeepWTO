@@ -35,7 +35,7 @@ train/model_code.py
 ~$*.xlsx
 
 # logs
-train/citability/FastText/logs/
+models/citability/FastText/logs
 
 # checkpoints
-train/citability/FastText/runs
+models/citability/FastText/runs
