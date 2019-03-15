@@ -62,5 +62,10 @@ def make_input(factual_dict, labels_dict):
 if __name__ == "__main__":
     input_data = make_input(factual, label)
     write_path = "../train/citability/FastText/data/data.json"
-    dump_write_dict2json(input_data, write_path)
+    with open(write_path, "a") as outfile:
+        import json
+        for data in input_data[:-1]:
+            json.dump(data, outfile)
+            outfile.write('\n')
+        json.dump(input_data[-1], outfile)
     pass

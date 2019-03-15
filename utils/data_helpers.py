@@ -288,7 +288,8 @@ def data_word2vec(input_file,
 
         for each_line in fin:
             data = json.loads(each_line)
-            test_id = data['test_id']
+            print(type(data))
+            test_id = data['testid']
             features_content = data['features_content']
             labels_index = data['labels_index']
             labels_num = data['labels_num']
