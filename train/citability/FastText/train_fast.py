@@ -69,7 +69,7 @@ tf.flags.DEFINE_integer("pad_seq_len",
                         "Recommended padding Sequence length of data "
                         "(depends on the data)")
 tf.flags.DEFINE_integer("embedding_dim",
-                        100,
+                        300,
                         "Dimensionality of character embedding (default: 128)")
 tf.flags.DEFINE_integer("embedding_type",
                         1,
@@ -173,8 +173,9 @@ def train_fasttext():
     
     # Build vocabulary
     VOCAB_SIZE = dh.load_vocab_size(FLAGS.embedding_dim)
-    pretrained_word2vec_matrix = dh.load_word2vec_matrix(VOCAB_SIZE,
-                                                         FLAGS.embedding_dim)
+    # pretrained_word2vec_matrix = dh.load_word2vec_matrix(VOCAB_SIZE,
+    #                                                      FLAGS.embedding_dim)
+    pretrained_word2vec_matrix = None
     
     # Build a graph and fasttext object
     with tf.Graph().as_default():

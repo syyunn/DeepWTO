@@ -228,14 +228,19 @@ def load_vocab_size(embedding_size):
     Raises:
         IOError: If word2vec model file doesn't exist
     """
-    word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
+    # word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
+
+    word2vec_file = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
 
     if not os.path.isfile(word2vec_file):
         raise IOError("✘ The word2vec file doesn't exist."
                       "Please use function <create_vocab_"
                       "size(embedding_size)> to create it!")
 
-    model = word2vec.Word2Vec.load(word2vec_file)
+    # model = word2vec.Word2Vec.load(word2vec_file)
+    model = word2vec.KeyedVectors.load_word2vec_format(
+        word2vec_file, binary=True)
+
     return len(model.wv.vocab.items())
 
 
@@ -288,7 +293,6 @@ def data_word2vec(input_file,
 
         for each_line in fin:
             data = json.loads(each_line)
-            print(type(data))
             test_id = data['testid']
             features_content = data['features_content']
             labels_index = data['labels_index']
@@ -420,12 +424,16 @@ def load_word2vec_matrix(vocab_size, embedding_size):
     Raises:
         IOError: If word2vec model file doesn't exist
     """
-    word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
+    # word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
+    word2vec_path = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
 
-    if not os.path.isfile(word2vec_file):
+    if not os.path.isfile(word2vec_path):
         raise IOError("✘ The word2vec file doesn't exist. "
                       "Please use function <create_vocab_size(embedding_size)> to create it!")
-    model = gensim.models.Word2Vec.load(word2vec_file)
+
+    model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
+                                                       binary=True)
+
     vocab = dict([(k, v.index) for k, v in model.wv.vocab.items()])
     vector = np.zeros([vocab_size, embedding_size])
     for key, value in vocab.items():

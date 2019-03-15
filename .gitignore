@@ -36,3 +36,6 @@ train/model_code.py
 
 # logs
 train/citability/FastText/logs/
+
+# checkpoints
+train/citability/FastText/runs
