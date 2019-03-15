@@ -12,7 +12,7 @@ import numpy as np
 import tensorflow as tf
 
 from tensorboard.plugins import projector
-from train.citability.FastText.text_fast import TextFAST
+from train.citability.FastText.model import TextFAST
 from utils import checkpoints as cm
 from utils import data_helpers as dh
 from sklearn.metrics import precision_score, \
