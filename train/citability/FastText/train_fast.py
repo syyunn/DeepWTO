@@ -81,7 +81,7 @@ tf.flags.DEFINE_float("l2_reg_lambda",
                       0.0,
                       "L2 regularization lambda (default: 0.0)")
 tf.flags.DEFINE_integer("num_classes",
-                        367,
+                        80,
                         "Number of labels (depends on the task)")
 tf.flags.DEFINE_integer("top_num",
                         5,
@@ -113,7 +113,7 @@ tf.flags.DEFINE_float("decay_rate",
                       0.95,
                       "Rate of decay for learning rate. (default: 0.95)")
 tf.flags.DEFINE_integer("checkpoint_every",
-                        1000,
+                        100,
                         "Save model after this many steps (default: 1000)")
 tf.flags.DEFINE_integer("num_checkpoints",
                         10,
