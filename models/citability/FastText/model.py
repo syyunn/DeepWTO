@@ -13,7 +13,7 @@ class TextFAST(object):
                  num_classes,
                  vocab_size,
                  embedding_size,
-                 embedding_type,
+                 train_embedding_layer,
                  l2_reg_lambda=0.0,
                  pretrained_embedding=None):
         """
@@ -22,8 +22,8 @@ class TextFAST(object):
         :param num_classes:
         :param vocab_size:
         :param embedding_size:
-        :param embedding_type: If 0, fix the Embedding and not train, If 1,
-        train the Embedding Layer
+        :param train_embedding_layer: If 0, fix the Embedding and not train,
+        If 1, train the Embedding Layer
         :param l2_reg_lambda:
         :param pretrained_embedding:
         """
@@ -118,11 +118,11 @@ class TextFAST(object):
                     trainable=True,
                     name="embedding")
             else:
-                if embedding_type == 0:
+                if train_embedding_layer == 0:
                     self.embedding = tf.constant(pretrained_embedding,
                                                  dtype=tf.float32,
                                                  name="embedding")
-                if embedding_type == 1:
+                if train_embedding_layer == 1:
                     self.embedding = tf.Variable(pretrained_embedding,
                                                  trainable=True,
                                                  dtype=tf.float32,

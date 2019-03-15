@@ -1,8 +1,9 @@
-# This code is referenced from https://github.com/RandolphVI
-# Then modified by Zachary
+# This code is referenced from https://github.com/RandolphVIm and modified by
+# Zachary
 # -*- coding:utf-8 -*-
 
 __author__ = 'Randolph'
+__modify__ = 'Zachary'
 
 import os
 import sys
@@ -12,14 +13,14 @@ import numpy as np
 import tensorflow as tf
 
 from tensorboard.plugins import projector
-from train.citability.FastText.model import TextFAST
-from utils import checkpoints as cm
-from utils import data_helpers as dh
+from models.citability.FastText.model import TextFAST
+from utils import checkpoints
+from utils import feed
 from sklearn.metrics import precision_score, \
-    recall_score, f1_score, roc_auc_score, average_precision_score
+recall_score, f1_score, roc_auc_score, average_precision_score
 
 # Parameters
-# ==================================================
+# =============================================================================
 
 TRAIN_OR_RESTORE = input("☛ Train or Restore?(T/R): ")
 
@@ -34,12 +35,12 @@ logging.info("✔︎ The format of your input is legal, "
 TRAIN_OR_RESTORE = TRAIN_OR_RESTORE.upper()
 
 if TRAIN_OR_RESTORE == 'T':
-    logger = dh.logger_fn("tflog", "logs/training-{0}.log".
-                          format(time.asctime()))
+    logger = feed.logger_fn("tflog", "logs/training-{0}.log".
+                            format(time.asctime()))
 
 if TRAIN_OR_RESTORE == 'R':
-    logger = dh.logger_fn("tflog", "logs/restore-{0}.log".
-                          format(time.asctime()))
+    logger = feed.logger_fn("tflog", "logs/restore-{0}.log".
+                            format(time.asctime()))
 
 TRAININGSET_DIR = 'data/Train.json'
 VALIDATIONSET_DIR = 'data/Validation.json'
@@ -65,13 +66,13 @@ tf.flags.DEFINE_float("learning_rate",
                       0.001,
                       "The learning rate (default: 0.001)")
 tf.flags.DEFINE_integer("pad_seq_len",
-                        100,
+                        35842,
                         "Recommended padding Sequence length of data "
                         "(depends on the data)")
 tf.flags.DEFINE_integer("embedding_dim",
                         300,
                         "Dimensionality of character embedding (default: 128)")
-tf.flags.DEFINE_integer("embedding_type",
+tf.flags.DEFINE_integer("train_embedding_layer",
                         1,
                         "The embedding type (default: 1)")
 tf.flags.DEFINE_float("dropout_keep_prob",
@@ -84,7 +85,7 @@ tf.flags.DEFINE_integer("num_classes",
                         80,
                         "Number of labels (depends on the task)")
 tf.flags.DEFINE_integer("top_num",
-                        5,
+                        80,
                         "Number of top K prediction classes (default: 5)")
 tf.flags.DEFINE_float("threshold",
                       0.5,
@@ -92,7 +93,7 @@ tf.flags.DEFINE_float("threshold",
 
 # Training Parameters
 tf.flags.DEFINE_integer("batch_size",
-                        1024,
+                        64,
                         "Batch Size (default: 256)")
 tf.flags.DEFINE_integer("num_epochs",
                         150,
@@ -140,41 +141,46 @@ logger.info(
                         sorted(FLAGS.__dict__['__wrapped'])], dilim]))
 
 
-def train_fasttext():
+def train_fasttext(word2vec_path):
     """Training FASTTEXT model."""
     
     # Load sentences, labels, and training parameters
     logger.info("✔︎ Loading data...")
     
     logger.info("✔︎ Training data processing...")
-    train_data = dh.load_data_and_labels(
+    train_data = feed.load_data_and_labels(
         FLAGS.training_data_file,
         FLAGS.num_classes,
         FLAGS.embedding_dim,
-        data_aug_flag=False)
+        data_aug_flag=False,
+        word2vec_path=word2vec_path)
     
     logger.info("✔︎ Validation data processing...")
-    val_data = dh.load_data_and_labels(
+    val_data = feed.load_data_and_labels(
         FLAGS.validation_data_file,
         FLAGS.num_classes,
         FLAGS.embedding_dim,
-        data_aug_flag=False)
+        data_aug_flag=False,
+        word2vec_path=word2vec_path)
     
     logger.info("Recommended padding Sequence length is: {0}".
                 format(FLAGS.pad_seq_len))
     
     logger.info("✔︎ Training data padding...")
-    x_train, y_train = dh.pad_data(train_data,
-                                   FLAGS.pad_seq_len)
+    x_train, y_train = feed.pad_data(train_data,
+                                     FLAGS.pad_seq_len)
     
     logger.info("✔︎ Validation data padding...")
-    x_val, y_val = dh.pad_data(val_data,
-                               FLAGS.pad_seq_len)
+    x_val, y_val = feed.pad_data(val_data,
+                                 FLAGS.pad_seq_len)
     
     # Build vocabulary
-    VOCAB_SIZE = dh.load_vocab_size(FLAGS.embedding_dim)
+    VOCAB_SIZE = feed.load_vocab_size(FLAGS.embedding_dim,
+                                      word2vec_path=word2vec_path)
     # pretrained_word2vec_matrix = dh.load_word2vec_matrix(VOCAB_SIZE,
-    #                                                      FLAGS.embedding_dim)
+    #                                                      FLAGS.embedding_dim,
+    #                                                      word2vec_path=
+    #                                                      word2vec_path)
     pretrained_word2vec_matrix = None
     
     # Build a graph and fasttext object
@@ -190,7 +196,7 @@ def train_fasttext():
                 num_classes=FLAGS.num_classes,
                 vocab_size=VOCAB_SIZE,
                 embedding_size=FLAGS.embedding_dim,
-                embedding_type=FLAGS.embedding_type,
+                train_embedding_layer=FLAGS.train_embedding_layer,
                 l2_reg_lambda=FLAGS.l2_reg_lambda,
                 pretrained_embedding=pretrained_word2vec_matrix)
             
@@ -204,17 +210,18 @@ def train_fasttext():
                     decay_rate=FLAGS.decay_rate,
                     staircase=True)
                 optimizer = tf.train.AdamOptimizer(learning_rate)
-                grads, vars = zip(*optimizer.compute_gradients(fasttext.loss))
+                grads, variables = zip(*optimizer.compute_gradients(
+                    fasttext.loss))
                 grads, _ = tf.clip_by_global_norm(grads,
                                                   clip_norm=FLAGS.norm_ratio)
                 train_op = optimizer.apply_gradients(
-                    zip(grads, vars),
+                    zip(grads, variables),
                     global_step=fasttext.global_step,
                     name="train_op")
             
             # Keep track of gradient values and sparsity (optional)
             grad_summaries = []
-            for g, v in zip(grads, vars):
+            for g, v in zip(grads, variables):
                 if g is not None:
                     grad_hist_summary = tf.summary.histogram("{0}/grad/hist".
                                                              format(v.name), g)
@@ -273,8 +280,8 @@ def train_fasttext():
             
             saver = tf.train.Saver(tf.global_variables(),
                                    max_to_keep=FLAGS.num_checkpoints)
-            best_saver = cm.BestCheckpointSaver(save_dir=best_checkpoint_dir,
-                                                num_to_keep=3, maximize=True)
+            best_saver = checkpoints.BestCheckpointSaver(save_dir=best_checkpoint_dir,
+                                                         num_to_keep=3, maximize=True)
             
             if FLAGS.train_or_restore == 'R':
                 # Load fasttext model
@@ -328,8 +335,8 @@ def train_fasttext():
                                 _y_val,
                                 writer=None):
                 """Evaluates model on a validation set"""
-                batches_validation = dh.batch_iter(list(zip(_x_val, _y_val)),
-                                                   FLAGS.batch_size, 1)
+                batches_validation = feed.batch_iter(list(zip(_x_val, _y_val)),
+                                                     FLAGS.batch_size, 1)
                 
                 # Predict classes by threshold or topk ('ts': threshold;
                 # 'tk': topk)
@@ -364,15 +371,15 @@ def train_fasttext():
                     
                     # Predict by threshold
                     batch_predicted_onehot_labels_ts = \
-                        dh.get_onehot_label_threshold(scores=scores,
-                                                      threshold=FLAGS.threshold)
+                        feed.get_onehot_label_threshold(scores=scores,
+                                                        threshold=FLAGS.threshold)
                     
                     for k in batch_predicted_onehot_labels_ts:
                         predicted_onehot_labels_ts.append(k)
                     
                     # Predict by topK
                     for _top_num in range(FLAGS.top_num):
-                        batch_predicted_onehot_labels_tk = dh.\
+                        batch_predicted_onehot_labels_tk = feed.\
                             get_onehot_label_topk(scores=scores,
                                                   top_num=_top_num + 1)
                         
@@ -430,7 +437,7 @@ def train_fasttext():
                        _eval_F_tk
             
             # Generate batches
-            batches_train = dh.batch_iter(
+            batches_train = feed.batch_iter(
                 list(zip(x_train, y_train)), FLAGS.batch_size,
                 FLAGS.num_epochs)
             
@@ -485,4 +492,6 @@ def train_fasttext():
 
 
 if __name__ == '__main__':
-    train_fasttext()
+    train_fasttext(
+        word2vec_path=
+        "/home/ubuntu/Word2Vec/GoogleNews-vectors-negative300.bin")

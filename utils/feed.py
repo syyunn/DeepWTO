@@ -12,11 +12,11 @@ import numpy as np
 from collections import OrderedDict
 from pylab import *
 import gensim.models.keyedvectors as word2vec
-# from gensim.models import word2vec
+from gensim.models.word2vec import LineSentence
 from tflearn.data_utils import pad_sequences
 
-TEXT_DIR = '../data/test_Randolph/content.txt'
-METADATA_DIR = '../data/test_Randolph/metadata.tsv'
+ALL_TEXTS_INPUT = '../data/test_Randolph/content.txt'
+METADATA_STORE_PATH = '../data/test_Randolph/metadata.tsv'
 
 
 def logger_fn(name, input_file, level=logging.INFO):
@@ -169,7 +169,7 @@ def get_label_topk(scores, top_num=1):
     return predicted_labels, predicted_scores
 
 
-def create_metadata_file(embedding_size, output_file=METADATA_DIR):
+def create_metadata_file(embedding_size, output_file=METADATA_STORE_PATH):
     """
     Create the metadata file based on the corpus file(Use for the Embedding Visualization later).
 
@@ -188,7 +188,9 @@ def create_metadata_file(embedding_size, output_file=METADATA_DIR):
 
     model = gensim.models.Word2Vec.load(word2vec_file)
     word2idx = dict([(k, v.index) for k, v in model.wv.vocab.items()])
-    word2idx_sorted = [(k, word2idx[k]) for k in sorted(word2idx, key=word2idx.get, reverse=False)]
+    word2idx_sorted = [(k, word2idx[k]) for k in sorted(word2idx,
+                                                        key=word2idx.get,
+                                                        reverse=False)]
 
     with open(output_file, 'w+') as fout:
         for word in word2idx_sorted:
@@ -200,29 +202,38 @@ def create_metadata_file(embedding_size, output_file=METADATA_DIR):
                 fout.write(word[0] + '\n')
 
 
-def create_word2vec_model(embedding_size, input_file=TEXT_DIR):
+def create_word2vec_model(embedding_size,
+                          word2vec_path,
+                          input_file=ALL_TEXTS_INPUT):
     """
-    Create the word2vec model based on the given embedding size and the corpus file.
+    Create the word2vec model based on the given embedding size and the
+    corpus file.
 
     Args:
         embedding_size: The embedding size
         input_file: The corpus file
     """
-    word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
+    word2vec_path = '../data/word2vec_' + str(embedding_size) + '.model'
 
-    sentences = word2vec.LineSentence(input_file)
-    # sg=0 means use CBOW model(default); sg=1 means use skip-gram model.
-    model = gensim.models.Word2Vec(sentences, size=embedding_size, min_count=0,
-                                   sg=0, workers=multiprocessing.cpu_count())
-    model.save(word2vec_file)
+    sentences = LineSentence(input_file)
+    
+    # sg=0 means to use CBOW (default); sg=1 means use skip-gram model
+    model = gensim.models.Word2Vec(sentences,
+                                   size=embedding_size,
+                                   min_count=0,
+                                   sg=0,
+                                   workers=multiprocessing.cpu_count())
+    model.save(word2vec_path)
 
 
-def load_vocab_size(embedding_size):
+def load_vocab_size(embedding_size,
+                    word2vec_path):
     """
     Return the vocab size of the word2vec file.
 
     Args:
         embedding_size: The embedding size
+        word2vec_path: Path of word2vec
     Returns:
         The vocab size of the word2vec file
     Raises:
@@ -230,16 +241,16 @@ def load_vocab_size(embedding_size):
     """
     # word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
 
-    word2vec_file = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
-
-    if not os.path.isfile(word2vec_file):
+    # word2vec_file = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
+ 
+    if not os.path.isfile(word2vec_path):
         raise IOError("✘ The word2vec file doesn't exist."
                       "Please use function <create_vocab_"
                       "size(embedding_size)> to create it!")
 
     # model = word2vec.Word2Vec.load(word2vec_file)
     model = word2vec.KeyedVectors.load_word2vec_format(
-        word2vec_file, binary=True)
+        word2vec_path, binary=True, limit=500000)
 
     return len(model.wv.vocab.items())
 
@@ -412,27 +423,33 @@ def data_augmented(data, drop_rate=1.0):
     return _AugData()
 
 
-def load_word2vec_matrix(vocab_size, embedding_size):
+def load_word2vec_matrix(vocab_size,
+                         embedding_size,
+                         word2vec_path):
     """
     Return the word2vec model matrix.
 
     Args:
         vocab_size: The vocab size of the word2vec model file
         embedding_size: The embedding size
+        word2vec_path: path of pretrained word2vec
     Returns:
         The word2vec model matrix
     Raises:
         IOError: If word2vec model file doesn't exist
+        
     """
     # word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
-    word2vec_path = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
+    # word2vec_path = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
 
     if not os.path.isfile(word2vec_path):
         raise IOError("✘ The word2vec file doesn't exist. "
-                      "Please use function <create_vocab_size(embedding_size)> to create it!")
+                      "Please use function <create_vocab_size(embedding_size)"
+                      "> to create it!")
 
     model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
-                                                       binary=True)
+                                                       binary=True,
+                                                       limit=500000)
 
     vocab = dict([(k, v.index) for k, v in model.wv.vocab.items()])
     vector = np.zeros([vocab_size, embedding_size])
@@ -445,7 +462,9 @@ def load_word2vec_matrix(vocab_size, embedding_size):
 def load_data_and_labels(data_file,
                          num_labels,
                          embedding_size,
-                         data_aug_flag):
+                         data_aug_flag,
+                         word2vec_path,
+                         use_pretrain=True):
     """
     Load research data from files, splits the data into words and generates
     labels. Return split sentences, labels and the max sentence length of
@@ -456,6 +475,8 @@ def load_data_and_labels(data_file,
         num_labels: The number of classes
         embedding_size: The embedding size
         data_aug_flag: The flag of data augmented
+        word2vec_path: path of pretrained word2vec
+        use_pretrain: whether to use pretrained word2vec
     Returns:
         The class Data
     """
@@ -468,9 +489,15 @@ def load_data_and_labels(data_file,
     #     create_word2vec_model(embedding_size, TEXT_DIR)
     ###########################################################################
     
-    word2vec_path = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
-    model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
-                                                       binary=True)
+    # word2vec_path = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
+    
+    if use_pretrain:
+        model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
+                                                           binary=True,
+                                                           limit=500000)
+    else:
+        create_word2vec_model(embedding_size,
+                              ALL_TEXTS_INPUT)
 
     # Load data from files and split by words
     data = data_word2vec(input_file=data_file,
@@ -512,11 +539,14 @@ def plot_seq_len(data_file, data, percentage=0.98):
     """
     data_analysis_dir = '../data/data_analysis/'
     if 'train' in data_file.lower():
-        output_file = data_analysis_dir + 'Train Sequence Length Distribution Histogram.png'
+        output_file = data_analysis_dir + \
+                      'Train Sequence Length Distribution Histogram.png'
     if 'validation' in data_file.lower():
-        output_file = data_analysis_dir + 'Validation Sequence Length Distribution Histogram.png'
+        output_file = data_analysis_dir + \
+                      'Validation Sequence Length Distribution Histogram.png'
     if 'test' in data_file.lower():
-        output_file = data_analysis_dir + 'Test Sequence Length Distribution Histogram.png'
+        output_file = data_analysis_dir + \
+                      'Test Sequence Length Distribution Histogram.png'
     result = dict()
     for x in data.tokenindex:
         if len(x) not in result.keys():
@@ -538,7 +568,8 @@ def plot_seq_len(data_file, data, percentage=0.98):
             border_index.append(item[0])
     avg = avg / data.number
     print('The average of the data sequence length is {0}'.format(avg))
-    print('The recommend of padding sequence length should more than {0}'.format(border_index[0]))
+    print('The recommend of padding sequence length should more than {0}'.
+          format(border_index[0]))
     xlim(0, 400)
     plt.bar(x, y)
     plt.savefig(output_file)
@@ -548,8 +579,10 @@ def plot_seq_len(data_file, data, percentage=0.98):
 def batch_iter(data, batch_size, num_epochs, shuffle=True):
     """
     含有 yield 说明不是一个普通函数，是一个 Generator.
-    函数效果：对 data，一共分成 num_epochs 个阶段（epoch），在每个 epoch 内，如果 shuffle=True，就将 data 重新洗牌，
-    批量生成 (yield) 一批一批的重洗过的 data，每批大小是 batch_size，一共生成 int(len(data)/batch_size)+1 批。
+    函数效果：对 data，一共分成 num_epochs 个阶段（epoch），在每个 epoch 内，如果
+    shuffle=True，就将 data 重新洗牌，
+    批量生成 (yield) 一批一批的重洗过的 data，每批大小是 batch_size，
+    一共生成 int(len(data)/batch_size)+1 批。
 
     Args:
         data: The data

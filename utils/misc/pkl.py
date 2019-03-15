@@ -49,6 +49,7 @@ def load_pkl(pickle_path):
 def dump_pkl(py_obj, pickle_path):
     with open(pickle_path, 'wb') as f:
         pickle.dump(py_obj, f)
+    return True
 
 
 if __name__ == "__main__":
