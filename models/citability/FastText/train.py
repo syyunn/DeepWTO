@@ -14,7 +14,7 @@ import tensorflow as tf
 
 from tensorboard.plugins import projector
 from models.citability.FastText.model import TextFAST
-from utils import checkpoints as cm
+from utils import checkpoints
 from utils import feed
 from sklearn.metrics import precision_score, \
 recall_score, f1_score, roc_auc_score, average_precision_score
@@ -85,7 +85,7 @@ tf.flags.DEFINE_integer("num_classes",
                         80,
                         "Number of labels (depends on the task)")
 tf.flags.DEFINE_integer("top_num",
-                        5,
+                        80,
                         "Number of top K prediction classes (default: 5)")
 tf.flags.DEFINE_float("threshold",
                       0.5,
@@ -280,8 +280,8 @@ def train_fasttext(word2vec_path):
             
             saver = tf.train.Saver(tf.global_variables(),
                                    max_to_keep=FLAGS.num_checkpoints)
-            best_saver = cm.BestCheckpointSaver(save_dir=best_checkpoint_dir,
-                                                num_to_keep=3, maximize=True)
+            best_saver = checkpoints.BestCheckpointSaver(save_dir=best_checkpoint_dir,
+                                                         num_to_keep=3, maximize=True)
             
             if FLAGS.train_or_restore == 'R':
                 # Load fasttext model
