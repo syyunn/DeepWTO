@@ -71,7 +71,7 @@ tf.flags.DEFINE_integer("pad_seq_len",
 tf.flags.DEFINE_integer("embedding_dim",
                         300,
                         "Dimensionality of character embedding (default: 128)")
-tf.flags.DEFINE_integer("embedding_type",
+tf.flags.DEFINE_integer("train_embedding_layer",
                         1,
                         "The embedding type (default: 1)")
 tf.flags.DEFINE_float("dropout_keep_prob",
@@ -92,7 +92,7 @@ tf.flags.DEFINE_float("threshold",
 
 # Training Parameters
 tf.flags.DEFINE_integer("batch_size",
-                        1024,
+                        1,
                         "Batch Size (default: 256)")
 tf.flags.DEFINE_integer("num_epochs",
                         150,
@@ -140,7 +140,7 @@ logger.info(
                         sorted(FLAGS.__dict__['__wrapped'])], dilim]))
 
 
-def train_fasttext():
+def train_fasttext(word2vec_path):
     """Training FASTTEXT model."""
     
     # Load sentences, labels, and training parameters
@@ -151,14 +151,16 @@ def train_fasttext():
         FLAGS.training_data_file,
         FLAGS.num_classes,
         FLAGS.embedding_dim,
-        data_aug_flag=False)
+        data_aug_flag=False,
+        word2vec_path=word2vec_path)
     
     logger.info("✔︎ Validation data processing...")
     val_data = dh.load_data_and_labels(
         FLAGS.validation_data_file,
         FLAGS.num_classes,
         FLAGS.embedding_dim,
-        data_aug_flag=False)
+        data_aug_flag=False,
+        word2vec_path=word2vec_path)
     
     logger.info("Recommended padding Sequence length is: {0}".
                 format(FLAGS.pad_seq_len))
@@ -172,9 +174,12 @@ def train_fasttext():
                                FLAGS.pad_seq_len)
     
     # Build vocabulary
-    VOCAB_SIZE = dh.load_vocab_size(FLAGS.embedding_dim)
+    VOCAB_SIZE = dh.load_vocab_size(FLAGS.embedding_dim,
+                                    word2vec_path=word2vec_path)
     # pretrained_word2vec_matrix = dh.load_word2vec_matrix(VOCAB_SIZE,
-    #                                                      FLAGS.embedding_dim)
+    #                                                      FLAGS.embedding_dim,
+    #                                                      word2vec_path=
+    #                                                      word2vec_path)
     pretrained_word2vec_matrix = None
     
     # Build a graph and fasttext object
@@ -190,7 +195,7 @@ def train_fasttext():
                 num_classes=FLAGS.num_classes,
                 vocab_size=VOCAB_SIZE,
                 embedding_size=FLAGS.embedding_dim,
-                embedding_type=FLAGS.embedding_type,
+                train_embedding_layer=FLAGS.train_embedding_layer,
                 l2_reg_lambda=FLAGS.l2_reg_lambda,
                 pretrained_embedding=pretrained_word2vec_matrix)
             
@@ -204,17 +209,17 @@ def train_fasttext():
                     decay_rate=FLAGS.decay_rate,
                     staircase=True)
                 optimizer = tf.train.AdamOptimizer(learning_rate)
-                grads, vars = zip(*optimizer.compute_gradients(fasttext.loss))
+                grads, variables = zip(*optimizer.compute_gradients(fasttext.loss))
                 grads, _ = tf.clip_by_global_norm(grads,
                                                   clip_norm=FLAGS.norm_ratio)
                 train_op = optimizer.apply_gradients(
-                    zip(grads, vars),
+                    zip(grads, variables),
                     global_step=fasttext.global_step,
                     name="train_op")
             
             # Keep track of gradient values and sparsity (optional)
             grad_summaries = []
-            for g, v in zip(grads, vars):
+            for g, v in zip(grads, variables):
                 if g is not None:
                     grad_hist_summary = tf.summary.histogram("{0}/grad/hist".
                                                              format(v.name), g)
@@ -485,4 +490,6 @@ def train_fasttext():
 
 
 if __name__ == '__main__':
-    train_fasttext()
+    train_fasttext(
+        word2vec_path=
+        "/home/ubuntu/Word2Vec/GoogleNews-vectors-negative300.bin")
