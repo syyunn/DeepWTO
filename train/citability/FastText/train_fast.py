@@ -13,7 +13,7 @@ import tensorflow as tf
 
 from tensorboard.plugins import projector
 from train.citability.FastText.text_fast import TextFAST
-from utils import checkmate as cm
+from utils import checkpoints as cm
 from utils import data_helpers as dh
 from sklearn.metrics import precision_score, \
     recall_score, f1_score, roc_auc_score, average_precision_score

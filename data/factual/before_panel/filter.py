@@ -9,7 +9,7 @@ import os
 import urllib.request
 from multiprocessing import Pool
 
-from utils.pdf import read_pdf
+from utils.misc.pdf import read_pdf
 from data.download.fetch import get_urls, filter_eng
 
 

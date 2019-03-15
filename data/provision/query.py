@@ -1,10 +1,9 @@
 """ Query the provision to get the target string """
 
 import os
-import sys
 import glob
 
-from utils.pdf import read_pdf
+from utils.misc.pdf import read_pdf
 
 
 def find_agreements(path_of_provisions):

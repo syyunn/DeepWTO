@@ -1,5 +1,4 @@
-from utils.yml import read_yaml
-import itertools
+from utils.misc.yml import read_yaml
 
 read = read_yaml("notable.yaml")
 

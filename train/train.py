@@ -1,7 +1,7 @@
 import keras
 from keras_wc_embd import get_batch_input, get_embedding_weights_from_file
 
-from utils.yml import read_yaml
+from utils.misc.yml import read_yaml
 from utils.embed import get_dicts_generator, get_char_hidden_layer
 
 ###############################################################################

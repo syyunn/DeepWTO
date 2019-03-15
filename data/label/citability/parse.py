@@ -1,6 +1,6 @@
-from utils.yml import read_yaml
-from utils.pkl import dump_pkl
-from utils.dict import get_keys
+from utils.misc.yml import read_yaml
+from utils.misc.pkl import dump_pkl
+from utils.misc.dict import get_keys
 
 
 def cleanse_dict(dictionary):

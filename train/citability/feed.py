@@ -1,7 +1,7 @@
 # input
 
-from utils.pkl import load_pkl
-from utils.dict import get_keys
+from utils.misc.pkl import load_pkl
+from utils.misc.dict import get_keys
 from utils.label import index_multi_label, make_one_hot
 
 # Inputs
