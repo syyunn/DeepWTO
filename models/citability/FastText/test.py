@@ -123,7 +123,8 @@ def test_fasttext(word2vec_path):
                                           FLAGS.embedding_dim,
                                           data_aug_flag=False,
                                           word2vec_path=word2vec_path)
-
+    print("test_data.tokenindex", test_data.tokenindex)
+    
     logger.info("✔︎ Test data padding...")
     x_test, y_test = feed.pad_data(test_data, FLAGS.pad_seq_len)
     print("y_test", y_test)  # y_test is one hot

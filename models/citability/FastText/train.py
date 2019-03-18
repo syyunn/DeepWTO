@@ -16,8 +16,8 @@ from tensorboard.plugins import projector
 from models.citability.FastText.model import TextFAST
 from utils import checkpoints
 from utils import feed
-from sklearn.metrics import precision_score, \
-recall_score, f1_score, roc_auc_score, average_precision_score
+from sklearn.metrics import precision_score, recall_score, f1_score, \
+    roc_auc_score, average_precision_score
 
 # Parameters
 # =============================================================================
@@ -134,11 +134,9 @@ tf.flags.DEFINE_boolean("gpu_options_allow_growth",
 FLAGS = tf.flags.FLAGS
 FLAGS(sys.argv)
 dilim = '-' * 100
-logger.info(
-    '\n'.join([dilim, *['{0:>50}|{1:<50}'.format(attr.upper(),
-                                                 FLAGS.__getattr__(attr)) for
-                        attr in
-                        sorted(FLAGS.__dict__['__wrapped'])], dilim]))
+logger.info('\n'.join(
+    [dilim, *['{0:>50}|{1:<50}'.format(attr.upper(),FLAGS.__getattr__(attr))
+              for attr in sorted(FLAGS.__dict__['__wrapped'])], dilim]))
 
 
 def train_fasttext(word2vec_path):
@@ -225,11 +223,10 @@ def train_fasttext(word2vec_path):
             grad_summaries = []
             for g, v in zip(grads, variables):
                 if g is not None:
-                    grad_hist_summary = tf.summary.histogram("{0}/grad/hist".
-                                                             format(v.name), g)
+                    grad_hist_summary = tf.summary.histogram(
+                        "{0}/grad/hist".format(v.name), g)
                     sparsity_summary = tf.summary.scalar(
-                        "{0}/grad/sparsity".
-format(v.name),
+                        "{0}/grad/sparsity".format(v.name),
                         tf.nn.zero_fraction(g))
                     grad_summaries.append(grad_hist_summary)
                     grad_summaries.append(sparsity_summary)
@@ -282,10 +279,10 @@ format(v.name),
             
             saver = tf.train.Saver(tf.global_variables(),
                                    max_to_keep=FLAGS.num_checkpoints)
-            best_saver = checkpoints.BestCheckpointSaver(save_dir=
-                                                         best_checkpoint_dir,
-                                                         num_to_keep=3,
-                                                         maximize=True)
+            best_saver = checkpoints.BestCheckpointSaver(
+                save_dir=best_checkpoint_dir,
+                num_to_keep=3,
+                maximize=True)
             
             if FLAGS.train_or_restore == 'R':
                 # Load fasttext model
@@ -342,8 +339,8 @@ format(v.name),
                 batches_validation = feed.batch_iter(list(zip(_x_val, _y_val)),
                                                      FLAGS.batch_size, 1)
                 
-                # Predict classes by threshold or topk ('ts': threshold;
-                # 'tk': topk)
+                # Predict classes by threshold or
+                # topk ('ts': threshold;'tk': topk)
                 _eval_counter, _eval_loss = 0, 0.0
                 
                 _eval_pre_tk = [0.0] * FLAGS.top_num
@@ -376,7 +373,8 @@ format(v.name),
                     # Predict by threshold
                     batch_predicted_onehot_labels_ts = \
                         feed.get_onehot_label_threshold(scores=scores,
-                                                        threshold=FLAGS.threshold)
+                                                        threshold=FLAGS.
+                                                        threshold)
                     
                     for k in batch_predicted_onehot_labels_ts:
                         predicted_onehot_labels_ts.append(k)
@@ -471,7 +469,7 @@ format(v.name),
                     "☛ Predict by threshold: Precision {0:g}, "
                     "Recall {1:g}, "
                     "F {2:g}"
-                        .format(eval_pre_ts, eval_rec_ts, eval_F_ts))
+                    .format(eval_pre_ts, eval_rec_ts, eval_F_ts))
                     
                     # Predict by topK
                     logger.info("☛ Predict by topK:")

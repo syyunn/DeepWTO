@@ -142,7 +142,7 @@ class TextFAST(object):
             self.highway = _highway_layer(self.embedded_sentence_average,
                                           self.embedded_sentence_average.
                                           get_shape()[1],
-                                          num_layers=1,
+                                          num_layers=5,
                                           bias=0)
         
         # Add dropout
