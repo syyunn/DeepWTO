@@ -24,11 +24,11 @@ from sklearn.metrics import precision_score, recall_score, f1_score, \
 logger = feed.logger_fn("tflog", "logs/test-{0}.log".format(time.asctime()))
 
 MODEL = input("☛ Please input the model file you want to test, "
-              "it should be like(1490175368): ")
+              "it should be like (1490175368): ")
 
 while not (MODEL.isdigit() and len(MODEL) == 10):
     MODEL = input("✘ The format of your input is illegal, "
-                  "it should be like(1490175368), please re-input: ")
+                  "it should be like (1490175368), please re-input: ")
 logger.info("✔︎ The format of your input is legal, "
             "now loading to next step...")
 
@@ -40,15 +40,20 @@ BEST_MODEL_DIR = 'runs/' + MODEL + '/bestcheckpoints/'
 SAVE_DIR = 'results/' + MODEL
 
 # Data Parameters
-tf.flags.DEFINE_string("training_data_file", TRAININGSET_DIR,
+tf.flags.DEFINE_string("training_data_file",
+                       TRAININGSET_DIR,
                        "Data source for the training data.")
-tf.flags.DEFINE_string("validation_data_file", VALIDATIONSET_DIR,
+tf.flags.DEFINE_string("validation_data_file",
+                       VALIDATIONSET_DIR,
                        "Data source for the validation data")
-tf.flags.DEFINE_string("test_data_file", TEST_DIR,
+tf.flags.DEFINE_string("test_data_file",
+                       TEST_DIR,
                        "Data source for the test data")
-tf.flags.DEFINE_string("checkpoint_dir", MODEL_DIR,
+tf.flags.DEFINE_string("checkpoint_dir",
+                       MODEL_DIR,
                        "Checkpoint directory from training run")
-tf.flags.DEFINE_string("best_checkpoint_dir", BEST_MODEL_DIR,
+tf.flags.DEFINE_string("best_checkpoint_dir",
+                       BEST_MODEL_DIR,
                        "Best checkpoint directory from training run")
 
 # Model Hyperparameters
@@ -72,7 +77,7 @@ tf.flags.DEFINE_integer("num_classes",
                         80,
                         "Number of labels (depends on the ""task)")
 tf.flags.DEFINE_integer("top_num",
-                        5,
+                        80,
                         "Number of top K prediction classes (default: 5)")
 tf.flags.DEFINE_float("threshold",
                       0.5,
@@ -104,7 +109,7 @@ logger.info('\n'.join([dilim,
                                FLAGS.__dict__['__wrapped'])], dilim]))
 
 
-def test_fasttext():
+def test_fasttext(word2vec_path):
     """Test FASTTEXT model."""
 
     # Load data
@@ -116,12 +121,15 @@ def test_fasttext():
     test_data = feed.load_data_and_labels(FLAGS.test_data_file,
                                           FLAGS.num_classes,
                                           FLAGS.embedding_dim,
-                                          data_aug_flag=False)
+                                          data_aug_flag=False,
+                                          word2vec_path=word2vec_path)
 
     logger.info("✔︎ Test data padding...")
     x_test, y_test = feed.pad_data(test_data, FLAGS.pad_seq_len)
+    print("y_test", y_test)  # y_test is one hot
+    print("len(y_test)", len(y_test))
     y_test_labels = test_data.labels
-
+    print("y_test_labels", y_test_labels)
     # Load fasttext model
     BEST_OR_LATEST = input("☛ Load Best or Latest Model?(B/L): ")
 
@@ -154,14 +162,16 @@ def test_fasttext():
 
             # Get the placeholders from the graph by name
             input_x = graph.get_operation_by_name("input_x").outputs[0]
+            print("input_x", input_x)
             input_y = graph.get_operation_by_name("input_y").outputs[0]
             dropout_keep_prob = graph.get_operation_by_name("dropout_keep_prob"
                                                             ).outputs[0]
             is_training = graph.get_operation_by_name("is_training").outputs[0]
-
+            print("is_training", is_training)
             # Tensors we want to evaluate
             scores = graph.get_operation_by_name("output/scores").outputs[0]
             loss = graph.get_operation_by_name("loss/loss").outputs[0]
+            print("loss", loss)
 
             # Split the output nodes name by '|'
             # if you have several output nodes
@@ -210,7 +220,9 @@ def test_fasttext():
                     is_training: False
                 }
                 batch_scores, cur_loss = sess.run([scores, loss], feed_dict)
-
+                # print("batch_scores: ", batch_scores)
+                print("cur_loss: ", cur_loss)
+                
                 # Prepare for calculating metrics
                 for i in y_batch_test:
                     true_onehot_labels.append(i)
@@ -322,4 +334,6 @@ def test_fasttext():
 
 
 if __name__ == '__main__':
-    test_fasttext()
+    word2vec_path = "/Users/zachary/Downloads/" \
+                    "GoogleNews-vectors-negative300.bin"
+    test_fasttext(word2vec_path)

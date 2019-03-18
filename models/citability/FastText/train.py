@@ -88,7 +88,7 @@ tf.flags.DEFINE_integer("top_num",
                         80,
                         "Number of top K prediction classes (default: 5)")
 tf.flags.DEFINE_float("threshold",
-                      0.5,
+                      0.2,
                       "Threshold for prediction classes (default: 0.5)")
 
 # Training Parameters
@@ -177,11 +177,13 @@ def train_fasttext(word2vec_path):
     # Build vocabulary
     VOCAB_SIZE = feed.load_vocab_size(FLAGS.embedding_dim,
                                       word2vec_path=word2vec_path)
-    # pretrained_word2vec_matrix = dh.load_word2vec_matrix(VOCAB_SIZE,
-    #                                                      FLAGS.embedding_dim,
-    #                                                      word2vec_path=
-    #                                                      word2vec_path)
-    pretrained_word2vec_matrix = None
+    
+    # Use pretrained W2V
+    pretrained_word2vec_matrix = feed.load_word2vec_matrix(VOCAB_SIZE,
+                                                           FLAGS.embedding_dim,
+                                                            word2vec_path=
+                                                            word2vec_path)
+    # pretrained_word2vec_matrix = None
     
     # Build a graph and fasttext object
     with tf.Graph().as_default():
@@ -227,7 +229,7 @@ def train_fasttext(word2vec_path):
                                                              format(v.name), g)
                     sparsity_summary = tf.summary.scalar(
                         "{0}/grad/sparsity".
-                            format(v.name),
+format(v.name),
                         tf.nn.zero_fraction(g))
                     grad_summaries.append(grad_hist_summary)
                     grad_summaries.append(sparsity_summary)
@@ -280,8 +282,10 @@ def train_fasttext(word2vec_path):
             
             saver = tf.train.Saver(tf.global_variables(),
                                    max_to_keep=FLAGS.num_checkpoints)
-            best_saver = checkpoints.BestCheckpointSaver(save_dir=best_checkpoint_dir,
-                                                         num_to_keep=3, maximize=True)
+            best_saver = checkpoints.BestCheckpointSaver(save_dir=
+                                                         best_checkpoint_dir,
+                                                         num_to_keep=3,
+                                                         maximize=True)
             
             if FLAGS.train_or_restore == 'R':
                 # Load fasttext model
@@ -494,4 +498,7 @@ def train_fasttext(word2vec_path):
 if __name__ == '__main__':
     train_fasttext(
         word2vec_path=
-        "/home/ubuntu/Word2Vec/GoogleNews-vectors-negative300.bin")
+        "/Users/zachary/Downloads/GoogleNews-vectors-negative300.bin")
+
+# local path : /Users/zachary/Downloads/GoogleNews-vectors-negative300.bin
+# remote path : /home/ubuntu/Word2Vec/GoogleNews-vectors-negative300.bin

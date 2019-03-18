@@ -127,6 +127,8 @@ class TextFAST(object):
                                                  trainable=True,
                                                  dtype=tf.float32,
                                                  name="embedding")
+            print("self.input_x", self.input_x)
+            print("self.embedding", self.embedding)
             self.embedded_sentence = tf.nn.embedding_lookup(self.embedding,
                                                             self.input_x)
         

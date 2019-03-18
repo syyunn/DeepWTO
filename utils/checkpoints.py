@@ -132,7 +132,8 @@ def get_best_checkpoint(best_checkpoint_dir, select_maximum_value=True):
     Returns:
         The full path to the best checkpoint file
     """
-    best_checkpoints_file = os.path.join(best_checkpoint_dir, 'best_checkpoints')
+    best_checkpoints_file = os.path.join(best_checkpoint_dir,
+                                         'best_checkpoints')
     assert os.path.exists(best_checkpoints_file)
     with open(best_checkpoints_file, 'r') as f:
         best_checkpoints = json.load(f)
