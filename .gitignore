@@ -36,15 +36,27 @@ train/model_code.py
 
 # logs
 models/citability/FastText/logs
+models/citability/TextANN/logs
+models/citability/TextCNN/logs
+
 
 # checkpoints
 models/citability/FastText/runs
 models/citability/TextANN/runs
+models/citability/TextCNN/runs
 
 # TF Graph
 models/citability/FastText/graph
 models/citability/TextANN/graph
+models/citability/TextCNN/graph
+
 *.pb
 
 # TF logs
 *.log
+
+# Test Results
+models/citability/FastText/results
+models/citability/TextANN/results
+models/citability/TextCNN/results
+
