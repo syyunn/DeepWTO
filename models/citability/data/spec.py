@@ -1,3 +1,8 @@
+"""
+This Codes are to find the statistics of token length and number of elements in
+factual description in train data.
+"""
+
 import json
 
 

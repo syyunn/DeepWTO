@@ -27,9 +27,11 @@ while not (MODEL.isdigit() and len(MODEL) == 10):
 logger.info("✔︎ The format of your input is legal, "
             "now loading to next step...")
 
-TRAININGSET_DIR = 'data/Train.json'
-VALIDATIONSET_DIR = 'data/Validation.json'
-TEST_DIR = 'data/Test.json'
+TRAININGSET_DIR = '../data/Train.json'
+VALIDATIONSET_DIR = '../data/Validation.json'
+# TEST_DIR = 'data/Test.json'
+TEST_DIR = '../data/HandWritten.json'
+
 MODEL_DIR = 'runs/' + MODEL + '/checkpoints/'
 BEST_MODEL_DIR = 'runs/' + MODEL + '/bestcheckpoints/'
 SAVE_DIR = 'results/' + MODEL

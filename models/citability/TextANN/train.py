@@ -39,9 +39,9 @@ if TRAIN_OR_RESTORE == 'R':
                             "logs/restore-{0}.log".
                             format(time.asctime()))
 
-TRAININGSET_DIR = 'data/Train.json'
-VALIDATIONSET_DIR = 'data/Validation.json'
-METADATA_DIR = 'data/metadata.tsv'
+TRAININGSET_DIR = '../data/Train.json'
+VALIDATIONSET_DIR = '../data/Validation.json'
+METADATA_DIR = '../data/metadata.tsv'
 
 # Data Parameters
 tf.flags.DEFINE_string("training_data_file",

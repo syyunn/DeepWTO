@@ -2,25 +2,24 @@ import spacy
 
 from utils.misc.pkl import load_pkl
 from utils.misc.dict import get_keys
-from utils.misc.json import dump_write_dict2json
 
 from utils.label import index_multi_label, get_label_idx
 
-# Inputs
-factual_path = "../data/dataset/citability/GATT/factual.pkl"
-factual = load_pkl(factual_path)
-factual_keys = get_keys(factual)
-
-# Labels
-label_path = "../data/dataset/citability/GATT/label.pkl"
-label = load_pkl(label_path)
-label_keys = get_keys(label)
-
-# Classes
-class_path = "../data/dataset/citability/GATT/class.pkl"
-classes = load_pkl(class_path)
-label2idx, idx2label = index_multi_label(classes)
-
+# # Inputs
+# factual_path = "../data/dataset/citability/GATT/factual.pkl"
+# factual = load_pkl(factual_path)
+# factual_keys = get_keys(factual)
+#
+# # Labels
+# label_path = "../data/dataset/citability/GATT/label.pkl"
+# label = load_pkl(label_path)
+# label_keys = get_keys(label)
+#
+# # Classes
+# class_path = "../data/dataset/citability/GATT/class.pkl"
+# classes = load_pkl(class_path)
+# label2idx, idx2label = index_multi_label(classes)
+#
 # Load SpaCy model
 nlp = spacy.load('en_core_web_sm')
 

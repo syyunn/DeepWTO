@@ -42,9 +42,9 @@ if TRAIN_OR_RESTORE == 'R':
     logger = feed.logger_fn("tflog", "logs/restore-{0}.log".
                             format(time.asctime()))
 
-TRAININGSET_DIR = 'data/Train.json'
-VALIDATIONSET_DIR = 'data/Validation.json'
-METADATA_DIR = 'data/metadata.tsv'
+TRAININGSET_DIR = '../data/Train.json'
+VALIDATIONSET_DIR = '../data/Validation.json'
+METADATA_DIR = '../data/metadata.tsv'
 
 # Data Parameters
 tf.flags.DEFINE_string("training_data_file",
@@ -88,7 +88,7 @@ tf.flags.DEFINE_integer("top_num",
                         80,
                         "Number of top K prediction classes (default: 5)")
 tf.flags.DEFINE_float("threshold",
-                      0.2,
+                      0.5,
                       "Threshold for prediction classes (default: 0.5)")
 
 # Training Parameters
