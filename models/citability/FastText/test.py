@@ -80,7 +80,7 @@ tf.flags.DEFINE_integer("top_num",
                         80,
                         "Number of top K prediction classes (default: 5)")
 tf.flags.DEFINE_float("threshold",
-                      0.5,
+                      0.2,
                       "Threshold for prediction classes (default: 0.5)")
 
 # Test Parameters
@@ -146,6 +146,7 @@ def test_fasttext(word2vec_path):
     else:
         logger.info("✔︎ Loading latest model...")
         checkpoint_file = tf.train.latest_checkpoint(FLAGS.checkpoint_dir)
+        print(checkpoint_file)
     logger.info(checkpoint_file)
 
     graph = tf.Graph()

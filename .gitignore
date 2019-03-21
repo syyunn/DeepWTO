@@ -39,3 +39,4 @@ models/citability/FastText/logs
 
 # checkpoints
 models/citability/FastText/runs
+models/citability/TextANN/runs
