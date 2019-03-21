@@ -40,3 +40,11 @@ models/citability/FastText/logs
 # checkpoints
 models/citability/FastText/runs
 models/citability/TextANN/runs
+
+# TF Graph
+models/citability/FastText/graph
+models/citability/TextANN/graph
+*.pb
+
+# TF logs
+*.log
