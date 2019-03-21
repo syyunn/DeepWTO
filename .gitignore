@@ -60,3 +60,5 @@ models/citability/FastText/results/
 models/citability/TextANN/results/
 models/citability/TextCNN/results
 
+# Serving Models
+serving/tboard_logs/model-*

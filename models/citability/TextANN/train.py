@@ -90,7 +90,7 @@ tf.flags.DEFINE_integer("top_num",
                         80,
                         "Number of top K prediction classes (default: 5)")
 tf.flags.DEFINE_float("threshold",
-                      0.2,
+                      0.5,
                       "Threshold for prediction classes (default: 0.5)")
 
 # Training Parameters

@@ -60,6 +60,7 @@ if __name__ == "__main__":
     #     break
 
     label_idx, idx_label = index_multi_label(classes)
+    print(label_idx['Article XIX'])
     example_label = label[18]
     print(example_label)
     prediction = [0, 8, 42, 47]
