@@ -56,7 +56,7 @@ models/citability/TextCNN/graph
 *.log
 
 # Test Results
-models/citability/FastText/results
-models/citability/TextANN/results
+models/citability/FastText/results/
+models/citability/TextANN/results/
 models/citability/TextCNN/results
 
