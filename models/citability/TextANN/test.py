@@ -108,7 +108,6 @@ logger.info('\n'.join(
     [dilim, *['{0:>50}|{1:<50}'.format(attr.upper(), FLAGS.__getattr__(
         attr)) for attr in sorted(FLAGS.__dict__['__wrapped'])], dilim]))
 
-
 def test_ann(word2vec_path):
     """Test ANN model."""
 
@@ -202,6 +201,8 @@ def test_ann(word2vec_path):
             for batch_test in batches:
                 x_batch_test, y_batch_test, y_batch_test_labels = zip(
                     *batch_test)
+                print("x_batch_test", x_batch_test)
+                print("y_batch_test", y_batch_test)
                 feed_dict = {
                     input_x: x_batch_test,
                     input_y: y_batch_test,

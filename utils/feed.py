@@ -587,7 +587,7 @@ def batch_iter(data, batch_size, num_epochs, shuffle=True):
     Args:
         data: The data
         batch_size: The size of the data batch
-        num_epochs: The number of epochs
+        num_epochs: The number of epochs. Assign 1 for in the test time.
         shuffle: Shuffle or not (default: True)
     Returns:
         A batch iterator for data set
