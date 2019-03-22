@@ -1,3 +1,0 @@
-Place the checkpoint files here.
-
-

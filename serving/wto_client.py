@@ -30,3 +30,8 @@ stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
 request = predict_pb2.PredictRequest()
 request.model_spec.name = 'citability'
 request.model_spec.signature_name = 'predict_cites'
+
+
+request = predict_pb2.PredictRequest()
+request.model_spec.name = 'deeplab'
+request.model_spec.signature_name = 'predict_images'

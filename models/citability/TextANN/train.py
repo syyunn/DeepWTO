@@ -98,7 +98,7 @@ tf.flags.DEFINE_integer("batch_size",
                         64,
                         "Batch Size (default: 256)")
 tf.flags.DEFINE_integer("num_epochs",
-                        300,
+                        1000,
                         "Number of training epochs (default: 100)")
 tf.flags.DEFINE_integer("evaluate_every",
                         5000,
