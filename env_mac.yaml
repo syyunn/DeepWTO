@@ -81,7 +81,6 @@ dependencies:
     - cytoolz==0.9.0.1
     - decorator==4.3.2
     - dill==0.2.9
-    - en-core-web-sm==2.0.0
     - gast==0.2.2
     - grpcio==1.19.0
     - h5py==2.9.0
