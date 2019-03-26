@@ -128,6 +128,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
 
             
 def main():
+    pass
     try:
         server = HTTPServer(('', 8080), WebServerHandler)
         print('Web server running...open localhost:8080/'
@@ -138,5 +139,5 @@ def main():
         server.socket.close()
 
 
-if __name__ == '__main__':
-    main()
+#if __name__ == '__main__':
+#    main()
