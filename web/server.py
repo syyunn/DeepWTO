@@ -16,15 +16,17 @@ class WebServerHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         try:
-            if self.path.endswith("/index"):
+            if self.path.endswith("/gov_measure/new"):
                 self.send_response(200)
-                self.send_header('Content-type', 'text/html')
+                self.send_header('Content-type',
+                                 'text/html')
                 self.end_headers()
+                
                 output = ""
                 output += "<html>" \
                           "<body>"
                 output += "<h1>" \
-                          "Enter Textual Description of Government Measure" \
+                          "Government Measure" \
                           "</h1>"
                 output += "<form method = 'POST' " \
                           "enctype='multipart/form-data' " \
@@ -33,18 +35,20 @@ class WebServerHandler(BaseHTTPRequestHandler):
                           "type = 'text' " \
                           "placeholder = 'new_gov_measure_description'> "
                 output += "<input type='submit' " \
-                          "value='Create'>"
+                          "value='submit'>"
                 output += "</form>" \
                           "</html>" \
                           "</body>"
                 self.wfile.write(output.encode())
-
+                return
+                
             if self.path.endswith("/measures"):
                 measures = session.query(GovermentMeasure).all()
                 output = ""
                 
                 self.send_response(200)
-                self.send_header('Content-type', 'text/html')
+                self.send_header('Content-type',
+                                 'text/html')
                 self.end_headers()
                 output += "<html>" \
                           "<body>"
@@ -53,42 +57,48 @@ class WebServerHandler(BaseHTTPRequestHandler):
                     output += "</br></br></br>"
                     
                 output += "</body></html>"
-                self.wfile.write(output)
+                self.wfile.write(output.encode())
                 return
 
         except IOError:
             self.send_error(404, 'File Not Found: %s' % self.path)
 
-    # Objective 3 Step 3- Make POST method
     def do_POST(self):
-        try:
-            if self.path.endswith("/gov_measure/new"):
-                ctype, pdict = cgi.parse_header(
-                    self.headers.getheader('content-type'))
-                if ctype == 'multipart/form-data':
-                    fields = cgi.parse_multipart(self.rfile, pdict)
-                    messagecontent = fields.get('gov_measure')
-                    print(messagecontent[0])
+       
+        if self.path.endswith("/gov_measure/new"):
+            print("here!")
+            print(self.headers)
+            ctype, pdict = cgi.parse_header(
+                self.headers['content-type'])
+            pdict['boundary'] = bytes(pdict['boundary'], "utf-8")
+            print(pdict.keys())
+            pdict['CONTENT-LENGTH'] = self.headers['content-length']
+            print(ctype, pdict)
+            if ctype == 'multipart/form-data':
+                fields = cgi.parse_multipart(self.rfile, pdict)
+                messagecontent = fields.get('gov_measure')
+                measure = messagecontent[0]
 
-                    # Create new Restaurant Object
-                    newRestaurant = GovermentMeasure(measure=messagecontent[0])
-                    session.add(newRestaurant)
-                    session.commit()
+                # Create new Restaurant Object
+                newRestaurant = GovermentMeasure(
+                    description=measure)
+                session.add(newRestaurant)
+                session.commit()
 
-                    self.send_response(301)
-                    self.send_header('Content-type', 'text/html')
-                    self.send_header('Location', '/restaurants')
-                    self.end_headers()
-                    
-        except:
-            pass
+                self.send_response(301)
+                self.send_header('Content-type',
+                                 'text/html')
+                self.send_header('Location',
+                                 '/measures')
+                self.end_headers()
+            return
 
-
+            
 def main():
     try:
         server = HTTPServer(('', 8080), WebServerHandler)
-        print('Web server running...open localhost:8080/restaurants in your '
-              'browser')
+        print('Web server running...open localhost:8080/'
+              'restaurants in your browser')
         server.serve_forever()
     except KeyboardInterrupt:
         print('^C received, shutting down server')
