@@ -1,3 +1,5 @@
+import os
+
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import cgi
 
@@ -96,7 +98,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
                 from data.label.citability.parse import rehash_arts_in_text
                 from utils.misc.json import read_json
                 from web.tf_serve_pack import test_ann
-                word2vec_path = "/Users/zachary/Downloads/" \
+                word2vec_path = "/home/zachary/" \
                                 "GoogleNews-vectors-negative300.bin"
                 model_number = 1553177254
                 test_ann(word2vec_path,

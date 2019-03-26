@@ -322,6 +322,6 @@ def test_ann(word2vec_path):
 
 
 if __name__ == '__main__':
-    word2vec_path = "/Users/zachary/Downloads/" \
+    word2vec_path = "/home/zachary/" \
                     "GoogleNews-vectors-negative300.bin"
     test_ann(word2vec_path)

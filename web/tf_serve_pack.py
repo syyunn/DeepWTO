@@ -327,8 +327,8 @@ def test_ann(word2vec_path,
 
 
 if __name__ == '__main__':
-    word2vec_path = "/Users/zachary/Downloads/" \
-                    "GoogleNews-vectors-negative300.bin"
+    home = "/home/zachary"
+    word2vec_path = os.path.join(home, "GoogleNews-vectors-negative300.bin")
     model_number = 1553177254
     test_ann(word2vec_path,
              model_number)
