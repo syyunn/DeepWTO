@@ -128,16 +128,16 @@ class WebServerHandler(BaseHTTPRequestHandler):
 
 
 def main():
-    pass
     try:
         server = HTTPServer(('http://0.0.0.0', 8080), WebServerHandler)
-        print('Web server running...open localhost:8080/'
-              'restaurants in your browser')
+        # server.socket.gethostbyname("")
+        print('Web server running...open 192.168.5.7:8080/gov_measure/submit'
+              ' in your browser')
         server.serve_forever()
     except KeyboardInterrupt:
         print('^C received, shutting down server')
         server.socket.close()
 
 
-#if __name__ == '__main__':
-#    main()
+if __name__ == '__main__':
+   main()

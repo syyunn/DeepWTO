@@ -5,11 +5,11 @@
 
 
 # DeepWTO 
-
-[![Python 3.6](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
+![ubuntu 16.04](https://img.shields.io/badge/ubuntu-16.04-blue.svg)
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-370/)
 ![TensorFlow 1.13.1](https://img.shields.io/badge/tensorflow-1.13.1-blue.svg)
-![cuDNN 7.4](https://img.shields.io/badge/cudnn-7.4-blue.svg)
-![cuda 10](https://img.shields.io/badge/cuda-10-blue.svg)
+![cuDNN 7.4.1](https://img.shields.io/badge/cudnn-7.4.1-blue.svg)
+![cuda 10.0](https://img.shields.io/badge/cuda-10-blue.svg)
 
 ## About the Project 
 __[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previous project, 
