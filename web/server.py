@@ -5,6 +5,8 @@ from web.database import Base, GovermentMeasure
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from utils.misc.json import write_json_one_line
+
 # Create session and connect to DB ##
 engine = create_engine('sqlite:///gov_measure.db')
 Base.metadata.bind = engine
@@ -16,7 +18,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         try:
-            if self.path.endswith("/gov_measure/new"):
+            if self.path.endswith("/gov_measure/submit"):
                 self.send_response(200)
                 self.send_header('Content-type',
                                  'text/html')
@@ -30,7 +32,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
                           "</h1>"
                 output += "<form method = 'POST' " \
                           "enctype='multipart/form-data' " \
-                          "action = '/gov_measure/new'>"
+                          "action = '/gov_measure/submit'>"
                 output += "<input name = 'gov_measure' " \
                           "type = 'text' " \
                           "placeholder = 'new_gov_measure_description'> "
@@ -65,7 +67,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
        
-        if self.path.endswith("/gov_measure/new"):
+        if self.path.endswith("/gov_measure/submit"):
             print("here!")
             print(self.headers)
             ctype, pdict = cgi.parse_header(
@@ -78,7 +80,38 @@ class WebServerHandler(BaseHTTPRequestHandler):
                 fields = cgi.parse_multipart(self.rfile, pdict)
                 messagecontent = fields.get('gov_measure')
                 measure = messagecontent[0]
-
+                print(measure)
+                
+                ###############################################################
+                # Prepare Test Input Json
+                from models.citability.data.prep import do_tokenize
+                data_to_feed = do_tokenize(measure)
+                print(data_to_feed)
+                
+                json_write_path = "test_data.json"
+                write_json_one_line(json_write_path, data_to_feed)
+                ###############################################################
+                # Test!
+                import os
+                from data.label.citability.parse import rehash_arts_in_text
+                from utils.misc.json import read_json
+                from web.tf_serve_pack import test_ann
+                word2vec_path = "/Users/zachary/Downloads/" \
+                                "GoogleNews-vectors-negative300.bin"
+                model_number = 1553177254
+                test_ann(word2vec_path,
+                         model_number)
+                prediction_json_path = os.path.join('results',
+                                                    str(model_number),
+                                                    'predictions.json')
+                prediction = read_json(prediction_json_path)
+                keys = ["predict_labels", "predict_scores"]
+                prediction_arts = rehash_arts_in_text(
+                    prediction[keys[0]],
+                    yaml_path='../data/label/citability/labels/GATT.yaml')
+                print(prediction_arts)
+                ###############################################################
+                
                 # Create new Restaurant Object
                 newRestaurant = GovermentMeasure(
                     description=measure)
@@ -89,7 +122,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-type',
                                  'text/html')
                 self.send_header('Location',
-                                 '/measures')
+                                 '/measures')  # Page Change to /measures
                 self.end_headers()
             return
 

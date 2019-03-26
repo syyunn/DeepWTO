@@ -5,9 +5,8 @@ from utils.misc.dict import get_keys
 
 def cleanse_dict(dictionary):
     """
-    Read the yaml then Omit the 'DS' and Returns the int valued dict
-    :param dictionary:
-    :return:
+    Read the yaml then Omit the 'DS' and Returns the int-value dict with
+    Article Keys
     """
     new = dict()
     keys = dictionary.keys()
@@ -41,21 +40,40 @@ def invert_dict(dictionary):
     return inv
 
 
+def rehash_arts_in_text(indices,
+                        yaml_path=
+                        "labels/GATT.yaml"):
+    """
+    From the integer list of labels, change the int into article name
+    e/g : [0,2] -> ['Article I', 'Article II']
+    """
+    gatt_info = read_yaml(yaml_path)
+    gatt_dict = cleanse_dict(gatt_info)
+    gatt_keys_in_int = get_keys(gatt_dict)
+    in_text = []
+    for index in indices:
+        in_text.append(gatt_keys_in_int[index])
+    return in_text
+    
+
 if __name__ == "__main__":
     gatt = read_yaml("labels/GATT.yaml")
     gatt = cleanse_dict(gatt)
     gatt_keys = get_keys(gatt)
     print(gatt_keys)
+    print(gatt_keys[0])
+    print(gatt_keys[11])
     inv_gatt = invert_dict(gatt)
     inv_gatt_keys = sorted(list(inv_gatt.keys()))
     print(inv_gatt)
     print(inv_gatt_keys)
     print(len(inv_gatt_keys))
     
+    print(rehash_arts_in_text([0, 1]))
     # Dump
     # path_to_dump = "../../dataset/citability/GATT_523/label.pkl"
     # dump_pkl(inv_gatt, path_to_dump)
     
     # Dump label keys
-    path_to_dump = "../../dataset/citability/GATT_523/class.pkl"
-    dump_pkl(gatt_keys, path_to_dump)
+    # path_to_dump = "../../dataset/citability/GATT_523/class.pkl"
+    # dump_pkl(gatt_keys, path_to_dump)

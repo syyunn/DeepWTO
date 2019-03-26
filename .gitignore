@@ -44,11 +44,14 @@ models/citability/TextCNN/logs
 models/citability/FastText/runs
 models/citability/TextANN/runs
 models/citability/TextCNN/runs
+web/runs
 
 # TF Graph
 models/citability/FastText/graph
 models/citability/TextANN/graph
 models/citability/TextCNN/graph
+web/graph
+web/logs
 
 *.pb
 
@@ -59,6 +62,6 @@ models/citability/TextCNN/graph
 models/citability/FastText/results/
 models/citability/TextANN/results/
 models/citability/TextCNN/results
-
+web/results
 # Serving Models
 serving/tboard_logs/model-*

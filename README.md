@@ -63,7 +63,10 @@ Normally, description about Government Measure is included in the following:
 ### Reproduce   
     git clone https://github.com/syyunn/DeepWTO
     cd DeepWTO
-    conda env create -f env.yaml
+    conda env create -f env.yaml 
+    python -m spacy download en # download spacy model to tokenize 
+    # One needs to prepare word2vec_path = "/Users/zachary/Downloads/" \
+                    "GoogleNews-vectors-negative300.bin"
 
 
 ### Author
