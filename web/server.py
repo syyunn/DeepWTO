@@ -79,7 +79,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
             if ctype == 'multipart/form-data':
                 fields = cgi.parse_multipart(self.rfile, pdict)
                 messagecontent = fields.get('gov_measure')
-                measure = messagecontent[0]
+                measure = str(messagecontent[0])
                 print(measure)
                 
                 ###############################################################
@@ -129,7 +129,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
 
 def main():
     try:
-        server = HTTPServer(('http://0.0.0.0', 8080), WebServerHandler)
+        server = HTTPServer(('0.0.0.0', 8080), WebServerHandler)
         # server.socket.gethostbyname("")
         print('Web server running...open 192.168.5.7:8080/gov_measure/submit'
               ' in your browser')
