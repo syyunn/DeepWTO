@@ -1,5 +1,3 @@
-import os
-
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import cgi
 
@@ -89,8 +87,13 @@ class WebServerHandler(BaseHTTPRequestHandler):
                 from models.citability.data.prep import do_tokenize
                 data_to_feed = do_tokenize(measure)
                 print(data_to_feed)
-                
-                json_write_path = "test_data.json"
+
+                import os
+                base_path = os.path.dirname(os.path.abspath(__file__))
+                print(base_path)
+                json_write_path = os.path.join(
+                    base_path.split['/'][:-1], "test_data.json")
+                print(json_write_path)
                 write_json_one_line(json_write_path, data_to_feed)
                 ###############################################################
                 # Test!
@@ -132,7 +135,6 @@ class WebServerHandler(BaseHTTPRequestHandler):
 def main():
     try:
         server = HTTPServer(('0.0.0.0', 8080), WebServerHandler)
-        # server.socket.gethostbyname("")
         print('Web server running...open 192.168.5.7:8080/gov_measure/submit'
               ' in your browser')
         server.serve_forever()
