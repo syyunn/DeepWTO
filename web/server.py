@@ -89,10 +89,9 @@ class WebServerHandler(BaseHTTPRequestHandler):
                 print(data_to_feed)
 
                 import os
-                base_path = os.path.dirname(os.path.abspath(__file__))
-                print(base_path)
-                json_write_path = os.path.join(
-                    base_path.split['/'][:-1], "test_data.json")
+                cwd = os.getcwd()
+                print(cwd)
+                json_write_path = os.path.join(cwd, "test_data.json")
                 print(json_write_path)
                 write_json_one_line(json_write_path, data_to_feed)
                 ###############################################################
@@ -113,7 +112,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
                 keys = ["predict_labels", "predict_scores"]
                 prediction_arts = rehash_arts_in_text(
                     prediction[keys[0]],
-                    yaml_path='../data/label/citability/labels/GATT.yaml')
+                    yaml_path="data/label/citability/labels/GATT.yaml")
                 print(prediction_arts)
                 ###############################################################
                 
