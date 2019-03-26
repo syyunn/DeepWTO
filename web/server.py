@@ -91,7 +91,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
                 import os
                 cwd = os.getcwd()
                 print(cwd)
-                json_write_path = os.path.join(cwd, "test_data.json")
+                json_write_path = os.path.join(cwd, "web/test_data.json")
                 print(json_write_path)
                 write_json_one_line(json_write_path, data_to_feed)
                 ###############################################################

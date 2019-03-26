@@ -37,7 +37,8 @@ def test_ann(word2vec_path,
     TRAININGSET_DIR = 'models/citability/data/Train.json'
     VALIDATIONSET_DIR = 'models/citability/data/Validation.json'
     # TEST_DIR = 'data/Test.json'
-    TEST_DIR = 'test_data.json'
+    cwd = os.getcwd()
+    TEST_DIR = os.path.join(cwd, 'web/test_data.json')
     
     cwd = os.getcwd()
     MODEL_DIR = os.path.join(cwd, 'web/runs/' + MODEL + '/checkpoints/')
