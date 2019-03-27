@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from utils.misc.json import write_json_one_line
 
 # Create session and connect to DB ##
-engine = create_engine('sqlite:///gov_measure.db')
+engine = create_engine('sqlite:///web/gov_measure.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
