@@ -6,7 +6,7 @@
 
 # DeepWTO 
 ![ubuntu 16.04](https://img.shields.io/badge/ubuntu-16.04-blue.svg)
-[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-370/)
+[![Python 3.6.8](https://img.shields.io/badge/python-3.6.8-blue.svg)](https://www.python.org/downloads/release/python-370/)
 ![TensorFlow 1.13.1](https://img.shields.io/badge/tensorflow-1.13.1-blue.svg)
 ![cuDNN 7.4.1](https://img.shields.io/badge/cudnn-7.4.1-blue.svg)
 ![cuda 10.0](https://img.shields.io/badge/cuda-10-blue.svg)
@@ -65,10 +65,10 @@ Normally, description about Government Measure is included in the following:
 ### Reproduce   
     git clone https://github.com/syyunn/DeepWTO
     cd DeepWTO
-    conda env create -f env.yaml 
+    conda env create -f environment.yaml 
     python -m spacy download en # download spacy model to tokenize 
-    # One needs to prepare word2vec_path = "/Users/zachary/Downloads/" \
-                    "GoogleNews-vectors-negative300.bin"
+    
+    # One needs to prepare "DeepWTO/GoogleNews-vectors-negative300.bin"
                     
 
 ### Author

@@ -40,8 +40,8 @@ if TRAIN_OR_RESTORE == 'R':
                             "logs/restore-{0}.log".
                             format(time.asctime()))
 
-TRAININGSET_DIR = 'data/Train.json'
-VALIDATIONSET_DIR = 'data/Validation.json'
+TRAININGSET_DIR = '../data/train_data.json'
+VALIDATIONSET_DIR = '../data/test_data.json'
 METADATA_DIR = 'data/metadata.tsv'
 
 # Data Parameters
@@ -103,10 +103,10 @@ tf.flags.DEFINE_integer("batch_size",
                         1024,
                         "Batch Size (default: 256)")
 tf.flags.DEFINE_integer("num_epochs",
-                        150,
+                        10000000000,
                         "Number of training epochs (default: 100)")
 tf.flags.DEFINE_integer("evaluate_every",
-                        10,
+                        1,
                         "Evaluate model on dev set after this many steps "
                         "(default: 5000)")
 tf.flags.DEFINE_float("norm_ratio",
@@ -121,10 +121,10 @@ tf.flags.DEFINE_float("decay_rate",
                       0.95,
                       "Rate of decay for learning rate. (default: 0.95)")
 tf.flags.DEFINE_integer("checkpoint_every",
-                        10,
+                        300,
                         "Save model after this many steps (default: 1000)")
 tf.flags.DEFINE_integer("num_checkpoints",
-                        10,
+                        300,
                         "Number of checkpoints to store (default: 50)")
 
 # Misc Parameters
@@ -157,6 +157,7 @@ def train_cnn(word2vec_path):
         FLAGS.training_data_file,
         FLAGS.num_classes,
         FLAGS.embedding_dim,
+        word2vec_path=word2vec_path,
         data_aug_flag=False)
 
     logger.info("✔︎ Validation data processing...")
@@ -512,6 +513,5 @@ def train_cnn(word2vec_path):
 
 if __name__ == '__main__':
     train_cnn(word2vec_path=
-              "/Users/zachary/Downloads/GoogleNews-vectors-negative300.bin")
-# local path : /Users/zachary/Downloads/GoogleNews-vectors-negative300.bin
-# remote path : /home/ubuntu/Word2Vec/GoogleNews-vectors-negative300.bin
+              "/home/zachary/projects/DeepWTO/"
+              "GoogleNews-vectors-negative300.bin")

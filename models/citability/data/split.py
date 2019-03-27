@@ -2,6 +2,7 @@
 Split entire data set into train/test
 """
 import os
+import json
 import random
 
 from utils.misc.json import write_json_line_by_line
@@ -22,6 +23,7 @@ def split(entire_data, _test_mask):
     test_dicts = []
     with open(entire_data) as fin:
         for each_line in fin:
+            each_line = json.loads(each_line)
             if count in _test_mask:
                 train_dicts.append(each_line)
             else:
