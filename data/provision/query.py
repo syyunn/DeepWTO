@@ -1,9 +1,11 @@
 """ Query the provision to get the target string """
 
 import os
+import re
 import glob
 
 from utils.misc.pdf import read_pdf
+from utils.misc.yml import read_yaml
 
 
 def find_agreements(path_of_provisions):
@@ -23,15 +25,26 @@ def find_agreements(path_of_provisions):
     return result_dict
 
 
+def query(article, yaml_path):
+    data = read_yaml(yaml_path)
+    print(data[article])
+
+
 def main():
-    provision_paths = find_agreements("./")
-    tgt_agreement = "gatt"
-    text = read_pdf(provision_paths[tgt_agreement])
-    print(text)
-    print('Article III' in text)
-    idx = text.findall('Article III')
-    print(idx)
+    # provision_paths = find_agreements("pdfs")
+    # print(provision_paths)
+    # tgt_agreement = "GATT"
+    # text = read_pdf(provision_paths[tgt_agreement])
+    # print('Article III' in text)
+    #
+    # find = [m.start() for m in re.finditer('Article III', text)]
+    # print(find)
+    #
+    # for start in find:
+    #     print(text[start:start+1500])
 
+    query("Article I", "gatt.yaml")
 
+        
 if __name__ == "__main__":
     main()

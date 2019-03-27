@@ -33,7 +33,7 @@ def test_ann(word2vec_path,
     
     logger.info("✔︎ The format of your input is legal, "
                 "now loading to next step...")
-  	 
+    
     TRAININGSET_DIR = 'models/citability/data/Train.json'
     VALIDATIONSET_DIR = 'models/citability/data/Validation.json'
     # TEST_DIR = 'data/Test.json'

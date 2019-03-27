@@ -11,3 +11,7 @@ refer to [stackoverlfow question](https://stackoverflow.com/questions/50285883/t
 - [ ] the field of multi-label classification is all about dependence between 
 labels
 - [ ] WTO rulings innately holds the "conditional dependence (of label)" 
+
+### Evaluation Metrics
+- [ ] AUC
+- [ ] PR-AUC

@@ -61,8 +61,8 @@ if __name__ == "__main__":
     gatt = cleanse_dict(gatt)
     gatt_keys = get_keys(gatt)
     print(gatt_keys)
-    print(gatt_keys[0])
-    print(gatt_keys[11])
+    for key in gatt_keys:
+        print(key)
     inv_gatt = invert_dict(gatt)
     inv_gatt_keys = sorted(list(inv_gatt.keys()))
     print(inv_gatt)
