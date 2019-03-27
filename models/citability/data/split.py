@@ -25,9 +25,9 @@ def split(entire_data, _test_mask):
         for each_line in fin:
             each_line = json.loads(each_line)
             if count in _test_mask:
-                train_dicts.append(each_line)
-            else:
                 test_dicts.append(each_line)
+            else:
+                train_dicts.append(each_line)
             count += 1
     return train_dicts, test_dicts
     
