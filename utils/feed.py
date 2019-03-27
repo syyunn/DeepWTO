@@ -32,7 +32,10 @@ def logger_fn(name, input_file, level=logging.INFO):
     return tf_logger
 
 
-def create_prediction_file(output_file, data_id, all_labels, all_predict_labels, all_predict_scores):
+def create_prediction_file(output_file, data_id,
+                           all_labels,
+                           all_predict_labels,
+                           all_predict_scores):
     """
     Create the prediction file.
 
@@ -66,7 +69,8 @@ def create_prediction_file(output_file, data_id, all_labels, all_predict_labels,
 def get_onehot_label_threshold(scores, threshold=0.5):
     """
     Get the predicted onehot labels based on the threshold.
-    If there is no predict score greater than threshold, then choose the label which has the max predict score.
+    If there is no predict score greater than threshold, then choose the label
+    which has the max predict score.
 
     Args:
         scores: The all classes predicted scores provided by network
@@ -115,7 +119,8 @@ def get_onehot_label_topk(scores, top_num=1):
 def get_label_threshold(scores, threshold=0.5):
     """
     Get the predicted labels based on the threshold.
-    If there is no predict score greater than threshold, then choose the label which has the max predict score.
+    If there is no predict score greater than threshold, then choose the label
+    which has the max predict score.
     Note: Only Used in `test_model.py`
 
     Args:
@@ -172,7 +177,8 @@ def get_label_topk(scores, top_num=1):
 
 def create_metadata_file(embedding_size, output_file=METADATA_STORE_PATH):
     """
-    Create the metadata file based on the corpus file(Use for the Embedding Visualization later).
+    Create the metadata file based on the corpus file(Use for the Embedding
+    Visualization later).
 
     Args:
         embedding_size: The embedding size
@@ -383,7 +389,8 @@ def data_augmented(data, drop_rate=1.0):
             for num in range(len(data_record) // 10):  #
                 # 打乱词的次数，次数即生成样本的个数；次数根据句子长度而定
                 # random shuffle & random drop
-                data_shuffled = np.random.permutation(np.arange(int(len(data_record) * drop_rate)))
+                data_shuffled = np.random.permutation(
+                    np.arange(int(len(data_record) * drop_rate)))
                 new_data_record = data_record[data_shuffled]
 
                 aug_testid.append(data.testid[i])
