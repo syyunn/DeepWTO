@@ -1,6 +1,7 @@
 """
 This Codes are to find the statistics of token length and number of elements in
-factual description in train data.
+factual description in train data. Longest token length is required to pre-
+determine the pad-size of input data before training.
 """
 
 import json

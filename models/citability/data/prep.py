@@ -1,6 +1,5 @@
 """
-This Codes is to tokenize the given string sequence of description of
-factual data.
+This Codes is to tokenize the given strings into feed-able shapes of input.
 """
 
 import spacy
