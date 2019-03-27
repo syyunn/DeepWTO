@@ -7,6 +7,9 @@ from sqlalchemy.orm import sessionmaker
 
 from utils.misc.json import write_json_one_line
 
+# Serve tf
+from web.tf_serve_pack import test_ann
+
 # Create session and connect to DB ##
 engine = create_engine('sqlite:///web/gov_measure.db')
 Base.metadata.bind = engine
@@ -18,7 +21,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
     
     def do_GET(self):
         try:
-            if self.path.endswith("/gov_measure/submit"):
+            if self.path.endswith("/"):
                 self.send_response(200)
                 self.send_header('Content-type',
                                  'text/html')
@@ -32,7 +35,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
                           "</h1>"
                 output += "<form method = 'POST' " \
                           "enctype='multipart/form-data' " \
-                          "action = '/gov_measure/submit'>"
+                          "action = '/'>"
                 output += "<input name = 'gov_measure' " \
                           "type = 'text' " \
                           "placeholder = 'new_gov_measure_description'> "
@@ -67,7 +70,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
     
     def do_POST(self):
         
-        if self.path.endswith("/gov_measure/submit"):
+        if self.path.endswith("/"):
             print("here!")
             print(self.headers)
             ctype, pdict = cgi.parse_header(
@@ -99,7 +102,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
                 import os
                 from data.label.citability.parse import rehash_arts_in_text
                 from utils.misc.json import read_json
-                from web.tf_serve_pack import test_ann
+              
                 word2vec_path = "/home/zachary/" \
                                 "GoogleNews-vectors-negative300.bin"
                 model_number = 1553177254
@@ -134,7 +137,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
 def main():
     try:
         server = HTTPServer(('0.0.0.0', 8080), WebServerHandler)
-        print('Web server running...open 192.168.5.7:8080/gov_measure/submit'
+        print('Web server running...open 192.168.5.7:8080/'
               ' in your browser')
         server.serve_forever()
     except KeyboardInterrupt:
