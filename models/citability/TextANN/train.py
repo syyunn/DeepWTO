@@ -39,8 +39,8 @@ if TRAIN_OR_RESTORE == 'R':
                             "logs/restore-{0}.log".
                             format(time.asctime()))
 
-TRAININGSET_DIR = '../data/Train.json'
-VALIDATIONSET_DIR = '../data/Validation.json'
+TRAININGSET_DIR = '../data/train_data.json'
+VALIDATIONSET_DIR = '../data/test_data.json'
 METADATA_DIR = '../data/metadata.tsv'
 
 # Data Parameters
@@ -101,7 +101,7 @@ tf.flags.DEFINE_integer("num_epochs",
                         1000,
                         "Number of training epochs (default: 100)")
 tf.flags.DEFINE_integer("evaluate_every",
-                        5000,
+                        50,
                         "Evaluate model on dev set after this many steps "
                         "(default: 5000)")
 tf.flags.DEFINE_float("norm_ratio",
@@ -119,7 +119,7 @@ tf.flags.DEFINE_integer("checkpoint_every",
                         100,
                         "Save model after this many steps (default: 1000)")
 tf.flags.DEFINE_integer("num_checkpoints",
-                        10,
+                        100,
                         "Number of checkpoints to store (default: 50)")
 
 # Misc Parameters
@@ -499,6 +499,5 @@ def train_ann(word2vec_path):
 
 if __name__ == '__main__':
     train_ann(word2vec_path=
-              "/Users/zachary/Downloads/GoogleNews-vectors-negative300.bin")
-# local path : /Users/zachary/Downloads/GoogleNews-vectors-negative300.bin
-# remote path : /home/ubuntu/Word2Vec/GoogleNews-vectors-negative300.bin
+              "/home/zachary/projects/DeepWTO/"
+              "GoogleNews-vectors-negative300.bin")

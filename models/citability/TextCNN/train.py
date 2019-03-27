@@ -64,11 +64,11 @@ tf.flags.DEFINE_float("learning_rate",
                       0.001,
                       "The learning rate (default: 0.001)")
 tf.flags.DEFINE_integer("pad_seq_len",
-                        100,
+                        35842,
                         "Recommended padding Sequence length of data "
                         "(depends on the data)")
 tf.flags.DEFINE_integer("embedding_dim",
-                        100,
+                        300,
                         "Dimensionality of character embedding (default: 128)")
 tf.flags.DEFINE_integer("embedding_type",
                         1,
@@ -165,6 +165,7 @@ def train_cnn(word2vec_path):
         FLAGS.validation_data_file,
         FLAGS.num_classes,
         FLAGS.embedding_dim,
+        word2vec_path=word2vec_path,
         data_aug_flag=False)
 
     logger.info("Recommended padding Sequence length is: {0}".format(
@@ -179,7 +180,8 @@ def train_cnn(word2vec_path):
                                  FLAGS.pad_seq_len)
 
     # Build vocabulary
-    VOCAB_SIZE = feed.load_word2vec_matrix(FLAGS.embedding_dim)
+    VOCAB_SIZE = feed.load_vocab_size(FLAGS.embedding_dim,
+                                      word2vec_path=word2vec_path)
 
     # Use pretrained W2V
     pretrained_word2vec_matrix = feed.load_word2vec_matrix(VOCAB_SIZE,
