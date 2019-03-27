@@ -63,5 +63,9 @@ models/citability/FastText/results/
 models/citability/TextANN/results/
 models/citability/TextCNN/results
 web/results
+
 # Serving Models
 serving/tboard_logs/model-*
+
+# Conda envs
+env_mac.yaml
