@@ -104,7 +104,8 @@ def get_onehot_label_topk(scores, top_num=1):
     scores = np.ndarray.tolist(scores)
     for score in scores:
         onehot_labels_list = [0] * len(score)
-        max_num_index_list = list(map(score.index, heapq.nlargest(top_num, score)))
+        max_num_index_list = list(map(score.index, heapq.nlargest(top_num,
+                                                                  score)))
         for i in max_num_index_list:
             onehot_labels_list[i] = 1
         predicted_onehot_labels.append(onehot_labels_list)

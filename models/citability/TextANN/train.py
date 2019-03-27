@@ -95,7 +95,7 @@ tf.flags.DEFINE_float("threshold",
 
 # Training Parameters
 tf.flags.DEFINE_integer("batch_size",
-                        64,
+                        1,
                         "Batch Size (default: 256)")
 tf.flags.DEFINE_integer("num_epochs",
                         1000,
@@ -116,10 +116,10 @@ tf.flags.DEFINE_float("decay_rate",
                       0.95,
                       "Rate of decay for learning rate. (default: 0.95)")
 tf.flags.DEFINE_integer("checkpoint_every",
-                        100,
+                        300,
                         "Save model after this many steps (default: 1000)")
 tf.flags.DEFINE_integer("num_checkpoints",
-                        100,
+                        300,
                         "Number of checkpoints to store (default: 50)")
 
 # Misc Parameters

@@ -61,7 +61,7 @@ tf.flags.DEFINE_string("train_or_restore",
 
 # Model Hyperparameters
 tf.flags.DEFINE_float("learning_rate",
-                      0.001,
+                      0.01,
                       "The learning rate (default: 0.001)")
 tf.flags.DEFINE_integer("pad_seq_len",
                         35842,
@@ -100,13 +100,13 @@ tf.flags.DEFINE_float("threshold",
 
 # Training Parameters
 tf.flags.DEFINE_integer("batch_size",
-                        1024,
+                        16,
                         "Batch Size (default: 256)")
 tf.flags.DEFINE_integer("num_epochs",
                         10000000000,
                         "Number of training epochs (default: 100)")
 tf.flags.DEFINE_integer("evaluate_every",
-                        1,
+                        30,
                         "Evaluate model on dev set after this many steps "
                         "(default: 5000)")
 tf.flags.DEFINE_float("norm_ratio",
@@ -121,10 +121,10 @@ tf.flags.DEFINE_float("decay_rate",
                       0.95,
                       "Rate of decay for learning rate. (default: 0.95)")
 tf.flags.DEFINE_integer("checkpoint_every",
-                        300,
+                        100,
                         "Save model after this many steps (default: 1000)")
 tf.flags.DEFINE_integer("num_checkpoints",
-                        300,
+                        100,
                         "Number of checkpoints to store (default: 50)")
 
 # Misc Parameters
