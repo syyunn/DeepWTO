@@ -129,7 +129,7 @@ tf.flags.DEFINE_integer("num_epochs",
                         "Number of training epochs (default: 100)")
 
 tf.flags.DEFINE_integer("evaluate_every",
-                        10,
+                        100,
                         "Evaluate model on dev set after this many steps "
                         "(default: 5000)")
 
