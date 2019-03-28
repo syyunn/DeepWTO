@@ -3,7 +3,7 @@ __author__ = 'Randolph'
 __modify__ = 'Zachary'
 
 import tensorflow as tf
-from utils.layers import highway_layer, do_cnn
+from utils.layers import do_cnn
 
 
 class OneLabelTextCNN(object):

@@ -9,7 +9,7 @@ import numpy as np
 import tensorflow as tf
 
 from tensorboard.plugins import projector
-from models.citability.TextCNN.model import TextCNN
+from models.citability_w_Article.OneLabelTextCNN.model import OneLabelTextCNN
 from utils import checkpoints
 from utils import feed
 from sklearn.metrics import precision_score, recall_score, f1_score, \
@@ -209,7 +209,7 @@ def train(word2vec_path):
         FLAGS.pad_seq_len_art)
 
     logger.info("✔︎ Validation data padding...")
-    x_val_art, x_val_art, y_val = feed.pad_data_one_label(
+    x_val_gov, x_val_art, y_val = feed.pad_data_one_label(
         val_data,
         FLAGS.pad_seq_len_gov,
         FLAGS.pad_seq_len_art)
@@ -227,13 +227,20 @@ def train(word2vec_path):
 
     # Build a graph and cnn object
     with tf.Graph().as_default():
+        
         session_conf = tf.ConfigProto(
-            allow_soft_placement=FLAGS.allow_soft_placement,
-            log_device_placement=FLAGS.log_device_placement)
-        session_conf.gpu_options.allow_growth = FLAGS.gpu_options_allow_growth
+            allow_soft_placement=
+            FLAGS.allow_soft_placement,
+            log_device_placement=
+            FLAGS.log_device_placement)
+        
+        session_conf.gpu_options.allow_growth = \
+            FLAGS.gpu_options_allow_growth
+        
         sess = tf.Session(config=session_conf)
+        
         with sess.as_default():
-            cnn = TextCNN(
+            cnn = OneLabelTextCNN(
                 sequence_length=FLAGS.pad_seq_len,
                 num_classes=FLAGS.num_classes,
                 vocab_size=VOCAB_SIZE,
@@ -254,18 +261,20 @@ def train(word2vec_path):
                     decay_steps=FLAGS.decay_steps,
                     decay_rate=FLAGS.decay_rate,
                     staircase=True)
-                optimizer = tf.train.AdamOptimizer(learning_rate)
-                grads, vars = zip(*optimizer.compute_gradients(cnn.loss))
+                optimizer = tf.train.AdamOptimizer(
+                    learning_rate)
+                grads, variables = zip(*optimizer.
+                                       compute_gradients(cnn.loss))
                 grads, _ = tf.clip_by_global_norm(grads,
                                                   clip_norm=FLAGS.norm_ratio)
                 train_op = optimizer.apply_gradients(
-                    zip(grads, vars),
+                    zip(grads, variables),
                     global_step=cnn.global_step,
                     name="train_op")
 
             # Keep track of gradient values and sparsity (optional)
             grad_summaries = []
-            for g, v in zip(grads, vars):
+            for g, v in zip(grads, variables):
                 if g is not None:
                     grad_hist_summary = tf.summary.histogram(
                         "{0}/grad/hist".format(v.name), g)
@@ -383,12 +392,13 @@ def train(word2vec_path):
                 logger.info("step {0}: loss {1:g}".format(step, loss))
                 train_summary_writer.add_summary(summaries, step)
 
-            def validation_step(_x_val,
+            def validation_step(_x_val_gov,
+                                _x_val_art,
                                 _y_val,
                                 writer=None):
                 """Evaluates model on a validation set"""
                 batches_validation = feed.batch_iter(
-                    list(zip(_x_val, _y_val)),
+                    list(zip(_x_val_gov, _x_val_art, _y_val)),
                     FLAGS.batch_size, 1)
 
                 # Predict classes by threshold or topk
@@ -493,12 +503,12 @@ def train(word2vec_path):
 
             # Generate batches
             batches_train = feed.batch_iter(
-                list(zip(x_train, y_train)),
+                list(zip(x_train_gov, x_train_art, y_train)),
                 FLAGS.batch_size,
                 FLAGS.num_epochs)
 
             num_batches_per_epoch = \
-                int((len(x_train) - 1) / FLAGS.batch_size) + 1
+                int((len(x_train_gov) - 1) / FLAGS.batch_size) + 1
 
             # Training loop. For each batch...
             for batch_train in batches_train:
@@ -510,7 +520,8 @@ def train(word2vec_path):
                     logger.info("\nEvaluation:")
                     eval_loss, eval_auc, eval_prc, eval_rec_ts, eval_pre_ts, \
                     eval_F_ts, eval_rec_tk, eval_pre_tk, eval_F_tk = \
-                        validation_step(x_val,
+                        validation_step(x_val_gov,
+                                        x_val_art,
                                         y_val,
                                         writer=validation_summary_writer)
 
