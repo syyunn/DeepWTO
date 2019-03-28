@@ -82,7 +82,7 @@ class OneLabelTextCNN(object):
             self.embedded_sentence_expanded_art = tf.expand_dims(
                 self.embedded_sentence_art, axis=-1)
         
-        h_drop_gov_args = filter_sizes, embedding_size, num_filters
+        # h_drop_gov_args = filter_sizes, embedding_size, num_filters
         
         h_drop_gov = do_cnn(gov_or_art="gov",
                             filter_sizes=filter_sizes,
@@ -94,9 +94,6 @@ class OneLabelTextCNN(object):
                             sequence_length=sequence_length_gov,
                             fc_hidden_size=fc_hidden_size,
                             dropout_keep_prob=self.dropout_keep_prob)
-
-        h_drop_art_args = filter_sizes, embedding_size, num_filters
-        print("Args Bool: ", h_drop_gov_args == h_drop_art_args)
         
         h_drop_art = do_cnn(gov_or_art="art",
                             filter_sizes=filter_sizes,
@@ -116,12 +113,6 @@ class OneLabelTextCNN(object):
                                         h_drop_art],
                                 axis=1)
         
-        # self.h_drop = tf.Print(self.h_drop,
-        #                        [tf.shape(self.h_drop),
-        #                         tf.shape(h_drop_art),
-        #                         tf.shape(h_drop_gov)],
-        #                         message="The shapes are:")
-
         self.legal = fc_w_nl_bn("legal",
                                 fc_hidden_size=2*fc_hidden_size,
                                 input_tensor=self.h_drop,
@@ -148,9 +139,15 @@ class OneLabelTextCNN(object):
 
         # Calculate mean cross-entropy loss, L2 loss
         with tf.name_scope("loss"):
-            losses = tf.nn.sigmoid_cross_entropy_with_logits(
-                labels=self.input_y,
-                logits=self.logits)
+            # losses = tf.nn.sigmoid_cross_entropy_with_logits(
+            #     labels=self.input_y,
+            #     logits=self.logits)
+            
+            losses = tf.nn.weighted_cross_entropy_with_logits(
+                targets=self.input_y,
+                logits=self.logits,
+                pos_weight=26.303)
+                
             losses = tf.reduce_mean(tf.reduce_sum(losses, axis=1),
                                     name="sigmoid_losses")
             l2_losses = tf.add_n([tf.nn.l2_loss(tf.cast(v, tf.float32))

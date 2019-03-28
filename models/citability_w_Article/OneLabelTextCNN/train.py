@@ -129,7 +129,7 @@ tf.flags.DEFINE_integer("num_epochs",
                         "Number of training epochs (default: 100)")
 
 tf.flags.DEFINE_integer("evaluate_every",
-                        200,
+                        10,
                         "Evaluate model on dev set after this many steps "
                         "(default: 5000)")
 
@@ -148,11 +148,11 @@ tf.flags.DEFINE_float("decay_rate",
                       "Rate of decay for learning rate. (default: 0.95)")
 
 tf.flags.DEFINE_integer("checkpoint_every",
-                        1000,
+                        100,
                         "Save model after this many steps (default: 1000)")
 
 tf.flags.DEFINE_integer("num_checkpoints",
-                        1000,
+                        100,
                         "Number of checkpoints to store (default: 50)")
 
 # Misc Parameters
@@ -207,12 +207,16 @@ def train(word2vec_path):
         train_data,
         FLAGS.pad_seq_len_gov,
         FLAGS.pad_seq_len_art)
+    print("x_train_gov: ", len(x_train_gov))
+    print("x_train_art: ", len(x_train_art))
 
     logger.info("✔︎ Validation data padding...")
     x_val_gov, x_val_art, y_val = feed.pad_data_one_label(
         val_data,
         FLAGS.pad_seq_len_gov,
         FLAGS.pad_seq_len_art)
+    print("x_val_gov: ", len(x_val_gov))
+    print("x_val_art: ", len(x_val_art))
 
     # Build vocabulary
     
@@ -387,23 +391,54 @@ def train(word2vec_path):
                     cnn.dropout_keep_prob: FLAGS.dropout_keep_prob,
                     cnn.is_training: True
                 }
-                _, step, summaries, loss = sess.run(
-                    [train_op, cnn.global_step, train_summary_op, cnn.loss],
+                
+                _, step, \
+                summaries, \
+                loss, \
+                scores, \
+                input_y = sess.run(
+                    [train_op,
+                     cnn.global_step,
+                     train_summary_op,
+                     cnn.loss,
+                     cnn.scores,
+                     cnn.input_y],
                     feed_dict)
+                
+                def count_correct_pred(prediction, batch_labels):
+                    count = 0
+                    for idx, batch_label in enumerate(batch_labels):
+                        if batch_label == [1] and prediction[idx] > 0.5:
+                            count += 1
+                        elif batch_label == [0] and prediction[idx] < 0.5:
+                            count += 1
+                    return count
+                
+                num_correct_answer = count_correct_pred(scores, input_y)
+                print("'[TRAIN] num_correct_answer is {} out of {}".
+                      format(num_correct_answer,
+                             FLAGS.batch_size))
+                
                 logger.info("step {0}: loss {1:g}".format(step, loss))
                 train_summary_writer.add_summary(summaries, step)
-
+                return loss
+                
             def validation_step(_x_val_gov,
                                 _x_val_art,
                                 _y_val,
                                 writer=None):
+                print("_x_val_gov: ", len(_x_val_gov))
+                print("_x_val_art: ", len(_x_val_art))
                 """Evaluates model on a validation set"""
-                batches_validation = feed.batch_iter(
-                    list(zip(_x_val_gov, _x_val_art, _y_val)),
-                    FLAGS.batch_size, 1)
+                batches_validation = \
+                    feed.batch_iter(
+                    list(zip(_x_val_gov,
+                             _x_val_art,
+                             _y_val)),
+                    FLAGS.batch_size,
+                    num_epochs=1,
+                    shuffle=False)
 
-                # Predict classes by threshold or topk
-                # ('ts': threshold; 'tk': topk)
                 _eval_counter, _eval_loss = 0, 0.0
 
                 _eval_pre_tk = [0.0] * FLAGS.top_num
@@ -414,20 +449,46 @@ def train(word2vec_path):
                 predicted_onehot_scores = []
                 predicted_onehot_labels_ts = []
                 predicted_onehot_labels_tk = [[] for _ in range(FLAGS.top_num)]
-
+                
+                valid_correct_count = 0
+                valid_step_count = 0
                 for batch_validation in batches_validation:
+                    valid_step_count += 1
                     x_batch_val_gov, x_batch_val_art, y_batch_val = \
                         zip(*batch_validation)
                     feed_dict = {
                         cnn.input_x_gov: x_batch_val_gov,
-                        cnn.input_x_art: x_batch_train_art,
+                        cnn.input_x_art: x_batch_val_art,
                         cnn.input_y: y_batch_val,
                         cnn.dropout_keep_prob: 1.0,
                         cnn.is_training: False
                     }
-                    step, summaries, scores, cur_loss = sess.run(
-                        [cnn.global_step, validation_summary_op, cnn.scores,
-                         cnn.loss], feed_dict)
+                    step, \
+                    summaries, \
+                    scores, \
+                    cur_loss, \
+                    input_y = sess.run(
+                        [cnn.global_step,
+                         validation_summary_op,
+                         cnn.scores,
+                         cnn.loss,
+                         cnn.input_y],
+                        feed_dict)
+
+                    def count_correct_pred(prediction, batch_labels):
+                        count = 0
+                        for idx, batch_label in enumerate(batch_labels):
+                            if batch_label == [1] and prediction[idx] > 0.5:
+                                count += 1
+                            elif batch_label == [0] and prediction[idx] < 0.5:
+                                count += 1
+                        return count
+
+                    num_correct_answer = count_correct_pred(scores, input_y)
+                    valid_correct_count += num_correct_answer
+                    print("[VALID] num_correct_answer is {} out of {}".
+                          format(num_correct_answer,
+                                 FLAGS.batch_size))
 
                     # Prepare for calculating metrics
                     for i in y_batch_val:
@@ -458,6 +519,10 @@ def train(word2vec_path):
 
                     if writer:
                         writer.add_summary(summaries, step)
+                        
+                print("[VALID_FINAL] Total Correct Answer is {} out of {}".
+                      format(valid_correct_count, valid_step_count *
+                             FLAGS.batch_size))
 
                 _eval_loss = float(_eval_loss / _eval_counter)
 
@@ -507,7 +572,9 @@ def train(word2vec_path):
 
             # Generate batches
             batches_train = feed.batch_iter(
-                list(zip(x_train_gov, x_train_art, y_train)),
+                list(zip(x_train_gov,
+                         x_train_art,
+                         y_train)),
                 FLAGS.batch_size,
                 FLAGS.num_epochs)
 
@@ -515,9 +582,12 @@ def train(word2vec_path):
                 int((len(x_train_gov) - 1) / FLAGS.batch_size) + 1
 
             # Training loop. For each batch...
+            train_loss_tracker = 0
             for batch_train in batches_train:
-                x_batch_train_gov, x_batch_train_art, y_batch_train = zip(
-                    *batch_train)
+                x_batch_train_gov, \
+                x_batch_train_art, \
+                y_batch_train = zip(*batch_train)
+
                 # print(x_batch_train_gov[0][100:150])
                 # print("x_batch_train_gov.shape", len(list(
                 #     x_batch_train_gov)))
@@ -526,13 +596,25 @@ def train(word2vec_path):
                 # print("x_batch_train_art.shape", len(list(
                 #     x_batch_train_art)))
 
-                train_step(x_batch_train_gov, x_batch_train_art, y_batch_train)
-                current_step = tf.train.global_step(sess, cnn.global_step)
+                one_batch_loss = train_step(x_batch_train_gov,
+                                            x_batch_train_art,
+                                            y_batch_train)
+                train_loss_tracker += one_batch_loss
+                
+                current_step = tf.train.global_step(sess,
+                                                    cnn.global_step)
 
                 if current_step % FLAGS.evaluate_every == 0:
                     logger.info("\nEvaluation:")
-                    eval_loss, eval_auc, eval_prc, eval_rec_ts, eval_pre_ts, \
-                    eval_F_ts, eval_rec_tk, eval_pre_tk, eval_F_tk = \
+                    eval_loss, \
+                    eval_auc, \
+                    eval_prc, \
+                    eval_rec_ts, \
+                    eval_pre_ts, \
+                    eval_F_ts, \
+                    eval_rec_tk, \
+                    eval_pre_tk, \
+                    eval_F_tk = \
                         validation_step(x_val_gov,
                                         x_val_art,
                                         y_val,
@@ -541,6 +623,9 @@ def train(word2vec_path):
                     logger.info(
                     "All Validation set: Loss {0:g} | AUC {1:g} | AUPRC {2:g}"
                     .format(eval_loss, eval_auc, eval_prc))
+                    
+                    print("Train Loss: {}".format(train_loss_tracker))
+                    train_loss_tracker = 0
 
                     # Predict by threshold
                     logger.info(
@@ -558,6 +643,7 @@ def train(word2vec_path):
                                     eval_rec_tk[top_num],
                                     eval_F_tk[top_num]))
                     best_saver.handle(eval_prc, sess, current_step)
+               
                 if current_step % FLAGS.checkpoint_every == 0:
                     checkpoint_prefix = os.path.join(checkpoint_dir, "model")
                     path = saver.save(sess,
@@ -565,6 +651,7 @@ def train(word2vec_path):
                                       global_step=current_step)
                     logger.info(
                         "✔︎ Saved model checkpoint to {0}\n".format(path))
+                
                 if current_step % num_batches_per_epoch == 0:
                     current_epoch = current_step // num_batches_per_epoch
                     logger.info(
