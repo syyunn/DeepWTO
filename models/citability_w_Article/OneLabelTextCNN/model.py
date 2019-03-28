@@ -137,31 +137,14 @@ class OneLabelTextCNN(object):
                                           name="logits")
             self.scores = tf.sigmoid(self.logits,
                                      name="scores")
-
-        # reward_coeff = 26.303
-        #
-        # count_label_one, \
-        # _, \
-        # count_correct_one, \
-        # _ = tf.map_fn(lambda x: count_correct_pred(x[0], x[1]),
-        #                       (self.scores, self.input_y),
-        #                       dtype=tf.int64)
-        #
-        # additional_reward = (count_correct_one /
-        #                      count_label_one) \
-        #                     * reward_coeff
         
         # Calculate mean cross-entropy loss, L2 loss
         with tf.name_scope("loss"):
-            # losses = tf.nn.sigmoid_cross_entropy_with_logits(
-            #     labels=self.input_y,
-            #     logits=self.logits)
-            
             losses = tf.nn.weighted_cross_entropy_with_logits(
                 targets=self.input_y,
                 logits=self.logits,
-                pos_weight=26.303)  # pos_weight_log : [26.303, 150000]
-                
+                pos_weight=26.303)
+            
             losses = tf.reduce_mean(tf.reduce_sum(losses, axis=1),
                                     name="sigmoid_losses")
             l2_losses = tf.add_n([tf.nn.l2_loss(tf.cast(v, tf.float32))

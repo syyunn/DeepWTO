@@ -530,12 +530,13 @@ def train(word2vec_path):
                     if writer:
                         writer.add_summary(summaries, step)
                         
-                print("[VALID_FINAL] Total Correct One Answer is {} out of {}".
-                      format(valid_count_correct_one,
-                             valid_count_label_one))
-                print("[VALID_FINAL] Total Correct Zero Answer is {} out of "
-                      "{}".format(valid_count_correct_zero,
-                                  valid_count_label_zero))
+                logger.info("[VALID_FINAL] Total Correct One Answer is {} out "
+                            "of {}".format(
+                    valid_count_correct_one,
+                    valid_count_label_one))
+                logger.info("[VALID_FINAL] Total Correct Zero Answer is {} "
+                            "out of {}".format(valid_count_correct_zero,
+                                               valid_count_label_zero))
 
                 _eval_loss = float(_eval_loss / _eval_counter)
 
@@ -637,8 +638,8 @@ def train(word2vec_path):
                     "All Validation set: Loss {0:g} | AUC {1:g} | AUPRC {2:g}"
                     .format(eval_loss, eval_auc, eval_prc))
                     
-                    print("Train Loss: {}".format(train_loss_tracker/
-                                                  FLAGS.evaluate_every))
+                    logger.info("Train Loss: {}".format(train_loss_tracker/
+                                                        FLAGS.evaluate_every))
                     train_loss_tracker = 0
 
                     # Predict by threshold
