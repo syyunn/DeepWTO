@@ -625,7 +625,7 @@ def train(word2vec_path):
                     .format(eval_loss, eval_auc, eval_prc))
                     
                     print("Train Loss: {}".format(train_loss_tracker/
-                                                  FLAGS.evaluate_ever))
+                                                  FLAGS.evaluate_every))
                     train_loss_tracker = 0
 
                     # Predict by threshold
