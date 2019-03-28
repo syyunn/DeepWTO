@@ -4,7 +4,7 @@ one's necessity. """
 import pickle
 import os
 
-from utils.misc.yml import read_yaml
+from utils.misc.yaml import read_yaml
 
 def get_urls(ds_num):
     """

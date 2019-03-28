@@ -1,4 +1,4 @@
-from utils.misc.yml import read_yaml
+from utils.misc.yaml import read_yaml
 from utils.misc.pkl import dump_pkl
 from utils.misc.dict import get_keys
 
@@ -59,6 +59,7 @@ def rehash_arts_in_text(indices,
 if __name__ == "__main__":
     gatt = read_yaml("labels/GATT.yaml")
     gatt = cleanse_dict(gatt)
+    print(gatt)
     gatt_keys = get_keys(gatt)
     print(gatt_keys)
     for key in gatt_keys:

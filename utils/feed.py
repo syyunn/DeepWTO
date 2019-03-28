@@ -355,6 +355,99 @@ def data_word2vec(input_file,
     return _Data()
 
 
+def data_word2vec_one_label(input_file,
+                            num_labels,
+                            word2vec_model):
+    """
+    Create the research data token index based on the word2vec model file.
+    Return the class Data(includes the data token index and data labels).
+
+    Args:
+        input_file: The research data
+        num_labels: The number of classes
+        word2vec_model: The word2vec model file
+    Returns:
+        The class Data(includes the data tokenindex and data labels)
+    Raises:
+        IOError: If the input file is not the .json file
+    """
+    vocab = dict([(k, v.index) for (k, v) in word2vec_model.wv.vocab.items()])
+    
+    def _token_to_index(content):
+        result = []
+        for item in content:
+            word2id = vocab.get(item)
+            if word2id is None:
+                word2id = 0
+            result.append(word2id)
+        return result
+    
+    def _create_onehot_labels(_labels_index,
+                              _num_labels):
+        label = [0] * _num_labels
+        for item in _labels_index:
+            label[int(item)] = 1
+        return label
+    
+    if not input_file.endswith('.json'):
+        raise IOError("✘ The research data is not a json file. "
+                      "Please preprocess the research data into the "
+                      "json file.")
+    
+    with open(input_file) as fin:
+        test_id_list = []
+        content_index_list = []
+        labels_list = []
+        onehot_labels_list = []
+        labels_num_list = []
+        total_line = 0
+        
+        for each_line in fin:
+            data = json.loads(each_line)
+            test_id = data['testid']
+            features_content = data['features_content']
+            labels_index = data['labels_index']
+            labels_num = data['labels_num']
+            
+            test_id_list.append(test_id)
+            content_index_list.append(_token_to_index(features_content))
+            labels_list.append(labels_index)
+            onehot_labels_list.append(_create_onehot_labels(labels_index,
+                                                            num_labels))
+            labels_num_list.append(labels_num)
+            total_line += 1
+    
+    class _Data:
+        def __init__(self):
+            pass
+        
+        @property
+        def number(self):
+            return total_line
+        
+        @property
+        def testid(self):
+            return test_id_list
+        
+        @property
+        def tokenindex(self):
+            return content_index_list
+        
+        @property
+        def labels(self):
+            return labels_list
+        
+        @property
+        def onehot_labels(self):
+            return onehot_labels_list
+        
+        @property
+        def labels_num(self):
+            return labels_num_list
+    
+    return _Data()
+
+
 def data_augmented(data, drop_rate=1.0):
     """
     Data augmented.

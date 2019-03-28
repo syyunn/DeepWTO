@@ -1,7 +1,7 @@
 from data.label.applicability.parse import cleanse_dict, invert_dict
 from data.download.fetch import get_urls, filter_panel_eng
 
-from utils.misc.yml import read_yaml
+from utils.misc.yaml import read_yaml
 from utils.misc.url import download
 from utils.misc.pkl import open_write_dump, check_already_exist
 

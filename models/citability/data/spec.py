@@ -7,11 +7,11 @@ determine the pad-size of input data before training.
 import json
 
 
-def find_longest():
-    with open("Train.json") as f:
+def find_longest(json_data, key):
+    with open(json_data) as f:
         longest = []
         for idx, each_line in enumerate(f):
-            list_of_strings = json.loads(each_line)["features_content"]
+            list_of_strings = json.loads(each_line)[key]
             length = len(list_of_strings)
             print(idx, length)
 
@@ -25,11 +25,11 @@ def find_longest():
         return longest
 
 
-def find_shortest():
-    with open("Train.json") as f:
+def find_shortest(json_data, key):
+    with open(json_data) as f:
         shortest = []
         for idx, each_line in enumerate(f):
-            list_of_strings = json.loads(each_line)["features_content"]
+            list_of_strings = json.loads(each_line)[key]
             length = len(list_of_strings)
             print(idx, length)
 
@@ -58,5 +58,9 @@ def find_words_set():
 
 
 if __name__ == "__main__":
-    find_shortest()
+    data_path = \
+        "/home/zachary/projects/DeepWTO/models/citability_w_Article/data" \
+        "/prep/entire_one_label.json"
+    find_longest(data_path, 'art')
+
     pass
