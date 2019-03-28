@@ -129,7 +129,7 @@ tf.flags.DEFINE_integer("num_epochs",
                         "Number of training epochs (default: 100)")
 
 tf.flags.DEFINE_integer("evaluate_every",
-                        30,
+                        200,
                         "Evaluate model on dev set after this many steps "
                         "(default: 5000)")
 
@@ -148,11 +148,11 @@ tf.flags.DEFINE_float("decay_rate",
                       "Rate of decay for learning rate. (default: 0.95)")
 
 tf.flags.DEFINE_integer("checkpoint_every",
-                        30000,
+                        1000,
                         "Save model after this many steps (default: 1000)")
 
 tf.flags.DEFINE_integer("num_checkpoints",
-                        30000,
+                        1000,
                         "Number of checkpoints to store (default: 50)")
 
 # Misc Parameters
@@ -518,13 +518,13 @@ def train(word2vec_path):
             for batch_train in batches_train:
                 x_batch_train_gov, x_batch_train_art, y_batch_train = zip(
                     *batch_train)
-                print(x_batch_train_gov[0][100:150])
-                print("x_batch_train_gov.shape", len(list(
-                    x_batch_train_gov)))
-                
-                print(x_batch_train_art[0][100:150])
-                print("x_batch_train_art.shape", len(list(
-                    x_batch_train_art)))
+                # print(x_batch_train_gov[0][100:150])
+                # print("x_batch_train_gov.shape", len(list(
+                #     x_batch_train_gov)))
+                #
+                # print(x_batch_train_art[0][100:150])
+                # print("x_batch_train_art.shape", len(list(
+                #     x_batch_train_art)))
 
                 train_step(x_batch_train_gov, x_batch_train_art, y_batch_train)
                 current_step = tf.train.global_step(sess, cnn.global_step)

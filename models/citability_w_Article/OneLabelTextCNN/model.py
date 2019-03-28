@@ -116,13 +116,11 @@ class OneLabelTextCNN(object):
                                         h_drop_art],
                                 axis=1)
         
-        print(tf.shape(self.h_drop))
-
-        self.h_drop = tf.Print(self.h_drop,
-                               [tf.shape(self.h_drop),
-                                tf.shape(h_drop_art),
-                                tf.shape(h_drop_gov)],
-                                message="The shapes are:")
+        # self.h_drop = tf.Print(self.h_drop,
+        #                        [tf.shape(self.h_drop),
+        #                         tf.shape(h_drop_art),
+        #                         tf.shape(h_drop_gov)],
+        #                         message="The shapes are:")
 
         self.legal = fc_w_nl_bn("legal",
                                 fc_hidden_size=2*fc_hidden_size,
