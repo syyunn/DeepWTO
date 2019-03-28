@@ -152,7 +152,7 @@ tf.flags.DEFINE_integer("checkpoint_every",
                         "Save model after this many steps (default: 1000)")
 
 tf.flags.DEFINE_integer("num_checkpoints",
-                        100,
+                        2,
                         "Number of checkpoints to store (default: 50)")
 
 # Misc Parameters
@@ -340,10 +340,10 @@ def train(word2vec_path):
             saver = tf.train.Saver(
                 tf.global_variables(),
                 max_to_keep=FLAGS.num_checkpoints)
-            best_saver = checkpoints.BestCheckpointSaver(
-                save_dir=best_checkpoint_dir,
-                num_to_keep=3,
-                maximize=True)
+            # best_saver = checkpoints.BestCheckpointSaver(
+            #     save_dir=best_checkpoint_dir,
+            #     num_to_keep=3,
+            #     maximize=True)
 
             if FLAGS.train_or_restore == 'R':
                 # Load cnn model
@@ -624,7 +624,8 @@ def train(word2vec_path):
                     "All Validation set: Loss {0:g} | AUC {1:g} | AUPRC {2:g}"
                     .format(eval_loss, eval_auc, eval_prc))
                     
-                    print("Train Loss: {}".format(train_loss_tracker))
+                    print("Train Loss: {}".format(train_loss_tracker/
+                                                  FLAGS.evaluate_ever))
                     train_loss_tracker = 0
 
                     # Predict by threshold
