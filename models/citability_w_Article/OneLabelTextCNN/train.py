@@ -241,8 +241,8 @@ def train(word2vec_path):
         
         with sess.as_default():
             cnn = OneLabelTextCNN(
-                sequence_length=FLAGS.pad_seq_len,
-                num_classes=FLAGS.num_classes,
+                sequence_length_gov=FLAGS.pad_seq_len_gov,
+                sequence_length_art=FLAGS.pad_seq_len_art,
                 vocab_size=VOCAB_SIZE,
                 fc_hidden_size=FLAGS.fc_hidden_size,
                 embedding_size=FLAGS.embedding_dim,

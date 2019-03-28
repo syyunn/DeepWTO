@@ -156,7 +156,7 @@ def do_cnn(gov_or_art,
                             name="relu")
     
     # Highway Layer
-    with tf.name_scope("highway"):
+    with tf.name_scope("highway".format(gov_or_art)):
         highway = highway_layer(fc_out,
                                 fc_out.get_shape()[1],
                                 num_layers=1,
