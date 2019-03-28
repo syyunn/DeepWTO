@@ -382,12 +382,12 @@ def data_word2vec_one_label(input_file,
             result.append(word2id)
         return result
     
-    def _create_onehot_labels(_labels_index,
-                              _num_labels):
-        label = [0] * _num_labels
-        for item in _labels_index:
-            label[int(item)] = 1
-        return label
+    # def _create_onehot_labels(_labels_index,
+    #                           _num_labels):
+    #     label = [0] * _num_labels
+    #     for item in _labels_index:
+    #         label[int(item)] = 1
+    #     return label
     
     if not input_file.endswith('.json'):
         raise IOError("✘ The research data is not a json file. "
@@ -396,8 +396,9 @@ def data_word2vec_one_label(input_file,
     
     with open(input_file) as fin:
         test_id_list = []
-        content_index_list = []
-        labels_list = []
+        content_index_list_gov = []
+        content_index_list_art = []
+        # labels_list = []
         onehot_labels_list = []
         labels_num_list = []
         total_line = 0
@@ -405,15 +406,20 @@ def data_word2vec_one_label(input_file,
         for each_line in fin:
             data = json.loads(each_line)
             test_id = data['testid']
-            features_content = data['features_content']
-            labels_index = data['labels_index']
-            labels_num = data['labels_num']
+            features_content_gov = data['gov']
+            features_content_art = data['art']
+            label = data['label']
             
             test_id_list.append(test_id)
-            content_index_list.append(_token_to_index(features_content))
-            labels_list.append(labels_index)
-            onehot_labels_list.append(_create_onehot_labels(labels_index,
-                                                            num_labels))
+            content_index_list_gov.append(_token_to_index(
+                features_content_gov))
+            content_index_list_art.append(_token_to_index(
+                features_content_art))
+            # labels_list.append(label)
+            # onehot_labels_list.append(_create_onehot_labels(labels_index,
+            #                                                 num_labels))
+            onehot_labels_list.append(label)
+            labels_num = 1
             labels_num_list.append(labels_num)
             total_line += 1
     
@@ -430,12 +436,16 @@ def data_word2vec_one_label(input_file,
             return test_id_list
         
         @property
-        def tokenindex(self):
-            return content_index_list
+        def tokenindex_gov(self):
+            return content_index_list_gov
         
         @property
-        def labels(self):
-            return labels_list
+        def tokenindex_art(self):
+            return content_index_list_art
+
+        # @property
+        # def labels(self):
+        #     return labels_list
         
         @property
         def onehot_labels(self):
@@ -612,6 +622,59 @@ def load_data_and_labels(data_file,
     return data
 
 
+def load_data_and_labels_one_label(data_file,
+                                   num_labels,
+                                   embedding_size,
+                                   data_aug_flag,
+                                   word2vec_path,
+                                   use_pretrain=True):
+    """
+    Load research data from files, splits the data into words and generates
+    labels. Return split sentences, labels and the max sentence length of
+    the research data.
+
+    Args:
+        data_file: The research data
+        num_labels: The number of classes
+        embedding_size: The embedding size
+        data_aug_flag: The flag of data augmented
+        word2vec_path: path of pretrained word2vec
+        use_pretrain: whether to use pretrained word2vec
+    Returns:
+        The class Data
+    """
+    
+    ###########################################################################
+    #
+    # word2vec_file = '../data/word2vec_' + str(embedding_size) + '.model'
+    #
+    # # Load word2vec model file
+    # if not os.path.isfile(word2vec_file):
+    #     create_word2vec_model(embedding_size, TEXT_DIR)
+    ###########################################################################
+    
+    # word2vec_path = '../../Word2Vec/GoogleNews-vectors-negative300.bin'
+    
+    if use_pretrain:
+        model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
+                                                           binary=True,
+                                                           limit=500000)
+    else:
+        create_word2vec_model(embedding_size,
+                              ALL_TEXTS_INPUT)
+    
+    # Load data from files and split by words
+    data = data_word2vec_one_label(input_file=data_file,
+                                   num_labels=num_labels,
+                                   word2vec_model=model)
+    if data_aug_flag:
+        data = data_augmented(data)
+    
+    # plot_seq_len(data_file, data)
+    
+    return data
+
+
 def pad_data(data, pad_seq_len):
     """
     Padding each sentence of research data according to the max sentence length.
@@ -627,6 +690,34 @@ def pad_data(data, pad_seq_len):
     pad_seq = pad_sequences(data.tokenindex, maxlen=pad_seq_len, value=0.)
     onehot_labels = data.onehot_labels
     return pad_seq, onehot_labels
+
+
+def pad_data_one_label(data,
+                       pad_seq_len_gov,
+                       pad_seq_len_art):
+    """
+    Padding each sentence of research data according to the max sentence length.
+    Return the padded data and data labels.
+
+    Args:
+        data: The research data
+        pad_seq_len: The max sentence length of research data
+    Returns:
+        pad_seq: The padded data
+        labels: The data labels
+    """
+    pad_seq_gov = pad_sequences(data.tokenindex_gov,
+                                maxlen=pad_seq_len_gov,
+                                value=0.)
+    
+    pad_seq_art = pad_sequences(data.tokenindex_art,
+                                maxlen=pad_seq_len_art,
+                                value=0.)
+
+    onehot_labels = data.onehot_labels
+    return pad_seq_gov, \
+           pad_seq_art, \
+           onehot_labels
 
 
 def plot_seq_len(data_file, data, percentage=0.98):

@@ -42,19 +42,22 @@ if TRAIN_OR_RESTORE == 'R':
 
 TRAININGSET_DIR = '../data/train_data.json'
 VALIDATIONSET_DIR = '../data/test_data.json'
-METADATA_DIR = 'data/metadata.tsv'
+METADATA_DIR = '../data/metadata.tsv'
 
 # Data Parameters
 tf.flags.DEFINE_string("training_data_file",
                        TRAININGSET_DIR,
                        "Data source for the training data.")
+
 tf.flags.DEFINE_string("validation_data_file",
                        VALIDATIONSET_DIR,
                        "Data source for the validation data.")
+
 tf.flags.DEFINE_string("metadata_file",
                        METADATA_DIR,
                        "Metadata file for embedding visualization"
                        "(Each line is a word segment in metadata_file).")
+
 tf.flags.DEFINE_string("train_or_restore",
                        TRAIN_OR_RESTORE,
                        "Train or Restore.")
@@ -63,37 +66,55 @@ tf.flags.DEFINE_string("train_or_restore",
 tf.flags.DEFINE_float("learning_rate",
                       0.01,
                       "The learning rate (default: 0.001)")
-tf.flags.DEFINE_integer("pad_seq_len",
+
+tf.flags.DEFINE_integer("pad_seq_len_gov",
                         35842,
-                        "Recommended padding Sequence length of data "
+                        "Recommended padding Sequence length of data for "
+                        "gov measure description "
                         "(depends on the data)")
+
+tf.flags.DEFINE_integer("pad_seq_len_art",
+                        20158,
+                        "Recommended padding Sequence length of data for "
+                        "provision(article) text"
+                        "(depends on the data)")
+
 tf.flags.DEFINE_integer("embedding_dim",
                         300,
                         "Dimensionality of character embedding (default: 128)")
+
 tf.flags.DEFINE_integer("embedding_type",
                         1,
                         "The embedding type (default: 1)")
+
 tf.flags.DEFINE_integer("fc_hidden_size",
                         1024,
                         "Hidden size for fully connected layer (default: 1024)")
+
 tf.flags.DEFINE_string("filter_sizes",
                        "3,4,5",
                        "Comma-separated filter sizes (default: '3,4,5')")
+
 tf.flags.DEFINE_integer("num_filters",
                         128,
                         "Number of filters per filter size (default: 128)")
+
 tf.flags.DEFINE_float("dropout_keep_prob",
                       0.5,
                       "Dropout keep probability (default: 0.5)")
+
 tf.flags.DEFINE_float("l2_reg_lambda",
                       0.0,
                       "L2 regularization lambda (default: 0.0)")
+
 tf.flags.DEFINE_integer("num_classes",
-                        80,
+                        1,
                         "Number of labels (depends on the task)")
+
 tf.flags.DEFINE_integer("top_num",
-                        80,
+                        1,
                         "Number of top K prediction classes (default: 5)")
+
 tf.flags.DEFINE_float("threshold",
                       0.5,
                       "Threshold for prediction classes (default: 0.5)")
@@ -102,27 +123,34 @@ tf.flags.DEFINE_float("threshold",
 tf.flags.DEFINE_integer("batch_size",
                         16,
                         "Batch Size (default: 256)")
+
 tf.flags.DEFINE_integer("num_epochs",
                         10000000000,
                         "Number of training epochs (default: 100)")
+
 tf.flags.DEFINE_integer("evaluate_every",
                         30,
                         "Evaluate model on dev set after this many steps "
                         "(default: 5000)")
+
 tf.flags.DEFINE_float("norm_ratio",
                       2,
                       "The ratio of the sum of gradients norms of trainable "
                       "variable (default: 1.25)")
+
 tf.flags.DEFINE_integer("decay_steps",
                         5000,
                         "how many steps before decay learning rate. "
                         "(default: 500)")
+
 tf.flags.DEFINE_float("decay_rate",
                       0.95,
                       "Rate of decay for learning rate. (default: 0.95)")
+
 tf.flags.DEFINE_integer("checkpoint_every",
                         100,
                         "Save model after this many steps (default: 1000)")
+
 tf.flags.DEFINE_integer("num_checkpoints",
                         100,
                         "Number of checkpoints to store (default: 50)")
@@ -147,13 +175,13 @@ logger.info('\n'.join(
 
 
 def train(word2vec_path):
-    """Training CNN model."""
+    """Training TextCNN-one-label model."""
 
     # Load sentences, labels, and training parameters
     logger.info("✔︎ Loading data...")
 
     logger.info("✔︎ Training data processing...")
-    train_data = feed.load_data_and_labels(
+    train_data = feed.load_data_and_labels_one_label(
         FLAGS.training_data_file,
         FLAGS.num_classes,
         FLAGS.embedding_dim,
@@ -161,25 +189,33 @@ def train(word2vec_path):
         data_aug_flag=False)
 
     logger.info("✔︎ Validation data processing...")
-    val_data = feed.load_data_and_labels(
+    val_data = feed.load_data_and_labels_one_label(
         FLAGS.validation_data_file,
         FLAGS.num_classes,
         FLAGS.embedding_dim,
         word2vec_path=word2vec_path,
         data_aug_flag=False)
 
-    logger.info("Recommended padding Sequence length is: {0}".format(
-        FLAGS.pad_seq_len))
+    logger.info("Recommended padding Sequence length for GOV_MEASURE is: "
+                "{}".format(FLAGS.pad_seq_len_gov))
+    
+    logger.info("Recommended padding Sequence length for GOV_MEASURE is: "
+                "{}".format(FLAGS.pad_seq_len_art))
 
-    logger.info("✔︎ Training data padding...")
-    x_train, y_train = feed.pad_data(train_data,
-                                     FLAGS.pad_seq_len)
+    logger.info("✔︎ GOV MEASURE padding...")
+    x_train_gov, x_train_art, y_train = feed.pad_data_one_label(
+        train_data,
+        FLAGS.pad_seq_len_gov,
+        FLAGS.pad_seq_len_art)
 
     logger.info("✔︎ Validation data padding...")
-    x_val, y_val = feed.pad_data(val_data,
-                                 FLAGS.pad_seq_len)
+    x_val_art, x_val_art, y_val = feed.pad_data_one_label(
+        val_data,
+        FLAGS.pad_seq_len_gov,
+        FLAGS.pad_seq_len_art)
 
     # Build vocabulary
+    
     VOCAB_SIZE = feed.load_vocab_size(FLAGS.embedding_dim,
                                       word2vec_path=word2vec_path)
 
