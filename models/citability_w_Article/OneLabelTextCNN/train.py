@@ -121,7 +121,7 @@ tf.flags.DEFINE_float("threshold",
 
 # Training Parameters
 tf.flags.DEFINE_integer("batch_size",
-                        16,
+                        8,
                         "Batch Size (default: 256)")
 
 tf.flags.DEFINE_integer("num_epochs",
@@ -134,7 +134,7 @@ tf.flags.DEFINE_integer("evaluate_every",
                         "(default: 5000)")
 
 tf.flags.DEFINE_float("norm_ratio",
-                      2,
+                      1,
                       "The ratio of the sum of gradients norms of trainable "
                       "variable (default: 1.25)")
 
@@ -148,11 +148,11 @@ tf.flags.DEFINE_float("decay_rate",
                       "Rate of decay for learning rate. (default: 0.95)")
 
 tf.flags.DEFINE_integer("checkpoint_every",
-                        100,
+                        30000,
                         "Save model after this many steps (default: 1000)")
 
 tf.flags.DEFINE_integer("num_checkpoints",
-                        100,
+                        30000,
                         "Number of checkpoints to store (default: 50)")
 
 # Misc Parameters
@@ -199,7 +199,7 @@ def train(word2vec_path):
     logger.info("Recommended padding Sequence length for GOV_MEASURE is: "
                 "{}".format(FLAGS.pad_seq_len_gov))
     
-    logger.info("Recommended padding Sequence length for GOV_MEASURE is: "
+    logger.info("Recommended padding Sequence length for Article is: "
                 "{}".format(FLAGS.pad_seq_len_art))
 
     logger.info("✔︎ GOV MEASURE padding...")
@@ -378,10 +378,11 @@ def train(word2vec_path):
             current_step = sess.run(cnn.global_step)
             print("current_step: ", current_step)
 
-            def train_step(x_batch, y_batch):
+            def train_step(x_batch_gov, x_batch_art, y_batch):
                 """A single training step"""
                 feed_dict = {
-                    cnn.input_x: x_batch,
+                    cnn.input_x_gov: x_batch_gov,
+                    cnn.input_x_art: x_batch_art,
                     cnn.input_y: y_batch,
                     cnn.dropout_keep_prob: FLAGS.dropout_keep_prob,
                     cnn.is_training: True
@@ -415,9 +416,11 @@ def train(word2vec_path):
                 predicted_onehot_labels_tk = [[] for _ in range(FLAGS.top_num)]
 
                 for batch_validation in batches_validation:
-                    x_batch_val, y_batch_val = zip(*batch_validation)
+                    x_batch_val_gov, x_batch_val_art, y_batch_val = \
+                        zip(*batch_validation)
                     feed_dict = {
-                        cnn.input_x: x_batch_val,
+                        cnn.input_x_gov: x_batch_val_gov,
+                        cnn.input_x_art: x_batch_train_art,
                         cnn.input_y: y_batch_val,
                         cnn.dropout_keep_prob: 1.0,
                         cnn.is_training: False
@@ -459,7 +462,8 @@ def train(word2vec_path):
                 _eval_loss = float(_eval_loss / _eval_counter)
 
                 # Calculate Precision & Recall & F1 (threshold & topK)
-                _eval_pre_ts = precision_score(y_true=np.array(true_onehot_labels),
+                _eval_pre_ts = precision_score(y_true=np.array(
+                    true_onehot_labels),
                                                y_pred=np.array(
                                                    predicted_onehot_labels_ts),
                                                average='micro')
@@ -512,8 +516,17 @@ def train(word2vec_path):
 
             # Training loop. For each batch...
             for batch_train in batches_train:
-                x_batch_train, y_batch_train = zip(*batch_train)
-                train_step(x_batch_train, y_batch_train)
+                x_batch_train_gov, x_batch_train_art, y_batch_train = zip(
+                    *batch_train)
+                print(x_batch_train_gov[0][100:150])
+                print("x_batch_train_gov.shape", len(list(
+                    x_batch_train_gov)))
+                
+                print(x_batch_train_art[0][100:150])
+                print("x_batch_train_art.shape", len(list(
+                    x_batch_train_art)))
+
+                train_step(x_batch_train_gov, x_batch_train_art, y_batch_train)
                 current_step = tf.train.global_step(sess, cnn.global_step)
 
                 if current_step % FLAGS.evaluate_every == 0:

@@ -3,7 +3,7 @@ __author__ = 'Randolph'
 __modify__ = 'Zachary'
 
 import tensorflow as tf
-from utils.layers import do_cnn
+from utils.layers import do_cnn, fc_w_nl_bn
 
 
 class OneLabelTextCNN(object):
@@ -27,7 +27,7 @@ class OneLabelTextCNN(object):
                                            name="input_x_gov")
 
         self.input_x_art = tf.placeholder(tf.int32,
-                                          [None, sequence_length_gov],
+                                          [None, sequence_length_art],
                                            name="input_x_art")
         
         self.input_y = tf.placeholder(tf.float32,
@@ -80,8 +80,10 @@ class OneLabelTextCNN(object):
                 self.embedded_sentence_gov, axis=-1)
             
             self.embedded_sentence_expanded_art = tf.expand_dims(
-                self.embedded_sentence_gov, axis=-1)
-                
+                self.embedded_sentence_art, axis=-1)
+        
+        h_drop_gov_args = filter_sizes, embedding_size, num_filters
+        
         h_drop_gov = do_cnn(gov_or_art="gov",
                             filter_sizes=filter_sizes,
                             embedding_size=embedding_size,
@@ -93,6 +95,9 @@ class OneLabelTextCNN(object):
                             fc_hidden_size=fc_hidden_size,
                             dropout_keep_prob=self.dropout_keep_prob)
 
+        h_drop_art_args = filter_sizes, embedding_size, num_filters
+        print("Args Bool: ", h_drop_gov_args == h_drop_art_args)
+        
         h_drop_art = do_cnn(gov_or_art="art",
                             filter_sizes=filter_sizes,
                             embedding_size=embedding_size,
@@ -104,10 +109,27 @@ class OneLabelTextCNN(object):
                             fc_hidden_size=fc_hidden_size,
                             dropout_keep_prob=self.dropout_keep_prob)
         
-        self.h_drop = tf.concat(concat_dim=0,
-                                values=[h_drop_gov,
-                                        h_drop_art])
+        print(tf.shape(h_drop_art))
+        print(tf.shape(h_drop_gov))
+        
+        self.h_drop = tf.concat(values=[h_drop_gov,
+                                        h_drop_art],
+                                axis=1)
+        
+        print(tf.shape(self.h_drop))
 
+        self.h_drop = tf.Print(self.h_drop,
+                               [tf.shape(self.h_drop),
+                                tf.shape(h_drop_art),
+                                tf.shape(h_drop_gov)],
+                                message="The shapes are:")
+
+        self.legal = fc_w_nl_bn("legal",
+                                fc_hidden_size=2*fc_hidden_size,
+                                input_tensor=self.h_drop,
+                                output_size=fc_hidden_size,
+                                is_training=self.is_training)
+        
         # Final scores
         with tf.name_scope("output"):
             W = tf.Variable(tf.truncated_normal(shape=[fc_hidden_size,
@@ -119,7 +141,7 @@ class OneLabelTextCNN(object):
                                         shape=[1],
                                         dtype=tf.float32),
                             name="b")
-            self.logits = tf.nn.xw_plus_b(self.h_drop,
+            self.logits = tf.nn.xw_plus_b(self.legal,
                                           W,
                                           b,
                                           name="logits")

@@ -257,7 +257,7 @@ def load_vocab_size(embedding_size,
 
     # model = word2vec.Word2Vec.load(word2vec_file)
     model = word2vec.KeyedVectors.load_word2vec_format(
-        word2vec_path, binary=True, limit=500000)
+        word2vec_path, binary=True, limit=450000)
 
     return len(model.wv.vocab.items())
 
@@ -560,7 +560,7 @@ def load_word2vec_matrix(vocab_size,
 
     model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
                                                        binary=True,
-                                                       limit=500000)
+                                                       limit=450000)
 
     vocab = dict([(k, v.index) for k, v in model.wv.vocab.items()])
     vector = np.zeros([vocab_size, embedding_size])
@@ -605,7 +605,7 @@ def load_data_and_labels(data_file,
     if use_pretrain:
         model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
                                                            binary=True,
-                                                           limit=500000)
+                                                           limit=450000)
     else:
         create_word2vec_model(embedding_size,
                               ALL_TEXTS_INPUT)
@@ -658,7 +658,7 @@ def load_data_and_labels_one_label(data_file,
     if use_pretrain:
         model = word2vec.KeyedVectors.load_word2vec_format(word2vec_path,
                                                            binary=True,
-                                                           limit=500000)
+                                                           limit=250000)
     else:
         create_word2vec_model(embedding_size,
                               ALL_TEXTS_INPUT)

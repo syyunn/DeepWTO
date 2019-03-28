@@ -44,6 +44,7 @@ def linear(input_,
 
 def highway_layer(input_,
                   size,
+                  gov_or_art,
                   num_layers=1,
                   bias=-2.0,
                   f=tf.nn.relu):
@@ -58,12 +59,12 @@ def highway_layer(input_,
     for idx in range(num_layers):
         g = f(linear(input_,
                      size,
-                     scope=("highway_lin_{0}".
-                            format(idx))))
+                     scope=("highway_lin_{}_{}".
+                            format(idx, gov_or_art))))
         t = tf.sigmoid(linear(input_,
                               size,
-                              scope=("highway_gate_{0}".
-                                     format(idx))) + bias)
+                              scope=("highway_gate_{}_{}".
+                                     format(idx, gov_or_art))) + bias)
         output = t * g + (1. - t) * input_
         input_ = output
     
@@ -156,14 +157,49 @@ def do_cnn(gov_or_art,
                             name="relu")
     
     # Highway Layer
-    with tf.name_scope("highway".format(gov_or_art)):
+    with tf.name_scope("highway_{}".format(gov_or_art)):
         highway = highway_layer(fc_out,
                                 fc_out.get_shape()[1],
+                                gov_or_art=gov_or_art,
                                 num_layers=1,
                                 bias=0)
     
     # Add dropout
-    with tf.name_scope("dropout"):
+    with tf.name_scope("dropout_{}".format(gov_or_art)):
         h_drop = tf.nn.dropout(highway,
                                dropout_keep_prob)
     return h_drop
+
+
+def fc_w_nl_bn(name_scope,
+               fc_hidden_size,
+               input_tensor,
+               output_size,
+               is_training):
+    # Fully Connected Layer
+    with tf.name_scope(name_scope):
+        W = tf.Variable(
+            tf.truncated_normal(shape=[fc_hidden_size,
+                                       output_size],
+                                stddev=0.1,
+                                dtype=tf.float32),
+            name="W")
+        b = tf.Variable(
+            tf.constant(value=0.1,
+                        shape=[output_size],
+                        dtype=tf.float32),
+            name="b")
+        fc = tf.nn.xw_plus_b(
+            input_tensor,
+            W,
+            b)
+        
+        # Batch Normalization Layer
+        fc_bn = tf.layers.batch_normalization(
+            fc,
+            training=is_training)
+        
+        # Apply nonlinearity
+        fc_out = tf.nn.relu(fc_bn,
+                            name="relu")
+        return fc_out
