@@ -10,8 +10,9 @@ import tensorflow as tf
 
 from tensorboard.plugins import projector
 from models.citability_w_Article.OneLabelTextCNN.model import OneLabelTextCNN
-from utils import checkpoints
 from utils import feed
+from utils.train import count_correct_pred
+
 from sklearn.metrics import precision_score, recall_score, f1_score, \
     roc_auc_score, average_precision_score
 
@@ -63,6 +64,10 @@ tf.flags.DEFINE_string("train_or_restore",
                        "Train or Restore.")
 
 # Model Hyperparameters
+tf.flags.DEFINE_float("pos_weight",
+                      100000,
+                      "Coefficient To prevent False Positive")
+
 tf.flags.DEFINE_float("learning_rate",
                       0.01,
                       "The learning rate (default: 0.001)")
@@ -121,7 +126,8 @@ tf.flags.DEFINE_float("threshold",
 
 # Training Parameters
 tf.flags.DEFINE_integer("batch_size",
-                        8,
+                        32,
+                        # 8 for zacbuntu
                         "Batch Size (default: 256)")
 
 tf.flags.DEFINE_integer("num_epochs",
@@ -129,7 +135,7 @@ tf.flags.DEFINE_integer("num_epochs",
                         "Number of training epochs (default: 100)")
 
 tf.flags.DEFINE_integer("evaluate_every",
-                        100,
+                        30,
                         "Evaluate model on dev set after this many steps "
                         "(default: 5000)")
 
@@ -148,7 +154,7 @@ tf.flags.DEFINE_float("decay_rate",
                       "Rate of decay for learning rate. (default: 0.95)")
 
 tf.flags.DEFINE_integer("checkpoint_every",
-                        100,
+                        60,
                         "Save model after this many steps (default: 1000)")
 
 tf.flags.DEFINE_integer("num_checkpoints",
@@ -405,19 +411,16 @@ def train(word2vec_path):
                      cnn.input_y],
                     feed_dict)
                 
-                def count_correct_pred(prediction, batch_labels):
-                    count = 0
-                    for idx, batch_label in enumerate(batch_labels):
-                        if batch_label == [1] and prediction[idx] > 0.5:
-                            count += 1
-                        elif batch_label == [0] and prediction[idx] < 0.5:
-                            count += 1
-                    return count
-                
-                num_correct_answer = count_correct_pred(scores, input_y)
-                print("'[TRAIN] num_correct_answer is {} out of {}".
-                      format(num_correct_answer,
-                             FLAGS.batch_size))
+                count_label_one, \
+                count_label_zero,\
+                count_correct_one, \
+                count_correct_zero = count_correct_pred(scores, input_y)
+                print("'[TRAIN] num_correct_one is {} out of {}".
+                      format(count_correct_one,
+                             count_label_one))
+                print("'[TRAIN] num_correct_zero is {} out of {}".
+                      format(count_correct_zero,
+                             count_label_zero))
                 
                 logger.info("step {0}: loss {1:g}".format(step, loss))
                 train_summary_writer.add_summary(summaries, step)
@@ -450,7 +453,11 @@ def train(word2vec_path):
                 predicted_onehot_labels_ts = []
                 predicted_onehot_labels_tk = [[] for _ in range(FLAGS.top_num)]
                 
-                valid_correct_count = 0
+                valid_count_correct_one = 0
+                valid_count_label_one = 0
+                valid_count_correct_zero = 0
+                valid_count_label_zero = 0
+
                 valid_step_count = 0
                 for batch_validation in batches_validation:
                     valid_step_count += 1
@@ -474,21 +481,24 @@ def train(word2vec_path):
                          cnn.loss,
                          cnn.input_y],
                         feed_dict)
+                    
+                    count_label_one, \
+                    count_label_zero, \
+                    count_correct_one, \
+                    count_correct_zero = count_correct_pred(scores,
+                                                            input_y)
+                    valid_count_correct_one += count_correct_one
+                    valid_count_label_one += count_label_one
 
-                    def count_correct_pred(prediction, batch_labels):
-                        count = 0
-                        for idx, batch_label in enumerate(batch_labels):
-                            if batch_label == [1] and prediction[idx] > 0.5:
-                                count += 1
-                            elif batch_label == [0] and prediction[idx] < 0.5:
-                                count += 1
-                        return count
-
-                    num_correct_answer = count_correct_pred(scores, input_y)
-                    valid_correct_count += num_correct_answer
+                    valid_count_correct_zero += count_correct_zero
+                    valid_count_label_zero += count_label_zero
+                    
                     print("[VALID] num_correct_answer is {} out of {}".
-                          format(num_correct_answer,
-                                 FLAGS.batch_size))
+                          format(count_correct_one,
+                                 count_label_one))
+                    print("[VALID] num_correct_answer is {} out of {}".
+                          format(count_correct_zero,
+                                 count_label_zero))
 
                     # Prepare for calculating metrics
                     for i in y_batch_val:
@@ -520,9 +530,12 @@ def train(word2vec_path):
                     if writer:
                         writer.add_summary(summaries, step)
                         
-                print("[VALID_FINAL] Total Correct Answer is {} out of {}".
-                      format(valid_correct_count, valid_step_count *
-                             FLAGS.batch_size))
+                print("[VALID_FINAL] Total Correct One Answer is {} out of {}".
+                      format(valid_count_correct_one,
+                             valid_count_label_one))
+                print("[VALID_FINAL] Total Correct Zero Answer is {} out of "
+                      "{}".format(valid_count_correct_zero,
+                                  valid_count_label_zero))
 
                 _eval_loss = float(_eval_loss / _eval_counter)
 
@@ -663,5 +676,5 @@ def train(word2vec_path):
 
 if __name__ == '__main__':
     train(word2vec_path=
-          "/home/zachary/projects/DeepWTO/"
+          "/home/ubuntu/projects/DeepWTO/"
           "GoogleNews-vectors-negative300.bin")
