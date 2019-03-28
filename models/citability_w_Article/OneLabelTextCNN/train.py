@@ -152,7 +152,7 @@ tf.flags.DEFINE_integer("checkpoint_every",
                         "Save model after this many steps (default: 1000)")
 
 tf.flags.DEFINE_integer("num_checkpoints",
-                        2,
+                        3,
                         "Number of checkpoints to store (default: 50)")
 
 # Misc Parameters
@@ -643,7 +643,7 @@ def train(word2vec_path):
                                     eval_pre_tk[top_num],
                                     eval_rec_tk[top_num],
                                     eval_F_tk[top_num]))
-                    best_saver.handle(eval_prc, sess, current_step)
+                    # best_saver.handle(eval_prc, sess, current_step)
                
                 if current_step % FLAGS.checkpoint_every == 0:
                     checkpoint_prefix = os.path.join(checkpoint_dir, "model")
