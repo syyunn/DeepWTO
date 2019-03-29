@@ -95,5 +95,3 @@ Normally, description about Government Measure is included in the following:
 <p align="left">
   <img src="/assets/deepstudio.png" width="420" height="140">
 </p>
-
-This project is supported by __deepstudio Co.Ltd__ 
