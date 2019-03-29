@@ -76,7 +76,9 @@ Normally, description about Government Measure is included in the following:
 | :--- | :----------
 | [DeepWTO](https://github.com/syyunn/DeepWTO) | Main folder.
 | &boxvr;&nbsp; [assests](https://github.com/syyunn/DeepWTO/tree/master/assets) | Images required in README 
-| &boxvr;&nbsp; [models](https://drive.google.com/open?id=1uzwkZHQX_9pYg1i0d1Nbe3D9xPO8-qBf) | High-quality version of the result video.
+| &boxvr;&nbsp; [models](https://github.com/syyunn/DeepWTO/tree/master/models) | TF Models for different tasks code with data 
+| &boxv;&nbsp; &boxvr;&nbsp; [citability](https://github.com/syyunn/DeepWTO/tree/master/models/citability) | Prediction of which articles being cited for given textual description of Government Measure w/o Legal provisions **(Multi-Label)**
+| &boxv;&nbsp; &boxur;&nbsp; [citability_w_article](https://drive.google.com/open?id=100DJ0QXyG89HZzB4w2Cbyf4xjNK54cQ1) | Prediction of which articles being cited for given textual description of Government Measure w Legal provisions
 | &boxvr;&nbsp; [images](https://drive.google.com/open?id=1-l46akONUWF6LCpDoeq63H53rD7MeiTd) | Example images produced using our generator.
 | &boxv;&nbsp; &boxvr;&nbsp; [representative-images](https://drive.google.com/open?id=1ToY5P4Vvf5_c3TyUizQ8fckFFoFtBvD8) | High-quality images to be used in articles, blog posts, etc.
 | &boxv;&nbsp; &boxur;&nbsp; [100k-generated-images](https://drive.google.com/open?id=100DJ0QXyG89HZzB4w2Cbyf4xjNK54cQ1) | 100,000 generated images for different amounts of truncation.
