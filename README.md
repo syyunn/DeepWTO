@@ -75,18 +75,18 @@ Normally, description about Government Measure is included in the following:
 | Path | Description
 | :--- | :----------
 | [DeepWTO](https://github.com/syyunn/DeepWTO) | Main folder.
-| &boxvr;&nbsp; [assests](https://github.com/syyunn/DeepWTO/tree/master/assets) | Images required in README 
-| &boxvr;&nbsp; [models](https://github.com/syyunn/DeepWTO/tree/master/models) | TF Models for different tasks code with data 
+|&boxvr;&nbsp; [assests](https://github.com/syyunn/DeepWTO/tree/master/assets) | Images required in README 
+|&boxvr;&nbsp; [models](https://github.com/syyunn/DeepWTO/tree/master/models) | TF Models for different tasks code with data 
 |&nbsp;&nbsp; &boxvr;&nbsp; [cite](https://github.com/syyunn/DeepWTO/tree/master/models/citability) | Prediction of which articles being cited without legal text (multi label classification)
 |&nbsp;&nbsp; &boxur;&nbsp; [cite_wa](https://drive.google.com/open?id=100DJ0QXyG89HZzB4w2Cbyf4xjNK54cQ1) | Prediction of whether an article is cited with legal text (one label classification)
-| &boxvr;&nbsp; [prep](https://github.com/syyunn/DeepWTO/tree/master/prep) | Storage of codes to prepare data for all different tasks 
+|&boxvr;&nbsp; [prep](https://github.com/syyunn/DeepWTO/tree/master/prep) | Storage of codes to prepare data for all different tasks 
 |&nbsp;&nbsp; &boxvr;&nbsp; [download](https://github.com/syyunn/DeepWTO/tree/master/prep/download) | Codes to crawl/cleanse the data from WTO database / Crawl Results
 |&nbsp;&nbsp; &boxvr;&nbsp; [factual](https://github.com/syyunn/DeepWTO/tree/master/prep/factual) | Codes to parse factual aspects parts from the Panel Report
 |&nbsp;&nbsp; &boxvr;&nbsp; [label](https://github.com/syyunn/DeepWTO/tree/master/prep/label) | Codes and Raw data that is to be used as label
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxur;&nbsp; [cite](https://github.com/syyunn/DeepWTO/tree/master/prep/label/citability) | Codes and Raw data to prepare labels to be used in citability prediction task 
 |&nbsp;&nbsp; &boxur;&nbsp; [provision](https://github.com/syyunn/DeepWTO/tree/master/prep/provision) | PDF and TEXT file that contains raw data of legal provisions
-| &boxvr;&nbsp; [utils](https://github.com/syyunn/DeepWTO/tree/master/utils) | Simple util codes to use
-| &boxur;&nbsp; [web](https://github.com/syyunn/DeepWTO/tree/master/web) | Front/Server codes to deploy the project 
+|&boxvr;&nbsp; [utils](https://github.com/syyunn/DeepWTO/tree/master/utils) | Simple util codes to use
+|&boxur;&nbsp; [web](https://github.com/syyunn/DeepWTO/tree/master/web) | Front/Server codes to deploy the project 
 
 ### Author
 [__Zachary Yoon__](https://github.com/syyunn)
