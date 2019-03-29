@@ -2,7 +2,7 @@
 
 import pickle
 
-from data.factual.after_panel.parser import PanelParser
+from prep.factual.after_panel.parser import PanelParser
 
 
 def extract_factual_auto(pdf_path):

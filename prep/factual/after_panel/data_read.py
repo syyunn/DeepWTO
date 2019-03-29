@@ -1,11 +1,11 @@
-from data.label.applicability.parse import cleanse_dict, invert_dict
-from data.download.fetch import get_urls, filter_panel_eng
+from prep.label.applicability.parse import cleanse_dict, invert_dict
+from prep.download.fetch import get_urls, filter_panel_eng
 
 from utils.misc.yaml import read_yaml
 from utils.misc.url import download
 from utils.misc.pkl import open_write_dump, check_already_exist
 
-from data.factual.after_panel.extract import extract_factual_manual, locate_chapter_II, locate_chapter_III
+from prep.factual.after_panel.extract import extract_factual_manual, locate_chapter_II, locate_chapter_III
 
 
 def read_label(idx):
