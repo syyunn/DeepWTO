@@ -4,7 +4,6 @@ __modify__ = 'Zachary'
 
 import tensorflow as tf
 from utils.layers import do_cnn, fc_w_nl_bn
-from utils.train import count_correct_pred
 
 
 class OneLabelTextCNN(object):

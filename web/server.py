@@ -87,7 +87,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
                 
                 ###############################################################
                 # Prepare Test Input Json
-                from models.citability.data.prep import do_tokenize
+                from models.cite.data.prep import do_tokenize
                 data_to_feed = do_tokenize(measure)
                 print(data_to_feed)
 
@@ -100,7 +100,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
                 ###############################################################
                 # Test!
                 import os
-                from data.label.citability.parse import rehash_arts_in_text
+                from prep.label.cite.parse import rehash_arts_in_text
                 from utils.misc.json import read_json
               
                 word2vec_path = "/home/zachary/" \
@@ -115,7 +115,7 @@ class WebServerHandler(BaseHTTPRequestHandler):
                 keys = ["predict_labels", "predict_scores"]
                 prediction_arts = rehash_arts_in_text(
                     prediction[keys[0]],
-                    yaml_path="data/label/citability/labels/GATT.yaml")
+                    yaml_path="prep/label/citability/labels/GATT.yaml")
                 print(prediction_arts)
                 ###############################################################
                 

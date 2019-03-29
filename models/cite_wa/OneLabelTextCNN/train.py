@@ -11,7 +11,7 @@ import numpy as np
 import tensorflow as tf
 
 from tensorboard.plugins import projector
-from models.citability_w_Article.OneLabelTextCNN.model import OneLabelTextCNN
+from models.cite_wa.OneLabelTextCNN.model import OneLabelTextCNN
 from utils import feed
 from utils.train import count_correct_pred
 
