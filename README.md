@@ -77,16 +77,13 @@ Normally, description about Government Measure is included in the following:
 | [DeepWTO](https://github.com/syyunn/DeepWTO) | Main folder.
 | &boxvr;&nbsp; [assests](https://github.com/syyunn/DeepWTO/tree/master/assets) | Images required in README 
 | &boxvr;&nbsp; [models](https://github.com/syyunn/DeepWTO/tree/master/models) | TF Models for different tasks code with data 
-| &boxv;&nbsp; &boxvr;&nbsp; [citability](https://github.com/syyunn/DeepWTO/tree/master/models/citability) | Prediction of which articles being cited for given textual description of Government Measure w/o Legal provisions
-| &boxv;&nbsp; &boxur;&nbsp; [citability_w_article](https://drive.google.com/open?id=100DJ0QXyG89HZzB4w2Cbyf4xjNK54cQ1) | Prediction of whether a article is cited or not for given textual description of Government Measure w Legal provisions
+| &boxv;&nbsp; &boxvr;&nbsp; [cite](https://github.com/syyunn/DeepWTO/tree/master/models/citability) | Prediction of which articles being cited without legal text (multi label classification)
+| &boxv;&nbsp; &boxur;&nbsp; [cite_wa](https://drive.google.com/open?id=100DJ0QXyG89HZzB4w2Cbyf4xjNK54cQ1) | Prediction of whether an article is cited with legal text (one label classification)
 | &boxvr;&nbsp; [prep](https://github.com/syyunn/DeepWTO/tree/master/prep) | Storage of codes to prepare data for all different tasks 
-| &boxv;&nbsp; &boxvr;&nbsp; [dataset/citability/GATT](https://github.com/syyunn/DeepWTO/tree/master/prep/dataset/citability/GATT) | Python pickles for the factual aspects of each WTO disputes and cited articles by complainant as a label
 | &boxv;&nbsp; &boxvr;&nbsp; [download](https://github.com/syyunn/DeepWTO/tree/master/prep/download) | Codes to crawl/cleanse the data from WTO database / Crawl Results
 | &boxv;&nbsp; &boxvr;&nbsp; [factual](https://github.com/syyunn/DeepWTO/tree/master/prep/factual) | Codes to parse factual aspects parts from the Panel Report
 | &boxv;&nbsp; &boxvr;&nbsp; [label](https://github.com/syyunn/DeepWTO/tree/master/prep/label) | Codes and Raw data that is to be used as label
-| &boxv;&nbsp; &boxv;&nbsp;&nbsp; &nbsp;&boxvr;&nbsp; [citability](https://github.com/syyunn/DeepWTO/tree/master/prep/label/citability) | Codes and Raw data to prepare labels to be used in citability prediction task 
-| &boxv;&nbsp; &boxv;&nbsp;&nbsp; &nbsp;&boxvr;&nbsp; [GATT III](https://github.com/syyunn/DeepWTO/tree/master/prep/label/GATT%20III) | Codes and Raw data to prepare labels to be used in legality prediction task with the limit of scope to GATT III 
-| &boxv;&nbsp; &boxv;&nbsp;&nbsp; &nbsp;&boxvr;&nbsp; [legality](https://github.com/syyunn/DeepWTO/tree/master/prep/label/GATT%20III) | Codes and Raw data to prepare labels to be used in legality prediction task with the scope to whole WTO provisions (still on working) 
+| &boxv;&nbsp; &boxv;&nbsp;&nbsp; &nbsp;&boxvr;&nbsp; [cite](https://github.com/syyunn/DeepWTO/tree/master/prep/label/citability) | Codes and Raw data to prepare labels to be used in citability prediction task 
 | &boxv;&nbsp; &boxur;&nbsp; [provision](https://github.com/syyunn/DeepWTO/tree/master/prep/provision) | PDF and TEXT file that contains raw data of legal provisions
 | &boxvr;&nbsp; [utils](https://github.com/syyunn/DeepWTO/tree/master/utils) | Simple util codes to use
 | &boxur;&nbsp; [web](https://github.com/syyunn/DeepWTO/tree/master/web) | Front/Server codes to deploy the project 
