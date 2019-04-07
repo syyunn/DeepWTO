@@ -43,8 +43,8 @@ if TRAIN_OR_RESTORE == 'R':
                             "logs/restore-{0}.log".
                             format(time.asctime()))
 
-TRAININGSET_DIR = '../data/train_data.json'
-VALIDATIONSET_DIR = '../data/test_data.json'
+TRAININGSET_DIR = '/home/zachary/data/train_data.json'
+VALIDATIONSET_DIR = '/home/zachary/data/test_data.json'
 METADATA_DIR = '../data/metadata.tsv'
 
 # Data Parameters
@@ -128,8 +128,7 @@ tf.flags.DEFINE_float("threshold",
 
 # Training Parameters
 tf.flags.DEFINE_integer("batch_size",
-                        32,
-                        # 8 for zacbuntu
+                        8,
                         "Batch Size (default: 256)")
 
 tf.flags.DEFINE_integer("num_epochs",
@@ -137,7 +136,7 @@ tf.flags.DEFINE_integer("num_epochs",
                         "Number of training epochs (default: 100)")
 
 tf.flags.DEFINE_integer("evaluate_every",
-                        30,
+                        100,
                         "Evaluate model on dev set after this many steps "
                         "(default: 5000)")
 
@@ -156,7 +155,7 @@ tf.flags.DEFINE_float("decay_rate",
                       "Rate of decay for learning rate. (default: 0.95)")
 
 tf.flags.DEFINE_integer("checkpoint_every",
-                        60,
+                        100,
                         "Save model after this many steps (default: 1000)")
 
 tf.flags.DEFINE_integer("num_checkpoints",
@@ -311,13 +310,13 @@ def train(word2vec_path):
                     "✔︎ The format of your input is legal, "
                     "now loading to next step...")
                 out_dir = os.path.abspath(
-                    os.path.join(os.path.curdir,
+                    os.path.join("/home/zachary/hdd/OneLabelTextCNN",  # os.path.curdir
                                  "runs",
                                  MODEL))
                 logger.info("✔︎ Writing to {0}\n".format(out_dir))
             else:
                 timestamp = str(int(time.time()))
-                out_dir = os.path.abspath(os.path.join(os.path.curdir,
+                out_dir = os.path.abspath(os.path.join("/home/zachary/hdd/OneLabelTextCNN",
                                                        "runs",
                                                        timestamp))
                 logger.info("✔︎ Writing to {0}\n".format(out_dir))
@@ -679,5 +678,4 @@ def train(word2vec_path):
 
 if __name__ == '__main__':
     train(word2vec_path=
-          "/home/ubuntu/projects/DeepWTO/"
-          "GoogleNews-vectors-negative300.bin")
+          "/home/zachary/GoogleNews-vectors-negative300.bin")

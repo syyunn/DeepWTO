@@ -14,13 +14,9 @@
 ## About the Project 
 __[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previous project, 
 __[Auto-generation of GATT/WTO panel report](https://github.com/syyunn/GATT_WTO)__. 
-Compare to the previous project, this time the project has narrow down its 
-task to classification. The task is about to predict to which one of the following 3 classess the given provision of
- __[WTO](https://www.wto.org)__ falls into upon the given potentially-problematic government measure.
-
-    Class 1: the provision is not applicable to the given government measure.   
-    Class 2: the provision is applicable, but the given government measure is consistent with the provision.   
-    Class 3: the provision is applicable and those government measure is inconsistent with the provision.
+Compare to the previous project, this time the project has narrow down its scope 
+to classification. The task is about to predict which articles of  __[WTO](https://www.wto.org)__ rulings could be applied to the given
+textual description of Government Measure.  
          
 
 ## Goal of the Project
@@ -28,11 +24,11 @@ This project is assumed to achieve following two main goals:
 
 1. Build a __dataset__ so that everyone can participate in this legal 
 prediction/classification agenda in __objective manner__
-2. Performs a __prediction__ with simple neural networks to achieve the 
-naive-baseline, __33% >__ accuracy of the classification task.
+2. Performs a __classification__ with neural networks to achieve the 
+naive-baseline, __50% >__ accuracy of the classification task.
 
 
-### Dataset 
+### Dataset  
 Basically, the WTO panel process determines __whether a country's government 
 measure at issue__ is __contrary or not contrary__ to __a certain article(s)
  of rules of WTO__, by explicitly saying as following : 
@@ -40,27 +36,33 @@ measure at issue__ is __contrary or not contrary__ to __a certain article(s)
 > "Korea’s domestic support for beef in 1997 and 1998 exceeded the de 
 minimis level contrary to Article 6 of the Agreement on Agriculture." 
 
-Therefore, our dataset is comprised of mainly 3 components - 
-[__Government Measure__](https://github.com/syyunn/DeepWTO/tree/master/data/factual), 
-[__Legality with Cited Provision__](https://github.com/syyunn/DeepWTO/blob/master/data/label/legality.xlsx),
-[__WTO Legal Provisions__](https://github.com/syyunn/DeepWTO/tree/master/data/provision). 
 
-
-### Government Measure
+#### Government Measure
 
 Government measure is the most __tricky__ part to prepare the data to train.
   Government measure is usually __descriptive__ and __case-specific__, therefore it is hard to be generalized across the cases. Moreover, Government measure
  __has no strictly enforced formatting 
- style__ but mainly depends on the preference of each panel body and its 
- included personnel. 
+ style__ but mainly depends on the preference of each panel body.
 Therefore, for the first version of the dataset, we just naively includes all 
 the strings that can be found under the chapter-name of __Factual Aspect__ in every __Panel Report__. 
 
-Normally, description about Government Measure is included in the following:
+Normally, description about the Government Measure could be found at following:
 
 - Factual Aspects in Panel Report [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/46659/Q/WT/DS/161R.pdf)]
 - Request for Consultations  [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/25382/Q/G/L/292.pdf)]
 - Request for the Establishment of a Panel [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/46659/Q/WT/DS/161-5.pdf)]
+
+#### Download of Data
+- Download `train_data.json` and `test_data.json`
+
+    [GooglDriveLink](https://drive.google.com/open?id=10cEqZg6syoixuoXSNahMUW4AtlJB_CIN) 
+
+- data looks as following:
+    
+        {"testid": [DS_number]_[Article Name]
+         "gov": Textual description of Goverment Measure
+         "art": Article contents correponding to $Article Name 
+         "label": [0] if not cited, [1] if cited}   
 
 ### Reproduce   
     git clone https://github.com/syyunn/DeepWTO
@@ -68,7 +70,7 @@ Normally, description about Government Measure is included in the following:
     conda env create -f environment.yaml 
     python -m spacy download en # download spacy model to tokenize 
     
-    # One needs to prepare "DeepWTO/GoogleNews-vectors-negative300.bin"
+    # One needs to prepare "GoogleNews-vectors-negative300.bin"
 
 ### Code Structure
     
