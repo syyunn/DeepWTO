@@ -1,4 +1,5 @@
 import json
+import os
 
 
 def dump_write_dict2json(dictionary, write_path):
@@ -7,8 +8,12 @@ def dump_write_dict2json(dictionary, write_path):
 
 
 def write_json_line_by_line(list_of_dicts, write_path):
+    if os.path.exists(write_path):
+        os.remove(write_path)
+
     with open(write_path, "a") as outfile:
-        for data in list_of_dicts[:-1]:
+        for lineIdx, data in enumerate(list_of_dicts[:-1]):
+            print(lineIdx)
             json.dump(data, outfile)
             outfile.write('\n')
         json.dump(list_of_dicts[-1], outfile)

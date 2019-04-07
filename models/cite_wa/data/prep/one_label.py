@@ -6,7 +6,7 @@ from utils.misc.yaml import read_yaml
 from utils.misc.dict import get_keys
 from utils.misc.json import write_json_line_by_line
 
-from data.label.citability.parse import cleanse_dict
+from prep.label.cite.parse import cleanse_dict
 
 print(os.getcwd())
 

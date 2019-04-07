@@ -1,7 +1,10 @@
+import sys
+
 # -*- coding:utf-8 -*-
 __author__ = 'Randolph'
 __modify__ = 'Zachary'
 
+[sys.path.append(i) for i in ['.', '..', '...', '....']]
 
 import os
 import sys
