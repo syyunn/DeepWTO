@@ -55,7 +55,7 @@ Normally, description about the Government Measure could be found at following:
 #### Download of Data
 - Download `train_data.json` and `test_data.json`
 
-    [GooglDriveLink](https://drive.google.com/open?id=10cEqZg6syoixuoXSNahMUW4AtlJB_CIN) 
+    [Googl Drive](https://drive.google.com/open?id=10cEqZg6syoixuoXSNahMUW4AtlJB_CIN) 
 
 - data looks as following:
     
