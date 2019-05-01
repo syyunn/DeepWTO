@@ -91,7 +91,9 @@ Normally, description about the Government Measure could be found at following:
 |&boxur;&nbsp; [web](https://github.com/syyunn/DeepWTO/tree/master/web) | Front/Server codes to deploy the project 
 
 ### Achievement
-The model has achieved `AUC-ROC 0.8432` in one-label-classification task (refers to [cite_wa](https://drive.google.com/open?id=100DJ0QXyG89HZzB4w2Cbyf4xjNK54cQ1)) on test dataset. (the maximum of AUC-ROC is 1)
+The model has achieved `AUC-ROC 0.8432` in one-label-classification task with test data. 
+Please refer to the [cite_wa](https://drive.google.com/open?id=100DJ0QXyG89HZzB4w2Cbyf4xjNK54cQ1). 
+(the maximum of AUC-ROC is 1)
 
 ### Author
 [__Zachary Yoon__](https://github.com/syyunn)
