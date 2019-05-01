@@ -93,7 +93,7 @@ Normally, description about the Government Measure could be found at following:
 ### Achievement
 The model has achieved `AUC-ROC 0.8432` in one-label-classification task ([cite_wa](https://drive.google.com/open?id=100DJ0QXyG89HZzB4w2Cbyf4xjNK54cQ1)) with test data. 
 
-The maximum of AUC-ROC is 1.
+The maximum of `AUC-ROC` is `1`.
 
 ### Author
 [__Zachary Yoon__](https://github.com/syyunn)
