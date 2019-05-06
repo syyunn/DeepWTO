@@ -96,7 +96,7 @@ The model has achieved `AUC-ROC 0.8432` in one-label-classification task ([cite_
 The maximum of `AUC-ROC` is `1`.
 
 <p align="left">
-  <img src="/logs/aucroc.png" width="420" height="140">
+  <img src="/logs/aucroc.png">
 </p>
 
 
@@ -105,5 +105,5 @@ The maximum of `AUC-ROC` is `1`.
 
 ### Sponsor
 <p align="left">
-  <img src="/assets/deepstudio.png">
+  <img src="/assets/deepstudio.png" width="420" height="140">
 </p>
