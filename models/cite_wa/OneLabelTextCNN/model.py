@@ -24,12 +24,12 @@ class OneLabelTextCNN(object):
         # Placeholders for input, output, dropout_prob and training_tag
         self.input_x_gov = tf.placeholder(tf.int32,
                                           [None, sequence_length_gov],
-                                           name="input_x_gov")
+                                          name="input_x_gov")
 
         self.input_x_art = tf.placeholder(tf.int32,
                                           [None, sequence_length_art],
-                                           name="input_x_art")
-        
+                                          name="input_x_art")
+
         self.input_y = tf.placeholder(tf.float32,
                                       [None, 1],
                                       name="input_y")
@@ -75,15 +75,15 @@ class OneLabelTextCNN(object):
             self.embedded_sentence_art = tf.nn.embedding_lookup(
                 self.embedding,
                 self.input_x_art)
-             
+
             self.embedded_sentence_expanded_gov = tf.expand_dims(
                 self.embedded_sentence_gov, axis=-1)
-            
+
             self.embedded_sentence_expanded_art = tf.expand_dims(
                 self.embedded_sentence_art, axis=-1)
-        
+
         # h_drop_gov_args = filter_sizes, embedding_size, num_filters
-        
+
         h_drop_gov = do_cnn(gov_or_art="gov",
                             filter_sizes=filter_sizes,
                             embedding_size=embedding_size,
@@ -94,7 +94,7 @@ class OneLabelTextCNN(object):
                             sequence_length=sequence_length_gov,
                             fc_hidden_size=fc_hidden_size,
                             dropout_keep_prob=self.dropout_keep_prob)
-        
+
         h_drop_art = do_cnn(gov_or_art="art",
                             filter_sizes=filter_sizes,
                             embedding_size=embedding_size,
@@ -105,20 +105,20 @@ class OneLabelTextCNN(object):
                             sequence_length=sequence_length_art,
                             fc_hidden_size=fc_hidden_size,
                             dropout_keep_prob=self.dropout_keep_prob)
-        
+
         print(tf.shape(h_drop_art))
         print(tf.shape(h_drop_gov))
-        
+
         self.h_drop = tf.concat(values=[h_drop_gov,
                                         h_drop_art],
                                 axis=1)
-        
+
         self.legal = fc_w_nl_bn("legal",
-                                fc_hidden_size=2*fc_hidden_size,
+                                fc_hidden_size=2 * fc_hidden_size,
                                 input_tensor=self.h_drop,
                                 output_size=fc_hidden_size,
                                 is_training=self.is_training)
-        
+
         # Final scores
         with tf.name_scope("output"):
             W = tf.Variable(tf.truncated_normal(shape=[fc_hidden_size,
@@ -136,14 +136,14 @@ class OneLabelTextCNN(object):
                                           name="logits")
             self.scores = tf.sigmoid(self.logits,
                                      name="scores")
-        
+
         # Calculate mean cross-entropy loss, L2 loss
         with tf.name_scope("loss"):
             losses = tf.nn.weighted_cross_entropy_with_logits(
                 targets=self.input_y,
                 logits=self.logits,
                 pos_weight=26.303)
-            
+
             losses = tf.reduce_mean(tf.reduce_sum(losses, axis=1),
                                     name="sigmoid_losses")
             l2_losses = tf.add_n([tf.nn.l2_loss(tf.cast(v, tf.float32))
