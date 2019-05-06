@@ -105,5 +105,5 @@ The maximum of `AUC-ROC` is `1`.
 
 ### Sponsor
 <p align="left">
-  <img src="/assets/deepstudio.png" width="420" height="140">
+  <img src="/assets/deepstudio.png">
 </p>
