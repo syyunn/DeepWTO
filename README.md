@@ -95,6 +95,11 @@ The model has achieved `AUC-ROC 0.8432` in one-label-classification task ([cite_
 
 The maximum of `AUC-ROC` is `1`.
 
+<p align="left">
+  <img src="/logs/aucroc.png" width="420" height="140">
+</p>
+
+
 ### Author
 [__Zachary Yoon__](https://github.com/syyunn)
 
