@@ -100,7 +100,7 @@ The maximum of `AUC-ROC` is `1`.
 </p>
 
 ### Paper
-More detailed and kind explanation about the project can be found in this __[paper](https://drive.google.com/file/d/1qvPb2vGMclDBxEe6NLYZYmC3uxbrSYYp/view?usp=sharing)__
+More detailed and kind explanation about the project can be found in this __[paper](https://drive.google.com/file/d/1ZtAoNWQAP4VxzSYpz7iQ94pyW0xDnEn2/view?usp=sharing)__
 
 ### Author
 [__Zachary Yoon__](https://github.com/syyunn)
