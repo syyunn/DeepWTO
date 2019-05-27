@@ -99,6 +99,8 @@ The maximum of `AUC-ROC` is `1`.
   <img src="/logs/aucroc.png">
 </p>
 
+### Paper
+More detailed & kind explanation can be found __[here](url)__ 
 
 ### Author
 [__Zachary Yoon__](https://github.com/syyunn)

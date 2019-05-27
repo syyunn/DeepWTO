@@ -73,3 +73,5 @@ env_mac.yaml
 # data
 models/citability_w_Article/test_data.json
 models/citability_w_Article/train_data.json
+
+\.code2pdf
