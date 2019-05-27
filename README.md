@@ -55,7 +55,7 @@ Normally, description about the Government Measure could be found at following:
 #### Download of Data
 - Download `train_data.json` and `test_data.json`
 
-    [Googl Drive](https://drive.google.com/open?id=10cEqZg6syoixuoXSNahMUW4AtlJB_CIN) 
+    [Googl Drive](https://drive.google.com/drive/folders/1BpwYLqSBXxSgv8cmItwbohIkfebJr3lX?usp=sharing) 
 
 - data looks as following:
     
@@ -100,7 +100,7 @@ The maximum of `AUC-ROC` is `1`.
 </p>
 
 ### Paper
-More detailed & kind explanation can be found __[here](url)__ 
+More detailed & kind explanation can be found __[here](https://drive.google.com/file/d/1qvPb2vGMclDBxEe6NLYZYmC3uxbrSYYp/view?usp=sharing)__ 
 
 ### Author
 [__Zachary Yoon__](https://github.com/syyunn)
