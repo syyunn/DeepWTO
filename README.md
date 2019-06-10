@@ -110,6 +110,6 @@ More detailed and kind explanation about the project can be found in this __[pap
   <img src="/assets/deepstudio.png" width="420" height="140">
 </p>
 
-### Special Thanks to __[Randolph](https://github.com/RandolphVI/Multi-Label-Text-Classification)__
+### Special Thanks to __[RandolphIV](https://github.com/RandolphVI/Multi-Label-Text-Classification)__
 
-The repo has provided awesome model code to conduct document classification that this repo hsd refertrf to.
+The repo has provided awesome model code to conduct document classification that this repo has referred to.
