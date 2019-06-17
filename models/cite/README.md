@@ -1,3 +1,5 @@
+# cite task is deprecated. please refer to cite_wa, which is used in the paper and reproducible with the pretrained weight uploaded in google drive.
+
 ### Regarding Multi-label Classification (hereafter MLC)
 
 one should use *sigmoid* instead of *softmax* in Multi-label Classification 
