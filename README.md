@@ -46,7 +46,7 @@ Government measure is the most __tricky__ part to prepare the data to train.
  __has no strictly enforced formatting 
  style__ but mainly depends on the preference of each panel body.
 Therefore, for the first version of the dataset, we just naively includes all 
-the strings that can be found under the chapter-name of __Factual Aspect__ in every __Panel Report__. 
+the text strings that can be found under the chapter-name of __Factual Aspect__ in every __Panel Report__. 
 
 Normally, description about the Government Measure could be found at following:
 
