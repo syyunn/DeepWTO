@@ -50,7 +50,7 @@ Government measure is the most __tricky__ part to prepare the data to train.
 Therefore, for the first version of the dataset, we just naively includes all 
 the text strings that can be found under the chapter-name of __Factual Aspect__ in every __Panel Report__. 
 
-Normally, description about the Government Measure could be found at following:
+Normally, description about the Government Measure could be found at following classes of WTO documents:
 
 - Factual Aspects in Panel Report [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/46659/Q/WT/DS/161R.pdf)]
 - Request for Consultations  [[example](https://docs.wto.org/dol2fe/Pages/FE_Search/DDFDocuments/25382/Q/G/L/292.pdf)]
