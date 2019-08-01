@@ -15,8 +15,7 @@
 __[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previous project, 
 __[Auto-generation of GATT/WTO panel report](https://github.com/syyunn/GATT_WTO)__. 
 Compare to the previous project, this time the project has narrow down its scope 
-to classification. The task is about to predict which articles of  __[WTO](https://www.wto.org)__ rulings could be applied to the given
-textual description of Government Measure.  
+to the binary classification. The task is about to predict which articles of  __[WTO](https://www.wto.org)__ rulings could be applied to the given textual description of Government Measure.  
          
 
 ## Goal of the Project
@@ -25,7 +24,7 @@ This project is assumed to achieve following two main goals:
 1. Build a __dataset__ so that everyone can participate in this legal 
 prediction/classification agenda in __objective manner__
 2. Performs a __classification__ with neural networks to achieve the 
-naive-baseline, __50% >__ accuracy of the classification task.
+naive-baseline, __0.5 >__ `AUC-ROC` of the classification task.
 
 
 ### Dataset  
