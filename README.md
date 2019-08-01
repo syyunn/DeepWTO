@@ -20,7 +20,7 @@ Compare to the previous project, this time the project has narrowed down its sco
 to the binary classification. The task is about to predict whether an legal article of  __[WTO](https://www.wto.org)__ rulings could be applied to the given textual description of Government Measure.  
          
 ## Background of the Project
-Currnetly there exists no publicly shared dataset that researchers can share and study together in the field of `LegalNLP`. One of the main reason of this vacancy is because of the locality of the law. Therefore, this repo aims to prepare publicly available `LegalNLP dataset` within the field of `international law` which is operating globally in English. Moreover, to let the researchers to understand how the deep Learning model could be implemented, the repo has prepared [sample model code](https://github.com/syyunn/DeepWTO/tree/master/models/cite_wa) with the prepared dataset. 
+Currnetly there exists no publicly shared dataset that researchers can share and study together in the field of `LegalNLP`. One of the main reason of this vacancy is because of the locality of the law. Therefore, this repo aims to prepare publicly available `LegalNLP dataset` within the field of `international law` which is operating globally in English. Moreover, to let the researchers to understand how the deep Learning model could be implemented, the repo provides [sample model code](https://github.com/syyunn/DeepWTO/tree/master/models/cite_wa) with the prepared dataset. 
 
 
 ## Goal of the Project
