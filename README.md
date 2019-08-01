@@ -60,9 +60,12 @@ Normally, description about the Government Measure could be found at following:
     
         {"testid": [DS_number]_[Article Name]
          "gov": Textual description of Goverment Measure
-         "art": Article contents correponding to $Article Name 
+         "art": Article contents correponding to [Article Name] 
          "label": [0] if not cited, [1] if cited}   
-
+        
+        * [DS_number] is an unique identification code for each case requested to WTO
+        * Example of [Article Name] is Article I:1, Article III:4, etc.
+        
 ### Reproduce   
     git clone https://github.com/syyunn/DeepWTO
     cd DeepWTO
