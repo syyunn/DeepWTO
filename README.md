@@ -105,7 +105,10 @@ Also, the model has achieved `Accuracy 92.04%` in test data set with following [
         Total Correct Prediction for label [0] is 2068 out of 2204
 
 <br />
+
 However, the preferred metric is `AUC-ROC` because a naive-baseline of the `Accuracy` is `96.37% (2204/2287)` where the model just keep predicting `label [0]` for every case. Since only a few number of articles are cited among entire articles for each case, it is more preferred to measure how [precisely](https://en.wikipedia.org/wiki/Precision_and_recall) the model predicts the `label [1]` with `AUC-ROC`.   
+
+<br />
 <br />
 
 
