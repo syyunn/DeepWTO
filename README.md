@@ -72,8 +72,8 @@ Normally, description about the Government Measure could be found at following:
     Then edit the `TRAININGSET_DIR` and `VALIDATIONSET_DIR` variable in `models/cite_wa/OneLabelTextCNN/train.py` with `PATH`.
 
 - In case you don't have `GoogleNews-vectors-negative300.bin`
-    Download `GoogleNews-vectors-negative300.bin.gz` and `gunzip` it. Then place it to your preferred `PATH`.
-    Then edit the `word2vec_path` vairalbe in `models/cite_wa/OneLabelTextCNN/train.py` with `PATH`.
+
+    Download `GoogleNews-vectors-negative300.bin.gz` from [Googl Drive](https://drive.google.com/drive/folders/1BpwYLqSBXxSgv8cmItwbohIkfebJr3lX?usp=sharing) and `gunzip` it. Then place it to your preferred `PATH`. Then edit the `word2vec_path` vairalbe in `models/cite_wa/OneLabelTextCNN/train.py` with `PATH`.
     
 ### Reproduce   
   
