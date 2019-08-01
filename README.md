@@ -149,4 +149,4 @@ More detailed and kind explanation about the project can be found in this __[pap
 
 ### Special Thanks to __[RandolphIV](https://github.com/RandolphVI/Multi-Label-Text-Classification)__
 
-The repo of RandolpIV has provided awesome model code to conduct document classification that this repo has referred to.
+[The repo](https://github.com/RandolphVI/Multi-Label-Text-Classification) has provided awesome model code to conduct document classification that this repo has referred to.
