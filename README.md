@@ -65,12 +65,22 @@ Normally, description about the Government Measure could be found at following:
         
         * [DS_number] is an unique identification code for each case requested to WTO
         * Example of [Article Name] is Article I:1, Article III:4, etc.
-        
+
+- After Download
+    place the downloaded `train_data.json` and `test_data.json` to your preferred `PATH`. 
+    then edit the `TRAININGSET_DIR` and `VALIDATIONSET_DIR` variable in         
+    `models/cite_wa/OneLabelTextCNN/train.py` with `PATH`
+
 ### Reproduce   
+  
     git clone https://github.com/syyunn/DeepWTO
     cd DeepWTO
     conda env create -f environment.yaml 
     python -m spacy download en # download spacy model to tokenize 
+    
+    cd models/cite_wa/OneLabelTextCNN
+    python train.py
+    
     
     # One needs to prepare "GoogleNews-vectors-negative300.bin"
 
