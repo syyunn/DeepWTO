@@ -26,9 +26,9 @@ Currnetly there exists no publicly shared dataset that researchers can share and
 ## Goal of the Project
 This project is assumed to achieve following two main goals:
 
-1. Build a __dataset__ so that everyone can participate in this legal 
+1. Build a __Legal NLP Dataset__ so that everyone can participate in this legal 
 prediction/classification agenda in __objective manner__
-2. Performs a __classification__ with neural networks to achieve the 
+2. Performs a __classification__ with a neural network to achieve the 
 naive-baseline, __0.5 >__ `AUC-ROC` of the classification task.
 
 
