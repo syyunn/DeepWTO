@@ -107,7 +107,7 @@ Normally, description about the Government Measure could be found at following c
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxur;&nbsp; [cite](https://github.com/syyunn/DeepWTO/tree/master/prep/label/cite) | Codes and Raw data to prepare labels to be used in citability prediction task 
 |&nbsp;&nbsp; &boxur;&nbsp; [provision](https://github.com/syyunn/DeepWTO/tree/master/prep/provision) | PDF and TEXT file that contains raw data of legal provisions
 |&boxvr;&nbsp; [utils](https://github.com/syyunn/DeepWTO/tree/master/utils) | Simple util codes to use
-|&boxur;&nbsp; [web](https://github.com/syyunn/DeepWTO/tree/master/web) | Front/Server codes to deploy the project 
+|&boxur;&nbsp; [web](https://github.com/syyunn/DeepWTO/tree/master/web) | Front/Server codes to deploy the project (Currently Working) 
 
 ### Achievement
 The model has achieved `AUC-ROC 0.8432` in one-label-classification task ([cite_wa](https://github.com/syyunn/DeepWTO/tree/master/models/cite_wa)) with test data. 
