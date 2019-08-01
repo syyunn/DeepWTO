@@ -99,7 +99,7 @@ The maximum of `AUC-ROC` is `1`.
   <img src="/logs/aucroc.png">
 </p>
 
-Also, the model has achieved `Accuracy 92.04%` in test data set with following statistics : 
+Also, the model has achieved `Accuracy 92.04%` in test data set with following [statistics](https://github.com/syyunn/DeepWTO/tree/master/logs/sota_log.txt) : 
 
         Total Correct Prediction for label [1] is 37 out of 83
         Total Correct Prediction for label [0] is 2068 out of 2204
