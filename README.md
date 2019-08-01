@@ -67,8 +67,9 @@ Normally, description about the Government Measure could be found at following:
         * Example of [Article Name] is Article I:1, Article III:4, etc.
 
 - After Download
+
     place the downloaded `train_data.json` and `test_data.json` to your preferred `PATH`. 
-    then edit the `TRAININGSET_DIR` and `VALIDATIONSET_DIR` variable in         
+    Then edit the `TRAININGSET_DIR` and `VALIDATIONSET_DIR` variable in         
     `models/cite_wa/OneLabelTextCNN/train.py` with `PATH`
 
 ### Reproduce   
