@@ -99,7 +99,7 @@ Normally, description about the Government Measure could be found at following c
 |&boxvr;&nbsp; [assests](https://github.com/syyunn/DeepWTO/tree/master/assets) | Images required in README 
 |&boxvr;&nbsp; [models](https://github.com/syyunn/DeepWTO/tree/master/models) | TF Models for different tasks code with data 
 |&nbsp;&nbsp; &boxvr;&nbsp; ~~[cite](https://github.com/syyunn/DeepWTO/tree/master/models/citability)~~ | Prediction of which articles being cited without legal text (multi label classification; Deprecated)
-|&nbsp;&nbsp; &boxur;&nbsp; [cite_wa](https://github.com/syyunn/DeepWTO/tree/master/models/cite_wa) | Prediction of whether an article is cited with legal text (one label classification)
+|&nbsp;&nbsp; &boxur;&nbsp; [cite_wa](https://github.com/syyunn/DeepWTO/tree/master/models/cite_wa) | Prediction of whether an article is cited with article content (one label classification)
 |&boxvr;&nbsp; [prep](https://github.com/syyunn/DeepWTO/tree/master/prep) | Storage of codes to prepare data for all different tasks 
 |&nbsp;&nbsp; &boxvr;&nbsp; [download](https://github.com/syyunn/DeepWTO/tree/master/prep/download) | Codes to crawl/cleanse the data from WTO database / Crawl Results
 |&nbsp;&nbsp; &boxvr;&nbsp; [factual](https://github.com/syyunn/DeepWTO/tree/master/prep/factual) | Codes to parse factual aspects parts from the Panel Report
