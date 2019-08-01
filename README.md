@@ -99,6 +99,11 @@ The maximum of `AUC-ROC` is `1`.
   <img src="/logs/aucroc.png">
 </p>
 
+Also, the model has achieved `Accuracy 92.04%` in test data set with following statistics : 
+
+  Total Correct Prediction for label [1] is 37 out of 83
+  Total Correct Prediction for label [0] is 2068 out of 2204
+
 ### Paper
 More detailed and kind explanation about the project can be found in this __[paper](https://drive.google.com/file/d/1JXf-_p63UXuaSV89RvbTnLovMi3ylL62/view?usp=sharing)__ (or __[slides](https://docs.google.com/presentation/d/1ixUZoA_SBsjeoNaHpQBVabh1XYDqStB79DEGO3QywMQ/edit?usp=sharing)__)
 
