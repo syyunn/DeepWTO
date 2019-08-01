@@ -61,7 +61,7 @@ Normally, description about the Government Measure could be found at following:
 
     [Googl Drive](https://drive.google.com/drive/folders/1BpwYLqSBXxSgv8cmItwbohIkfebJr3lX?usp=sharing) 
 
-- data looks as following:
+- Each data instance looks as following:
     
         {"testid": [DS_number]_[Article Name]
          "gov": Textual description of Goverment Measure
