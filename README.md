@@ -134,10 +134,14 @@ More detailed and kind explanation about the project can be found in this __[pap
 ### Author
 [__Zachary Yoon__](https://github.com/syyunn)
 
+<br />
+
 ### Sponsor
 <p align="left">
   <img src="/assets/deepstudio.png" width="420" height="140">
 </p>
+
+<br />
 
 ### Special Thanks to __[RandolphIV](https://github.com/RandolphVI/Multi-Label-Text-Classification)__
 
