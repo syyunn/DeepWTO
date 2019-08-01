@@ -101,7 +101,7 @@ Normally, description about the Government Measure could be found at following:
 |&nbsp;&nbsp; &boxvr;&nbsp; [download](https://github.com/syyunn/DeepWTO/tree/master/prep/download) | Codes to crawl/cleanse the data from WTO database / Crawl Results
 |&nbsp;&nbsp; &boxvr;&nbsp; [factual](https://github.com/syyunn/DeepWTO/tree/master/prep/factual) | Codes to parse factual aspects parts from the Panel Report
 |&nbsp;&nbsp; &boxvr;&nbsp; [label](https://github.com/syyunn/DeepWTO/tree/master/prep/label) | Codes and Raw data that is to be used as label
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxur;&nbsp; [cite](https://github.com/syyunn/DeepWTO/tree/master/prep/label/citability) | Codes and Raw data to prepare labels to be used in citability prediction task 
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&boxur;&nbsp; [cite](https://github.com/syyunn/DeepWTO/tree/master/prep/label/cite) | Codes and Raw data to prepare labels to be used in citability prediction task 
 |&nbsp;&nbsp; &boxur;&nbsp; [provision](https://github.com/syyunn/DeepWTO/tree/master/prep/provision) | PDF and TEXT file that contains raw data of legal provisions
 |&boxvr;&nbsp; [utils](https://github.com/syyunn/DeepWTO/tree/master/utils) | Simple util codes to use
 |&boxur;&nbsp; [web](https://github.com/syyunn/DeepWTO/tree/master/web) | Front/Server codes to deploy the project 
