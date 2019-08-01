@@ -88,8 +88,6 @@ Normally, description about the Government Measure could be found at following:
     cd models/cite_wa/OneLabelTextCNN
     python train.py
     
-    
-    # One needs to prepare "GoogleNews-vectors-negative300.bin" beforehand
 
 ### Code Structure
     
