@@ -4,6 +4,9 @@
 
 <br />
 
+# Importance Notice
+Currently the DeepWTO project aims to publish the result to `2021 ICAIL` after some major addendum - such as analyzing the result with `xAI`. We are looking for some skilled engineers/researchers who are interseted in the field of `legalNLP`. Please check our project [organization](https://github.com/DeepWTO) and get in touch with `syyun@snu.ac.kr` to discuss with which research point you want to/can participate in the experiment! 
+
 # DeepWTO 
 ![ubuntu 16.04](https://img.shields.io/badge/ubuntu-16.04-blue.svg)
 [![Python 3.6.8](https://img.shields.io/badge/python-3.6.8-blue.svg)](https://www.python.org/downloads/release/python-370/)
