@@ -5,7 +5,7 @@
 <br />
 
 # Important Notice (as of 28 Feb 2020)
-Currently the DeepWTO project aims to publish the result to `2021 ICAIL` after some major addendum - such as analyzing the result with `xAI`. We are looking for some skilled engineers/researchers who are interseted in the field of `legalNLP`. Please check our project [organization](https://github.com/DeepWTO) and get in touch with `syyun@snu.ac.kr` to discuss with which research point you want to/can participate in the project! 
+Currently the DeepWTO project aims to publish the result to `2021 ICAIL` after some major addendum - such as analyzing the result with `xAI`. We are looking for some skilled engineers/researchers who are interseted in the field of `legalNLP`. Please check our project [organization](https://github.com/DeepWTO) and get in touch with [syyun@snu.ac.kr](mailto:syyun@snu.ac.kr?subject="Regarding Participation to DeepWTO) to discuss with which research point you want to/can participate in the project! 
 
 Our further progess will be posted in [Organization's repo](https://github.com/DeepWTO/deepwto-draft) and this repo will remain as the proof of the first draft work.
 
