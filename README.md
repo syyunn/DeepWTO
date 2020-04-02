@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/assets/wto.png" width="497" height="370">
+  <img src="/assets/Screen Shot 2020-04-02 at 4.18.12 PM.png" width="497" height="370">
 </p>
 
 <br />
