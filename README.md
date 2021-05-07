@@ -8,9 +8,9 @@
 Check https://deepwto.org
 
 # Important Notice (as of 28 Feb 2020)
-Currently the DeepWTO project aims to publish the result to `2021 ICAIL` after some major addendum - such as analyzing the result with `xAI`. We are looking for some skilled engineers/researchers who are interseted in the field of `legalNLP`. Please check our project [organization](https://github.com/DeepWTO) and get in touch with [syyun@snu.ac.kr](mailto:syyun@snu.ac.kr) to discuss with which research point you want to/can participate in the project! 
+Currently DeepWTO aims to publish the result to `2021 ICAIL` after some major addendum - such as analyzing the result with `XAI`. We are looking for some skilled engineers/researchers who are interseted in the field of `legalNLP`. Please check our project [organization](https://github.com/DeepWTO) and get in touch with [syyun@snu.ac.kr](mailto:syyun@snu.ac.kr) to discuss with which research point you want to/can participate with the project! 
 
-Any further progess will be published in [Organization's repo](https://github.com/DeepWTO/deepwto-draft) and this repo will remain as the first draft work.
+Any further progess will be published in [Organization's repo](https://github.com/DeepWTO/deepwto-draft).
 
 # DeepWTO 
 ![ubuntu 16.04](https://img.shields.io/badge/ubuntu-16.04-blue.svg)
@@ -24,11 +24,11 @@ Any further progess will be published in [Organization's repo](https://github.co
 ## About the Project 
 __[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previous project, 
 __[Auto-generation of GATT/WTO panel report](https://github.com/syyunn/GATT_WTO)__. 
-Compare to the previous project, this time the project has narrowed down its scope 
-to the binary classification. The task is about to predict whether an legal article of  __[WTO](https://www.wto.org)__ rulings could be applied to the given textual description of Government Measure.  
+Compare to the previous project, this time the project narrowed down its scope 
+to the binary classification. The task is about to predict whether a legal article of  __[WTO](https://www.wto.org)__ rulings could be applied to the given textual description of Government Measure.  
          
 ## Background of the Project
-Currnetly there exists no publicly shared dataset that researchers can share and study together in the field of `LegalNLP`. One of the main reason of this vacancy is because of the locality of the law. Therefore, this repo aims to prepare publicly available `LegalNLP dataset` within the field of `International Law` which is operating globally in English. Moreover, to let the researchers to understand how the deep Learning model could be implemented, the repo provides [sample model code](https://github.com/syyunn/DeepWTO/tree/master/models/cite_wa) with the prepared dataset. 
+Currnetly there exists no publicly shared dataset that researchers can share and study together in the field of `LegalNLP`. One of the main reason of this vacancy is because of the locality of the law. Thus this repo aims to prepare publicly available `LegalNLP dataset` within the field of `International Law` which is operating globally in English. Moreover, to let the researchers to understand how deep Learning could be implemented, the repo provides [sample model code](https://github.com/syyunn/DeepWTO/tree/master/models/cite_wa) with the prepared dataset. 
 
 
 ## Goal of the Project
