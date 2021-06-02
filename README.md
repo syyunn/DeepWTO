@@ -144,7 +144,7 @@ More detailed and kind explanation about the project can be found in this __[pap
 <br />
 
 ### Author
-[__Zachary Yoon__](https://github.com/syyunn)
+[Suyeol Yun](https://github.com/syyunn)
 
 <br />
 
