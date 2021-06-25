@@ -37,7 +37,7 @@ This project is assumed to achieve following two main goals:
 1. Build a __Legal NLP Dataset__ so that everyone can participate in this legal 
 prediction/classification agenda in __objective manner__
 2. Performs a __classification__ with a neural network to achieve the 
-naive-baseline, __0.5 >__ `AUC-ROC` of the classification task.
+naive-baseline, __0.5 <__ `AUC-ROC` of the classification task.
 
 
 ### Dataset  
