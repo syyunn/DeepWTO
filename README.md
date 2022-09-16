@@ -4,14 +4,6 @@
 
 <br />
 
-# Interactive Demo has Opened! (as of 29 Mar 2020)
-Check https://deepwto.org
-
-# Important Notice (as of 28 Feb 2020)
-Currently DeepWTO aims to publish the result to `2021 ICAIL` after some major addendum - such as analyzing the result with `XAI`. We are looking for some skilled engineers/researchers who are interseted in the field of `legalNLP`. Please check our project [organization](https://github.com/DeepWTO) and get in touch with [syyun@snu.ac.kr](mailto:syyun@snu.ac.kr) to discuss with which research point you want to/can participate with the project! 
-
-Any further progess will be published in [Organization's repo](https://github.com/DeepWTO/deepwto-draft).
-
 # DeepWTO 
 ![ubuntu 16.04](https://img.shields.io/badge/ubuntu-16.04-blue.svg)
 [![Python 3.6.8](https://img.shields.io/badge/python-3.6.8-blue.svg)](https://www.python.org/downloads/release/python-370/)
