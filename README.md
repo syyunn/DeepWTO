@@ -14,7 +14,7 @@
 <br />
 
 ## About the Project 
-This project collect legalNLP data to predict whether a legal article of  __[WTO](https://www.wto.org)__ rulings can be applied to the given textual description of dispute between two countries in WTO judicial body.  
+This project collects legalNLP data to predict whether a legal article of  __[WTO](https://www.wto.org)__ rulings can be applied to the given textual description of dispute between two countries in WTO judicial body.  
          
 ## Background of the Project
 Currnetly there exists no publicly shared dataset that researchers can share and study together in the field of `LegalNLP`. One of the main reason of this vacancy is because of the locality of the law. Thus this repo aims to prepare publicly available `LegalNLP dataset` within the field of `International Law` which is operating globally in English. Moreover, to let the researchers to understand how deep Learning could be implemented, the repo provides [sample model code](https://github.com/syyunn/DeepWTO/tree/master/models/cite_wa) with the prepared dataset. 
