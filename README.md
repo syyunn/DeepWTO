@@ -128,7 +128,8 @@ However, the preferred metric for the model performance is `AUC-ROC` because a n
 
 
 ### Paper
-More detailed and kind explanation about the project can be found in this __[paper](https://drive.google.com/open?id=16zXC9GBdoXqgcdLn7jeTenDJVdPuL72U)__ (or __[slides](https://docs.google.com/presentation/d/1ixUZoA_SBsjeoNaHpQBVabh1XYDqStB79DEGO3QywMQ/edit?usp=sharing)__)
+- More detailed and kind explanation about the project can be found in this __[paper](https://drive.google.com/open?id=16zXC9GBdoXqgcdLn7jeTenDJVdPuL72U)__ (or __[slides](https://docs.google.com/presentation/d/1ixUZoA_SBsjeoNaHpQBVabh1XYDqStB79DEGO3QywMQ/edit?usp=sharing)__)
+- Or, you may want to refer to [this paper](https://github.com/syyunn/citation-dwg-wto/blob/main/main.pdf) which explains how to use this data to find the correlation between legal articles in WTO rulings.
 
 <br />
 
