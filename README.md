@@ -15,7 +15,7 @@
 
 ## About the Project 
 __[DeepWTO](https://github.com/syyunn/DeepWTO)__ is a continuation work of previous project, 
-__[Auto-generation of GATT/WTO panel report](https://github.com/syyunn/GATT_WTO)__. 
+__[auto-generation of GATT/WTO panel report](https://github.com/syyunn/GATT_WTO)__. 
 Compare to the previous project, this time the project narrowed down its scope 
 to the binary classification. The task is about to predict whether a legal article of  __[WTO](https://www.wto.org)__ rulings could be applied to the given textual description of Government Measure.  
          
