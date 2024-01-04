@@ -1,6 +1,5 @@
-<p align="center">
-  <img src="/assets/Screen Shot 2020-04-02 at 4.06.57 PM.png" width="418" height="418">
-</p>
+🏆 **Award-Winning Project**: Recipient of the *MIT Open Data Prize 2022*.
+[![MIT Open Data Prize 2022](https://libraries.mit.edu/opendata/open-data-mit-home/mit-prize/2022-mit-prize-for-open-data/)](https://libraries.mit.edu/opendata/open-data-mit-home/mit-prize/2022-mit-prize-for-open-data/)
 
 <br />
 
