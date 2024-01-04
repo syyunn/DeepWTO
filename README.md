@@ -1,6 +1,6 @@
 🏆 **Award-Winning Project**: Recipient of the *MIT Open Data Prize 2022*.
 
-[MIT Open Data Prize 2022](https://libraries.mit.edu/opendata/open-data-mit-home/mit-prize/2022-mit-prize-for-open-data/)]
+[MIT Open Data Prize 2022](https://libraries.mit.edu/opendata/open-data-mit-home/mit-prize/2022-mit-prize-for-open-data/)
 
 <br />
 
